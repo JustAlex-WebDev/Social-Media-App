@@ -6,13 +6,15 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
     <div
       onMouseDown={() => setTouched(true)}
       onMouseUp={() => setTouched(false)}
-      className="bg-black h-[100svh] w-full cursor-pointer overflow-hidden"
+      className="bg-black h-[100svh] w-full cursor-pointer"
     >
-      <div className="h-[100svh] w-full max-w-[1140px] m-auto flex flex-col justify-between items-center font-semibold">
+      <div className="h-[100svh] w-full max-w-[1140px] m-auto flex flex-col justify-between items-center font-semibold overflow-hidden">
         <div
           className={`${
-            touched ? "opacity-100" : "opacity-0 delay-0 duration-300"
-          } fixed w-full max-w-[1140px] m-auto flex justify-end text-[#BF0000] p-8 delay-[2500ms] duration-1000`}
+            touched
+              ? "opacity-100 delay-[2500ms] duration-1000"
+              : "opacity-0 delay-0 duration-300"
+          } fixed w-full max-w-[1140px] m-auto flex justify-end text-[#BF0000] p-8`}
         >
           <PiEngineFill size={24} />
         </div>
@@ -23,31 +25,31 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
         >
           <div
             className={`${
-              touched ? "text-[#BF0000]" : "text-white delay-0"
-            } animate-pulse text-lg delay-[2200ms] duration-1000 ease-in-out`}
+              touched ? "text-[#BF0000] delay-[2200ms]" : "text-white delay-0"
+            } animate-pulse text-lg duration-1000 ease-in-out`}
           >
             hold to
           </div>
           <div
             className={`${
-              touched ? "text-[#BF0000]" : "text-white delay-0"
-            } text-8xl delay-[1900ms] duration-1000 ease-in-out`}
+              touched ? "text-[#BF0000] delay-[1900ms]" : "text-white delay-0"
+            } text-8xl duration-1000 ease-in-out`}
           >
             rev
           </div>
         </div>
         <div
           className={`${
-            touched ? "h-1/2" : "h-0"
+            touched ? "h-1/2" : "h-1/2"
           } w-full flex flex-col text-xl gap-20 duration-1000 ease-in-out`}
         >
           <div className="flex justify-end">
             <div
               className={`${
                 touched
-                  ? "text-[#BF0000] border-b-[#BF0000]"
-                  : "text-white border-b-[#f2f2f2] delay-0"
-              } border-b-2 px-10 delay-[1600ms] duration-1000 ease-in-out`}
+                  ? "text-[#BF0000] border-b-[#BF0000] delay-[1600ms] translate-x-0"
+                  : "text-white border-b-[#f2f2f2] delay-0 translate-x-48"
+              } border-b-2 px-10 duration-1000 ease-in-out`}
             >
               12000rpm
             </div>
@@ -56,9 +58,9 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
             <div
               className={`${
                 touched
-                  ? "text-[#BF0000] border-b-[#BF0000]"
-                  : "text-white border-b-[#f2f2f2] delay-0"
-              } border-b-2 px-10 delay-[1300ms] duration-1000 ease-in-out`}
+                  ? "text-[#BF0000] border-b-[#BF0000] delay-[1300ms] -translate-x-0"
+                  : "text-white border-b-[#f2f2f2] delay-0 -translate-x-48"
+              } border-b-2 px-10 duration-1000 ease-in-out`}
             >
               9000rpm
             </div>
@@ -67,9 +69,9 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
             <div
               className={`${
                 touched
-                  ? "text-[#BF0000] border-b-[#BF0000]"
-                  : "text-white border-b-[#f2f2f2] delay-0"
-              } border-b-2 px-10 delay-1000 duration-1000 ease-in-out`}
+                  ? "text-[#BF0000] border-b-[#BF0000] delay-1000 translate-x-0"
+                  : "text-white border-b-[#f2f2f2] delay-0 translate-x-48"
+              } border-b-2 px-10 duration-1000 ease-in-out`}
             >
               6000rpm
             </div>
@@ -78,9 +80,9 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
             <div
               className={`${
                 touched
-                  ? "text-[#BF0000] border-b-[#BF0000]"
-                  : "text-white border-b-[#f2f2f2] delay-0"
-              } border-b-2 px-10 delay-700 duration-1000 ease-in-out`}
+                  ? "text-[#BF0000] border-b-[#BF0000] delay-700 -translate-x-0"
+                  : "text-white border-b-[#f2f2f2] delay-0 -translate-x-48"
+              } border-b-2 px-10 duration-1000 ease-in-out`}
             >
               3000rpm
             </div>
