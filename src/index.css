@@ -10,6 +10,10 @@
   scroll-behavior: smooth;
 }
 
+.bg-modal {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 /* Custom Scrollbar */
 
 /* Width */
@@ -17,15 +21,9 @@
   width: 10px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
-
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: darkgrey;
-  border-radius: 10px;
 }
 
 /* Handle on hover */

@@ -1,49 +1,67 @@
 import React, { useState, useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import AnimationOnLoad from "./components/AnimationOnLoad";
+import Navigation from "./components/Navigation";
+import Home from "./routes/Home";
+import Profile from "./routes/Profile";
+import Search from "./routes/Search";
+import Notifications from "./routes/Notifications";
+import {
+  PostModalContext,
+  PostModalContextProvider,
+} from "./context/PostModalContext";
+import PostModal from "./components/PostModal";
 
 function App() {
+  const location = useLocation();
+  const [postModal, setPostModal] = useState(false);
+
+  /*  Loading Animation's State  */
   const [loading, setLoading] = useState(true);
   const [touched, setTouched] = useState(false);
-  const [seconds, setSeconds] = useState(0);
+  const [time, setTime] = useState(0);
 
-  // useEffect(() => {
-  //   var timer = setInterval(() => {
-  //     while (touched) {
-  //       setSeconds(seconds + 1);
-  //     }
-  //   }, 1000);
-  //   return () => clearInterval(timer);
-  // });
-  // useEffect(() => {
-  //   if (seconds === 4) {
-  //     setLoading(false);
-  //   } else setLoading(true);
-  // }, [seconds]);
+  /*  Loading Animation's Function  */
+  useEffect(() => {
+    let interval = null;
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     if (touched) {
-  //       setLoading(false);
-  //     }
-  //     return clearInterval();
-  //   }, 4000);
-  //   setInterval(() => {
-  //     if (!touched) {
-  //       setLoading(true);
-  //     }
-  //     return clearTimeout();
-  //   }, 1000);
-  // }, [touched]);
+    if (touched) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 100);
+        if (time >= 3000) {
+          setLoading(false);
+        }
+      }, 100);
+    } else {
+      setTime(0);
+      setLoading(true);
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [touched, time]);
 
   return (
     <>
       {loading ? (
         <AnimationOnLoad touched={touched} setTouched={setTouched} />
       ) : (
-        <h1 className="text-3xl font-bold underline bg-red-300">
-          Hello world!
-        </h1>
+        <>
+          <PostModalContextProvider>
+            <Navigation />
+            <PostModal />
+
+            <AnimatePresence initial={false}>
+              <Routes location={location}>
+                <Route path="/" element={<Home />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/notifications" element={<Notifications />} />
+              </Routes>
+            </AnimatePresence>
+          </PostModalContextProvider>
+        </>
       )}
     </>
   );
