@@ -41,6 +41,8 @@ const BottomNav = () => {
             onClick={() => setPostModal(false)}
             className={`${
               location.pathname === "/search" ? "text-[#BF0000]" : "text-white"
+            } ${
+              postModal ? "text-white" : "text-[#BF0000]"
             } cursor-pointer hover:text-[#BF0000]`}
           />
         </Link>
@@ -53,6 +55,8 @@ const BottomNav = () => {
               location.pathname === "/notifications"
                 ? "text-[#BF0000]"
                 : "text-white"
+            } ${
+              postModal ? "text-white" : "text-[#BF0000]"
             } cursor-pointer hover:text-[#BF0000]`}
           />
         </Link>
