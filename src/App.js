@@ -53,7 +53,7 @@ function App() {
             <PostModal />
 
             <AnimatePresence initial={false}>
-              <Routes location={location}>
+              <Routes location={location} key={location.pathName}>
                 <Route path="/" element={<Home />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/search" element={<Search />} />
