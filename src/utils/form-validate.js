@@ -3,10 +3,6 @@ export const usernameValidate = {
     value: true,
     message: "Please enter username",
   },
-  minLength: {
-    value: 6,
-    message: "Username must be at least 6 characters long",
-  },
   pattern: {
     value: /^[a-zA-Z0-9]+$/,
     message: "Username must be alphanumeric",
