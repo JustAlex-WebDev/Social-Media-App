@@ -1,17 +1,11 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { AiOutlineMail, AiFillLock } from "react-icons/ai";
-import { UserAuth } from "../context/AuthContext";
 import { useLogin } from "../hooks/auth";
 import { useForm } from "react-hook-form";
 import { emailValidate, passwordValidate } from "../utils/form-validate";
 
 const Signin = () => {
-  //   const [email, setEmail] = useState("");
-  //   const [password, setPassword] = useState("");
-  //   const [error, setError] = useState("");
-  //   const navigate = useNavigate();
-
   const { login, isLoading, error } = useLogin();
   const {
     register,
@@ -31,21 +25,6 @@ const Signin = () => {
     if (succeeded) reset();
   }
 
-  //   const { signIn, setSignedUp } = UserAuth();
-
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault();
-  //     setError("");
-  //     try {
-  //       await signIn(email, password);
-  //       setSignedUp(true);
-  //       navigate("/");
-  //     } catch (e) {
-  //       setError(e.message);
-  //       console.log(e.message);
-  //     }
-  //   };
-
   return (
     <div className="max-w-[350px] h-screen m-auto px-8 flex flex-col justify-center text-white">
       <div className="text-7xl font-bold pb-12 text-center text-[#BF0000]">
@@ -54,7 +33,7 @@ const Signin = () => {
       <h1
         className={`${
           error ? "text-[#BF0000]" : "text-white"
-        } text-2xl font-bold text-left pt-8`}
+        } text-2xl font-bold text-left pt-8 pb-2`}
       >
         Sign In
       </h1>
@@ -69,7 +48,6 @@ const Signin = () => {
           </label>
           <div className="my-2 w-full relative rounded-2xl">
             <input
-              //   onChange={(e) => setEmail(e.target.value)}
               className={`${
                 errors.email ? "border-[#BF0000]" : "border-white"
               } w-full p-2 border-2 rounded-2xl bg-black outline-none`}
@@ -95,7 +73,6 @@ const Signin = () => {
           </label>
           <div className="my-2 w-full relative rounded-2xl">
             <input
-              //   onChange={(e) => setPassword(e.target.value)}
               className={`${
                 errors.password ? "border-[#BF0000]" : "border-white"
               } w-full p-2 border-2 rounded-2xl bg-black outline-none`}
@@ -112,15 +89,14 @@ const Signin = () => {
         </div>
         <button className="w-full my-2 p-3 bg-black hover:bg-[#BF0000] border-2 border-[#BF0000] text-[#BF0000] hover:text-white rounded-2xl shadow-none hover:shadow-md shadow-[#BF0000] font-bold">
           {isLoading ? (
-            <span className="text-white animate-pulse">Loading...</span>
+            <span className="animate-pulse">Loading...</span>
           ) : (
             <span>Sign In</span>
           )}
         </button>
       </form>
       <div className="my-4 text-center duration-300">
-        <span className="text-grey-400">Don't have an account?</span>
-        <span> </span>
+        <span className="text-grey-400 pr-2">Don't have an account?</span>
         <Link to="/signup" className="hover:opacity-50 font-bold">
           Sign Up
         </Link>

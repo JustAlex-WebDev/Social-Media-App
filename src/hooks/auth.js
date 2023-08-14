@@ -1,14 +1,35 @@
-import React from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { useEffect, useState } from "react";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import isUsernameExists from "../utils/isUsernameExists";
 
 export function useAuth() {
-  const [authUser, isLoading, error] = useAuthState(auth);
+  const [authUser, authLoading, error] = useAuthState(auth);
+  const [isLoading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
-  return { user: authUser, isLoading, error };
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      const ref = doc(db, "users", authUser.uid);
+      const docSnap = await getDoc(ref);
+      setUser(docSnap.data());
+      setLoading(false);
+    }
+
+    if (!authLoading) {
+      if (authUser) fetchData();
+      else setLoading(false); // Not signed in
+    }
+  }, [authLoading]);
+
+  return { user, isLoading, error };
 }
 
 export function useLogin() {
@@ -34,4 +55,52 @@ export function useLogin() {
   }
 
   return { login, isLoading, error };
+}
+
+export function useRegister() {
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  async function register({ username, email, password, redirectTo = "/" }) {
+    setLoading(true);
+    const usernameExists = await isUsernameExists(username);
+
+    if (usernameExists) {
+      setError("Username already exists");
+      setLoading(false);
+    } else {
+      try {
+        const res = await createUserWithEmailAndPassword(auth, email, password);
+
+        await setDoc(doc(db, "users", res.user.uid), {
+          id: res.user.uid,
+          username,
+          avatar: "",
+          date: Date.now(),
+        });
+
+        navigate("/");
+      } catch (error) {
+        setError("Signed up failed");
+      } finally {
+        setLoading(false);
+      }
+    }
+  }
+
+  return { register, isLoading, error };
+}
+
+export function useLogout() {
+  const [signOut, isLoading, error] = useSignOut(auth);
+  const navigate = useNavigate();
+
+  async function logout() {
+    if (await signOut()) {
+      navigate("/signin");
+    } // else show error [signOut() returns false if failed]
+  }
+
+  return { logout, isLoading };
 }

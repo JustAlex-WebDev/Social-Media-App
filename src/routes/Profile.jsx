@@ -1,10 +1,10 @@
 import React from "react";
 import PageTransition from "../components/PageTransition";
 import { motion as m } from "framer-motion";
-import { UserAuth } from "../context/AuthContext";
+import { useLogout } from "../hooks/auth";
 
 const Profile = () => {
-  const { logOut } = UserAuth();
+  const { logout, isLoading } = useLogout();
 
   return (
     <>
@@ -29,10 +29,14 @@ const Profile = () => {
           Edit Profile
         </div>
         <div
-          onClick={logOut}
+          onClick={logout}
           className="font-semibold p-2 px-4 text-center rounded-2xl bg-black border-2 border-[#BF0000] hover:bg-[#BF0000] cursor-pointer"
         >
-          Sign Out
+          {isLoading ? (
+            <span className="animate-pulse">Loading...</span>
+          ) : (
+            <soan>Sign Out</soan>
+          )}
         </div>
       </m.div>
     </>
