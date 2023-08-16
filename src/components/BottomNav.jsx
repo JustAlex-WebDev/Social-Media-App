@@ -5,8 +5,7 @@ import { IoMdAdd, IoMdSearch, IoMdNotificationsOutline } from "react-icons/io";
 import { PostModalContext } from "../context/PostModalContext";
 
 const BottomNav = () => {
-  const { postModal, setPostModal, clickToFocus } =
-    useContext(PostModalContext);
+  const { postModal, setPostModal } = useContext(PostModalContext);
   const location = useLocation();
 
   return (
@@ -24,16 +23,14 @@ const BottomNav = () => {
             } cursor-pointer hover:text-[#BF0000]`}
           />
         </Link>
-        <div onClick={clickToFocus}>
-          <IoMdAdd
-            title="Post"
-            size={24}
-            onClick={() => setPostModal(!postModal)}
-            className={`${
-              postModal ? "text-[#BF0000]" : "text-white"
-            } cursor-pointer hover:text-[#BF0000]`}
-          />
-        </div>
+        <IoMdAdd
+          title="Post"
+          size={24}
+          onClick={() => setPostModal(!postModal)}
+          className={`${
+            postModal ? "text-[#BF0000]" : "text-white"
+          } cursor-pointer hover:text-[#BF0000]`}
+        />
         <Link to="/search">
           <IoMdSearch
             title="Search"
