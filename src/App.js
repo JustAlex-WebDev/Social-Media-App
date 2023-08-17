@@ -12,6 +12,8 @@ import PostModal from "./components/PostModal";
 import Signin from "./routes/Signin";
 import Signup from "./routes/Signup";
 import { AuthContextProvider } from "./context/AuthContext";
+import UserProfile from "./routes/UserProfile";
+import Comments from "./routes/Comments";
 
 function App() {
   const location = useLocation();
@@ -56,6 +58,8 @@ function App() {
                 <Routes location={location} key={location.pathName}>
                   <Route path="/" element={<Home />} />
                   <Route path="/profile" element={<Profile />} />
+                  <Route path="/profile/:id" element={<UserProfile />} />
+                  <Route path="/comments/:id" element={<Comments />} />
                   <Route path="/search" element={<Search />} />
                   <Route path="/notifications" element={<Notifications />} />
                   <Route path="/signin" element={<Signin />} />

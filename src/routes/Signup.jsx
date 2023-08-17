@@ -55,10 +55,10 @@ const Signup = () => {
             <input
               className={`${
                 errors.username ? "border-[#BF0000]" : "border-white"
-              } w-full p-2 border-2 rounded-2xl bg-black outline-none`}
+              } w-full p-2 border-2 rounded-2xl bg-black outline-none capitalize`}
               id="username"
               type="text"
-              placeholder="demo"
+              placeholder="Demo"
               {...register("username", usernameValidate)}
             />
             <AiOutlineMail className="absolute right-3 top-3 text-grey-400" />

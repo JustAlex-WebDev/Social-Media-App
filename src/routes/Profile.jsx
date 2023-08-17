@@ -21,10 +21,10 @@ const Profile = () => {
         <img
           title="Profile"
           src={user.avatar}
-          alt="Profile Img"
+          alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
           className="w-32 h-32 bg-black border-[#BF0000] border-2 rounded-full hover:cursor-pointer hover:opacity-80 object-scale-down"
         />
-        <div className="text-xl font-semibold">@{user.username}</div>
+        <div className="text-xl font-semibold capitalize">{user.username}</div>
         <div className="py-8 flex flex-col justify-center items-center gap-4 font-semibold">
           <div>Posts: 1</div>
           <div>Likes: todo!</div>
