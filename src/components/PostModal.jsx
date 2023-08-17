@@ -18,6 +18,7 @@ const PostModal = () => {
       text: data.text,
     });
     reset();
+    setPostModal(false);
   }
 
   return (
@@ -50,7 +51,6 @@ const PostModal = () => {
           </div>
           <div className="bg-black w-full flex justify-center items-center pr-2 border-2 border-[#aaaaaa] rounded-2xl">
             <textarea
-              autoFocus={true}
               {...register("text", { required: true })}
               placeholder="Write a message"
               maxLength="300"

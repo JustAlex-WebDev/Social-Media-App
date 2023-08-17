@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { PostModalContext } from "../context/PostModalContext";
+import { useAuth } from "../hooks/auth";
 
 const TopNav = () => {
   const { setPostModal } = useContext(PostModalContext);
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) return "Loading...";
 
   return (
     <div
@@ -18,11 +22,14 @@ const TopNav = () => {
         >
           rev
         </Link>
-        <Link
-          to="/profile"
-          title="Profile"
-          className="w-10 h-10 bg-black border-[#BF0000] border-2 rounded-full hover:cursor-pointer hover:opacity-80"
-        ></Link>
+        <Link to="/profile">
+          <img
+            title="Profile"
+            src={user.avatar}
+            alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
+            className="w-11 h-11 bg-black border-[#BF0000] border-2 rounded-full hover:cursor-pointer hover:opacity-80 object-scale-down"
+          />
+        </Link>
       </div>
     </div>
   );
