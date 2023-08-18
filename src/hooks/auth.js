@@ -1,12 +1,12 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { useEffect, useState } from "react";
-import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import isUsernameExists from "../utils/isUsernameExists";
 
 export function useAuth() {
@@ -27,7 +27,7 @@ export function useAuth() {
       if (authUser) fetchData();
       else setLoading(false); // Not signed in
     }
-  }, [authLoading]);
+  }, [authLoading, authUser]);
 
   return { user, isLoading, error };
 }

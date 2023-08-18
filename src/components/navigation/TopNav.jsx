@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { PostModalContext } from "../context/PostModalContext";
-import { useAuth } from "../hooks/auth";
+import { useAuth } from "../../hooks/auth";
+import { PostModalContext } from "../../context/PostModalContext";
 
 const TopNav = () => {
   const { setPostModal } = useContext(PostModalContext);
   const { user, isLoading } = useAuth();
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return null;
 
   return (
     <div

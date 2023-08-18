@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { MdOutlineModeComment, MdModeComment } from "react-icons/md";
 import { GoTrash } from "react-icons/go";
-import { useUser } from "../hooks/users";
 import { formatDistanceToNow } from "date-fns";
-import { useAuth } from "../hooks/auth";
-import { useToggleLike, useDeletePost } from "../hooks/posts";
-import { useComments } from "../hooks/comments";
+import { useAuth } from "../../hooks/auth";
+import { useComments } from "../../hooks/comments";
+import { useToggleLike, useDeletePost } from "../../hooks/posts";
+import { useUser } from "../../hooks/users";
 
 const IndividualPost = ({ post }) => {
   const { user, isLoading } = useUser(post.uid);
@@ -21,10 +21,10 @@ const IndividualPost = ({ post }) => {
   const { deletePost } = useDeletePost(post.id);
   const { comments } = useComments(post.id);
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return null;
 
   return (
-    <div className="w-full flex flex-col justify-center items-center">
+    <div className="w-full flex flex-col justify-center items-center pb-4 border-b border-gray-500">
       <div className="bg-black w-full flex flex-col gap-4 z-10">
         <div className="flex justify-start items-center gap-2">
           <Link to={`/profile/${user.id}`}>

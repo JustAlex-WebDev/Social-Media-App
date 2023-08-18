@@ -1,7 +1,7 @@
 import React from "react";
+import { motion as m } from "framer-motion";
 import { IoMdSearch } from "react-icons/io";
 import PageTransition from "../components/PageTransition";
-import { motion as m } from "framer-motion";
 
 const Search = () => {
   return (

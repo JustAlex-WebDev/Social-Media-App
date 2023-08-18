@@ -6,7 +6,7 @@ const PageTransition = () => {
     <m.div
       initial={{ zIndex: "50" }}
       animate={{ zIndex: "-10" }}
-      transition={{ duration: 1, delay: 2 }}
+      transition={{ duration: 1, delay: 1.5 }}
       className="absolute top-0 left-0 w-full h-screen bg-black flex flex-col justify-between overflow-hidden"
     >
       <m.div

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
-import { useUser } from "../hooks/users";
 import { GoTrash } from "react-icons/go";
-import { useDeleteComment } from "../hooks/comments";
-import { useAuth } from "../hooks/auth";
+import { useAuth } from "../../hooks/auth";
+import { useDeleteComment } from "../../hooks/comments";
+import { useUser } from "../../hooks/users";
 
 const Comment = ({ comment }) => {
   const { user, isLoading: userLoading } = useUser(comment.uid);
@@ -13,10 +13,10 @@ const Comment = ({ comment }) => {
     comment.id
   );
 
-  if (userLoading) return "Loading...";
+  if (userLoading) return null;
 
   return (
-    <div className="w-full flex flex-col justify-start items-left gap-4">
+    <div className="w-full flex flex-col justify-start items-left gap-4 pb-4 border-b border-gray-500">
       <div className="flex justify-start items-center gap-2">
         <Link to={`/profile/${user.id}`}>
           <img
@@ -40,7 +40,7 @@ const Comment = ({ comment }) => {
         </div>
       </div>
       <div className="flex justify-center items-center gap-8">
-        <div className="w-full border-b border-gray-500">{comment.text}</div>
+        <div className="w-full">{comment.text}</div>
         {!authLoading && authUser.id === comment.uid && (
           <GoTrash
             size={21}

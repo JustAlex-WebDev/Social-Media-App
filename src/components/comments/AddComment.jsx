@@ -1,23 +1,23 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { useAuth } from "../hooks/auth";
-import { useAddComment } from "../hooks/comments";
+import { useAuth } from "../../hooks/auth";
+import { useAddComment } from "../../hooks/comments";
 
 const AddComment = ({ post }) => {
   const { user: authUser, isLoading: authLoading } = useAuth();
-  const { register, handleSubmit, reset } = useForm();
   const { addComment } = useAddComment({ postID: post?.id, uid: authUser?.id });
+  const { register, handleSubmit, reset } = useForm();
 
   function handleAddComment(data) {
     addComment(data.text);
     reset();
   }
 
-  if (authLoading) return "Loading...";
+  if (authLoading) return null;
 
   return (
-    <div className="bg-black w-full p-4 flex flex-col justify-center items-center gap-4 border-y border-white rounded-2xl">
+    <div className="bg-black w-full flex flex-col justify-center items-center rounded-2xl">
       <form
         onSubmit={handleSubmit((data) => handleAddComment(data))}
         className="w-full flex flex-col justify-center items-center gap-4 pb-4"
@@ -28,7 +28,7 @@ const AddComment = ({ post }) => {
               title="See Profile"
               src={authUser.avatar}
               alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
-              className="w-11 h-11 mr-6 bg-black border-white border-2 rounded-full object-scale-down"
+              className="w-10 h-10 mr-6 bg-black border-white border-2 rounded-full object-scale-down"
             />
           </Link>
           <input

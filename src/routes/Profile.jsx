@@ -1,13 +1,13 @@
 import React from "react";
-import PageTransition from "../components/PageTransition";
 import { motion as m } from "framer-motion";
 import { useAuth, useLogout } from "../hooks/auth";
+import PageTransition from "../components/PageTransition";
 
 const Profile = () => {
   const { logout } = useLogout();
   const { user, isLoading } = useAuth();
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return null;
 
   return (
     <>
