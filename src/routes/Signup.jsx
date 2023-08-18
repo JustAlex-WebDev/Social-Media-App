@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { AiOutlineMail, AiFillLock } from "react-icons/ai";
 import { useRegister } from "../hooks/auth";
-import { useForm } from "react-hook-form";
 import {
   emailValidate,
   passwordValidate,

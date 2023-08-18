@@ -27,10 +27,10 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: darkgrey;
+  background: #bf0000;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: grey;
+  background: #ff0000;
 }

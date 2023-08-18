@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import { IoMdAdd, IoMdSearch, IoMdNotificationsOutline } from "react-icons/io";
-import { PostModalContext } from "../context/PostModalContext";
+import { PostModalContext } from "../../context/PostModalContext";
 
 const BottomNav = () => {
   const { postModal, setPostModal } = useContext(PostModalContext);

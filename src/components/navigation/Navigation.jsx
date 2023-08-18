@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import BottomNav from "./BottomNav";
 import TopNav from "./TopNav";
+import BottomNav from "./BottomNav";
 
 const Navigation = () => {
   const location = useLocation();

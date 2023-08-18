@@ -1,9 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { motion as m } from "framer-motion";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { MdOutlineModeComment } from "react-icons/md";
-import { Link } from "react-router-dom";
 import PageTransition from "../components/PageTransition";
-import { motion as m } from "framer-motion";
 
 const Notifications = () => {
   return (

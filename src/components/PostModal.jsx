@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { IoMdImage } from "react-icons/io";
-import { PostModalContext } from "../context/PostModalContext";
 import { useAuth } from "../hooks/auth";
 import { useAddPost } from "../hooks/posts";
+import { PostModalContext } from "../context/PostModalContext";
 
 const PostModal = () => {
   const { postModal, setPostModal } = useContext(PostModalContext);
