@@ -18,7 +18,7 @@ const TopNav = () => {
         <Link
           to="/"
           title="Home"
-          className="uppercase font-bold text-4xl text-[#BF0000] hover:cursor-pointer hover:opacity-80"
+          className="uppercase font-bold text-4xl text-[#BF0000] hover:opacity-80 cursor-pointer duration-300 ease-in-out"
         >
           rev
         </Link>
@@ -27,7 +27,7 @@ const TopNav = () => {
             title="Profile"
             src={user.avatar}
             alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
-            className="w-11 h-11 bg-black border-[#BF0000] border-2 rounded-full hover:cursor-pointer hover:opacity-80 object-scale-down"
+            className="w-11 h-11 bg-black border-[#BF0000] hover:border-white border-2 rounded-full cursor-pointer object-cover duration-300 ease-in-out"
           />
         </Link>
       </div>

@@ -24,22 +24,22 @@ const IndividualPost = ({ post }) => {
   if (isLoading) return null;
 
   return (
-    <div className="w-full flex flex-col justify-center items-center pb-4 border-b border-gray-500">
+    <div className="w-full flex flex-col justify-center items-center pb-4 border-b border-neutral-700">
       <div className="bg-black w-full flex flex-col gap-4 z-10">
-        <div className="flex justify-start items-center gap-2">
+        <div className="flex justify-start items-center gap-2 group">
           <Link to={`/profile/${user.id}`}>
             <img
               title="See Profile"
               src={user.avatar}
               alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
-              className="w-11 h-11 bg-black border-white border-2 rounded-full object-scale-down"
+              className="w-11 h-11 bg-black border-white hover:border-[#BF0000] border-2 rounded-full object-cover duration-300 ease-in-out"
             />
           </Link>
           <div className="flex flex-col justify-center items-left">
             <Link
-              to={`"/profile/"${user.id}`}
+              to={`/profile/${user.id}`}
               title="See Profile"
-              className="text-lg font-semibold capitalize hover:opacity-80"
+              className="text-lg font-semibold capitalize"
             >
               {user.username}
             </Link>

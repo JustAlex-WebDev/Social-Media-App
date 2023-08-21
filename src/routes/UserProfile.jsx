@@ -21,13 +21,13 @@ const UserProfile = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="bg-black w-full max-w-[1140px] m-auto mt-28 black p-8 flex flex-col justify-center items-center gap-4 text-white"
+        className="bg-black w-full max-w-[1140px] m-auto mt-32 black p-8 flex flex-col justify-center items-center gap-4 text-white"
       >
         <img
           title="Profile"
           src={user.avatar}
           alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
-          className="w-32 h-32 bg-black border-[#BF0000] border-2 rounded-full hover:cursor-pointer hover:opacity-80 object-scale-down"
+          className="w-32 h-32 bg-black border-[#BF0000] border-2 rounded-full hover:cursor-pointer hover:opacity-80 object-cover"
         />
         <div className="text-xl font-semibold capitalize">{user.username}</div>
         <div className="py-8 flex flex-col justify-center items-center gap-4 font-semibold">

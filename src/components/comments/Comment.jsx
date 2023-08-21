@@ -16,14 +16,14 @@ const Comment = ({ comment }) => {
   if (userLoading) return null;
 
   return (
-    <div className="w-full flex flex-col justify-start items-left gap-4 pb-4 border-b border-gray-500">
+    <div className="w-full flex flex-col justify-start items-left gap-4 pb-4 border-b border-neutral-700">
       <div className="flex justify-start items-center gap-2">
         <Link to={`/profile/${user.id}`}>
           <img
             title="See Profile"
             src={user.avatar}
             alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
-            className="w-9 h-9 bg-black border-white border-2 rounded-full object-scale-down"
+            className="w-9 h-9 bg-black border-white hover:border-[#BF0000] border-2 rounded-full object-cover"
           />
         </Link>
         <div className="flex flex-col justify-center items-left">

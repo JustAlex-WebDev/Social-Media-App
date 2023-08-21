@@ -4,8 +4,8 @@ import { motion as m } from "framer-motion";
 const PageTransition = () => {
   return (
     <m.div
-      initial={{ zIndex: "50" }}
-      animate={{ zIndex: "-10" }}
+      initial={{ zIndex: "50", opacity: "100%" }}
+      animate={{ zIndex: "-10", opacity: "0%" }}
       transition={{ duration: 1, delay: 1.5 }}
       className="absolute top-0 left-0 w-full h-screen bg-black flex flex-col justify-between overflow-hidden"
     >
