@@ -34,7 +34,7 @@ const PostModal = () => {
           onClick={(e) => e.stopPropagation()}
           className={`${
             postModal ? "border-2" : "border-none"
-          } bg-black flex flex-col justify-center items-center gap-4 px-8 py-4 rounded-2xl border-white shadow-white shadow-md w-full max-w-[34rem] h-80 ease-in-out duration-300 delay-300`}
+          } bg-black flex flex-col justify-center items-center gap-4 px-8 py-4 rounded-2xl border-neutral-600 shadow-neutral-600 shadow-md w-full max-w-[34rem] h-80 ease-in-out duration-300 delay-300`}
         >
           <div
             className={`${
@@ -44,12 +44,12 @@ const PostModal = () => {
             <div className="text-xl">New post</div>
             <button
               type="submit"
-              className="text-[#dd1515] hover:text-white border-2 border-[#BF0000] hover:bg-[#BF0000] px-4 py-2 rounded-2xl font-bold cursor-pointer text-sm"
+              className="text-white hover:text-[#BF0000] border-y-2 border-[#BF0000] px-6 py-2 rounded-2xl font-semibold text-sm hover:opacity-80"
             >
               {authLoading || addingPostLoading ? <>Loading...</> : <>POST</>}
             </button>
           </div>
-          <div className="bg-black w-full flex justify-center items-center pr-2 border-2 border-[#aaaaaa] rounded-2xl">
+          <div className="bg-black w-full flex justify-center items-center pr-2 border-2 border-neutral-700 rounded-2xl">
             <textarea
               {...register("text", { required: true })}
               placeholder="Write a message"
@@ -64,10 +64,21 @@ const PostModal = () => {
           <div
             className={`${
               postModal ? "opacity-100" : "opacity-0"
-            } w-full flex justify-center items-center gap-2 hover:opacity-80 cursor-pointer ease-in-out duration-300 delay-700`}
+            } w-full bg-red-300 relative flex justify-center items-centercursor-pointer ease-in-out duration-300 delay-700`}
           >
-            <IoMdImage size={24} />
-            <div>Add an image</div>
+            <label
+              htmlFor="picture"
+              className="absolute -top-1 flex justify-center items-center gap-2 hover:opacity-80 cursor-pointer"
+            >
+              <IoMdImage size={24} />
+              <div>Add an image</div>
+            </label>
+            <input
+              id="picture"
+              type="file"
+              accept="image/*"
+              className="hidden"
+            />
           </div>
         </form>
       </div>

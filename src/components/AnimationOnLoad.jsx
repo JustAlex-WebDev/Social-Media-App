@@ -51,7 +51,7 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
                   : "text-white border-b-[#f2f2f2] delay-0 translate-x-48"
               } border-b-2 px-10 duration-1000 ease-in-out`}
             >
-              12000rpm
+              9000rpm
             </div>
           </div>
           <div className="flex justify-start">
@@ -62,7 +62,7 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
                   : "text-white border-b-[#f2f2f2] delay-0 -translate-x-48"
               } border-b-2 px-10 duration-1000 ease-in-out`}
             >
-              9000rpm
+              7000rpm
             </div>
           </div>
           <div className="flex justify-end">
@@ -73,7 +73,7 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
                   : "text-white border-b-[#f2f2f2] delay-0 translate-x-48"
               } border-b-2 px-10 duration-1000 ease-in-out`}
             >
-              6000rpm
+              5000rpm
             </div>
           </div>
           <div className="flex justify-start">

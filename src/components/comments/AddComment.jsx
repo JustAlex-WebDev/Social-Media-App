@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/auth";
 import { useAddComment } from "../../hooks/comments";
 
@@ -23,25 +22,22 @@ const AddComment = ({ post }) => {
         className="w-full flex flex-col justify-center items-center gap-4 pb-4"
       >
         <div className="w-full flex justify-center">
-          <Link to={`/profile/${authUser.id}`}>
-            <img
-              title="See Profile"
-              src={authUser.avatar}
-              alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
-              className="w-10 h-10 mr-6 bg-black border-white border-2 rounded-full object-scale-down"
-            />
-          </Link>
+          <img
+            src={authUser.avatar}
+            alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
+            className="w-10 h-10 mr-6 bg-black border-[#BF0000] border-2 rounded-full object-cover"
+          />
           <input
             type="text"
             {...register("text", { required: true })}
             autoComplete="off"
             placeholder="Write a comment"
-            className="w-full bg-black border-b outline-none"
+            className="w-full bg-black border-b border-neutral-700 outline-none"
           />
         </div>
         <button
           type="submit"
-          className="bg-black w-full text-sm text-center font-semibold border-2 border-[#BF0000] hover:bg-[#BF0000] rounded-2xl p-2 px-4 duration-300 ease-in-out"
+          className="bg-black w-full text-sm text-center font-semibold border-y-2 border-y-[#BF0000] hover:text-[#BF0000] hover:opacity-80 rounded-2xl p-2 px-4 duration-300 ease-in-out"
         >
           Add Comment
         </button>
