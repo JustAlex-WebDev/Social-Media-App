@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { db, storage } from "../firebase";
-import { doc, query, updateDoc } from "firebase/firestore";
-import { useDocumentData } from "react-firebase-hooks/firestore";
+import { collection, doc, query, updateDoc } from "firebase/firestore";
+import {
+  useCollectionData,
+  useDocumentData,
+} from "react-firebase-hooks/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +13,11 @@ export function useUser(id) {
   const [user, isLoading] = useDocumentData(q);
 
   return { user, isLoading };
+}
+
+export function useUsers() {
+  const [users, isLoading] = useCollectionData(collection(db, "users"));
+  return { users, isLoading };
 }
 
 export function useUpdateAvatar(uid) {

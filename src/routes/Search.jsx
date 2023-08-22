@@ -1,9 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import { IoMdSearch } from "react-icons/io";
+import { format } from "date-fns";
+import { useUsers } from "../hooks/users";
 import PageTransition from "../components/PageTransition";
 
 const Search = () => {
+  const { users, isLoading } = useUsers();
+
+  if (isLoading) return null;
+
   return (
     <>
       <PageTransition />
@@ -29,6 +36,27 @@ const Search = () => {
               <IoMdSearch size={24} />
             </div>
           </label>
+        </div>
+        <div className="w-full flex flex-col justify-center items-center gap-8 black">
+          {users.map((user) => (
+            <div
+              key={user.id}
+              className="w-full py-4 flex justify-start items-center gap-4 border-b border-neutral-700"
+            >
+              <Link to={`/profile/${user.id}`}>
+                <img
+                  title="See Profile"
+                  src={user.avatar}
+                  alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
+                  className="w-20 h-20 bg-black border-white hover:border-[#BF0000] border-2 rounded-full object-cover duration-300 ease-in-out"
+                />
+              </Link>
+              <div>
+                <div className="font-semibold">{user.username}</div>
+                <div>Joined: {format(user.date, "MMMM YYY")}</div>
+              </div>
+            </div>
+          ))}
         </div>
       </m.div>
     </>
