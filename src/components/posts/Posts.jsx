@@ -16,7 +16,7 @@ const Posts = ({ posts }) => {
             There are no posts yet!
           </span>
         ) : (
-          posts?.map((post) => <IndividualPost key={post.id} post={post} />)
+          posts?.map((post) => <IndividualPost key={post?.id} post={post} />)
         )}
       </m.div>
     </div>

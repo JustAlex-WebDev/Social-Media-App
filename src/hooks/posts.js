@@ -4,7 +4,9 @@ import {
   arrayRemove,
   arrayUnion,
   collection,
+  deleteDoc,
   doc,
+  getDocs,
   orderBy,
   query,
   setDoc,
@@ -73,12 +75,20 @@ export function useDeletePost(id) {
   const [isLoading, setLoading] = useState(false);
 
   async function deletePost() {
-    setLoading(true);
-    // const docRef = doc(db, "posts", id);
-    // await updateDoc(docRef, {
-    //   likes: isLiked ? arrayRemove(uid) : arrayUnion(uid),
-    // });
-    setLoading(false);
+    const res = window.confirm("Are you sure you want to delete this post?");
+    if (res) {
+      setLoading(true);
+
+      // Delete post document
+      await deleteDoc(doc(db, "posts", id));
+
+      // Delete comments
+      const q = query(collection(db, "comments"), where("postID", "==", id));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(async (doc) => deleteDoc(doc.ref));
+
+      setLoading(false);
+    }
   }
   return { deletePost, isLoading };
 }
