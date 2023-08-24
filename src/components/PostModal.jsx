@@ -58,7 +58,7 @@ const PostModal = () => {
               rows="10"
               className={`${
                 postModal ? "opacity-100" : "opacity-0"
-              } bg-black h-44 rounded-2xl p-4 w-full outline-none text-white ease-in-out duration-300 delay-700`}
+              } bg-black h-44 rounded-2xl p-4 w-full outline-none text-white ease-in-out duration-300 delay-700 resize-none`}
             ></textarea>
           </div>
           <div
@@ -77,6 +77,7 @@ const PostModal = () => {
               id="picture"
               type="file"
               accept="image/*"
+              resize="none"
               className="hidden"
             />
           </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { MdOutlineModeComment, MdModeComment } from "react-icons/md";
 import { GoTrash } from "react-icons/go";
@@ -10,8 +10,8 @@ import { useToggleLike, useDeletePost } from "../../hooks/posts";
 import { useUser } from "../../hooks/users";
 
 const IndividualPost = ({ post }) => {
-  const { user, isLoading } = useUser(post.uid);
-  const { user: authUser } = useAuth();
+  const { user, isLoading } = useUser(post?.uid);
+  const { user: authUser, isLoading: authLoading } = useAuth();
   const isLiked = post.likes.includes(authUser?.id);
   const { toggleLike } = useToggleLike({
     id: post.id,
@@ -20,8 +20,9 @@ const IndividualPost = ({ post }) => {
   });
   const { deletePost } = useDeletePost(post.id);
   const { comments } = useComments(post.id);
+  const location = useLocation();
 
-  if (isLoading) return null;
+  if (isLoading || authLoading) return null;
 
   return (
     <div className="w-full flex flex-col justify-center items-center pb-4 border-b border-neutral-700">
@@ -90,12 +91,18 @@ const IndividualPost = ({ post }) => {
               <div>{comments?.length}</div>
             </div>
           </div>
-          <GoTrash
-            title="Delete Post"
-            onClick={deletePost}
-            size={21}
-            className="cursor-pointer hover:text-[#BF0000] duration-300 ease-in-out"
-          />
+          {!authLoading && authUser.id === post?.uid && (
+            <>
+              {location.pathname !== "/" ? null : (
+                <GoTrash
+                  size={21}
+                  onClick={deletePost}
+                  title="Delete Post"
+                  className="cursor-pointer hover:text-[#BF0000] duration-300 ease-in-out"
+                />
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>
