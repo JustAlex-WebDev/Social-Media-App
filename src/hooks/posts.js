@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { db } from "../firebase";
+import { db, storage } from "../firebase";
 import {
   arrayRemove,
   arrayUnion,
@@ -18,6 +18,14 @@ import {
   useDocumentData,
 } from "react-firebase-hooks/firestore";
 import { uuidv4 } from "@firebase/util";
+import {
+  deleteObject,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
+import { useAuth } from "./auth";
 
 export function usePost(id) {
   const q = doc(db, "posts", id);
@@ -55,20 +63,27 @@ export function useToggleLike({ id, isLiked, uid }) {
 
 export function useAddPost() {
   const [isLoading, setLoading] = useState(false);
+  const [file, setFile] = useState(null);
 
   async function addPost(post) {
     setLoading(true);
     const id = uuidv4();
+
+    const fileRef = ref(storage, "pictures/" + id);
+    await uploadBytes(fileRef, file);
+    const pictureURL = await getDownloadURL(fileRef);
+
     await setDoc(doc(db, "posts", id), {
       ...post,
       id,
+      picture: pictureURL,
       date: Date.now(),
       likes: [],
     });
     setLoading(false);
   }
 
-  return { addPost, isLoading };
+  return { addPost, isLoading, setFile };
 }
 
 export function useDeletePost(id) {
@@ -81,6 +96,11 @@ export function useDeletePost(id) {
 
       // Delete post document
       await deleteDoc(doc(db, "posts", id));
+
+      // Delete post's picture
+      const storage = getStorage();
+      const fileRef = ref(storage, "pictures/" + id);
+      deleteObject(fileRef, where("postID", "==", id));
 
       // Delete comments
       const q = query(collection(db, "comments"), where("postID", "==", id));

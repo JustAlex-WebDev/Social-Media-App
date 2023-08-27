@@ -26,7 +26,7 @@ const IndividualPost = ({ post }) => {
 
   return (
     <div className="w-full flex flex-col justify-center items-center pb-4 border-b border-neutral-700">
-      <div className="bg-black w-full flex flex-col gap-4 z-10">
+      <div className="bg-black w-full flex flex-col gap-2 z-10">
         <div className="flex justify-start items-center gap-2 group">
           <Link to={`/profile/${user.id}`}>
             <img
@@ -49,7 +49,14 @@ const IndividualPost = ({ post }) => {
             </div>
           </div>
         </div>
-        <div className="text-justify">{post.text}</div>
+        <div className="overflow-hidden text-justify h-auto">{post.text}</div>
+        {post.picture === "" ? null : (
+          <img
+            src={post.picture}
+            alt=""
+            className="w-full h-auto rounded-2xl mb-2"
+          />
+        )}
         <div className="flex justify-between items-center">
           <div className="flex justify-start items-center gap-6">
             <div className="flex justify-center items-center gap-2">
@@ -61,37 +68,72 @@ const IndividualPost = ({ post }) => {
                   className="cursor-pointer hover:opacity-80 text-[#BF0000]"
                 />
               ) : (
-                <IoMdHeartEmpty
-                  title="Like"
-                  onClick={toggleLike}
-                  size={24}
-                  className="cursor-pointer hover:opacity-80"
-                />
+                <>
+                  {authUser ? (
+                    <IoMdHeartEmpty
+                      title="Like"
+                      onClick={toggleLike}
+                      size={24}
+                      className="cursor-pointer hover:opacity-80"
+                    />
+                  ) : (
+                    <IoMdHeartEmpty
+                      title="Like"
+                      onClick={() => alert("Please sign in to be able to like")}
+                      size={24}
+                      className="cursor-pointer hover:opacity-80"
+                    />
+                  )}
+                </>
               )}
               <div>{post.likes.length}</div>
             </div>
             <div className="flex justify-center items-center gap-2">
               {comments?.length === 0 ? (
-                <Link to={`/comments/${post.id}`}>
-                  <MdOutlineModeComment
-                    title="Comments"
-                    size={21}
-                    className="cursor-pointer hover:opacity-80"
-                  />
-                </Link>
+                <>
+                  {authUser ? (
+                    <Link to={`/comments/${post.id}`}>
+                      <MdOutlineModeComment
+                        title="Comments"
+                        size={21}
+                        className="cursor-pointer hover:opacity-80"
+                      />
+                    </Link>
+                  ) : (
+                    <Link to="/signin">
+                      <MdOutlineModeComment
+                        title="Comments"
+                        size={21}
+                        className="cursor-pointer hover:opacity-80"
+                      />
+                    </Link>
+                  )}
+                </>
               ) : (
-                <Link to={`/comments/${post.id}`}>
-                  <MdModeComment
-                    title="Comments"
-                    size={21}
-                    className="cursor-pointer hover:opacity-80 text-[#BF0000]"
-                  />
-                </Link>
+                <>
+                  {authUser ? (
+                    <Link to={`/comments/${post.id}`}>
+                      <MdModeComment
+                        title="Comments"
+                        size={21}
+                        className="cursor-pointer hover:opacity-80 text-[#BF0000]"
+                      />
+                    </Link>
+                  ) : (
+                    <Link to="/signin">
+                      <MdModeComment
+                        title="Comments"
+                        size={21}
+                        className="cursor-pointer hover:opacity-80 text-[#BF0000]"
+                      />
+                    </Link>
+                  )}
+                </>
               )}
               <div>{comments?.length}</div>
             </div>
           </div>
-          {!authLoading && authUser.id === post?.uid && (
+          {!authLoading && authUser?.id === post?.uid && (
             <>
               {location.pathname !== "/" ? null : (
                 <GoTrash

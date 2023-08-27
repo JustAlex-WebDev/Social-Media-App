@@ -4,6 +4,8 @@ import { PiEngineFill } from "react-icons/pi";
 const AnimationOnLoad = ({ touched, setTouched }) => {
   return (
     <div
+      onTouchStart={() => setTouched(true)}
+      onTouchEnd={() => setTouched(false)}
       onMouseDown={() => setTouched(true)}
       onMouseUp={() => setTouched(false)}
       className="bg-black h-[100svh] w-full cursor-pointer"
@@ -38,11 +40,7 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
             rev
           </div>
         </div>
-        <div
-          className={`${
-            touched ? "h-1/2" : "h-1/2"
-          } w-full flex flex-col text-xl gap-20 duration-1000 ease-in-out`}
-        >
+        <div className="w-full flex flex-col text-xl gap-20 h-1/2">
           <div className="flex justify-end">
             <div
               className={`${
