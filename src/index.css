@@ -12,6 +12,12 @@
 
 body {
   background-color: black;
+  --color-text-primary: #fff;
+  --color-text-secondary: #bf0000;
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #600000;
+  --color-border-primary: #bf0000;
+  --color-border-secondary: #fff;
 }
 
 .bg-modal {

@@ -8,7 +8,6 @@ const Navigation = () => {
 
   return (
     <>
-      {" "}
       {location.pathname === "/signin" ||
       location.pathname === "/signup" ? null : (
         <>

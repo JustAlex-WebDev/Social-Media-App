@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { PiChatsFill } from "react-icons/pi";
 import { useAuth } from "../../hooks/auth";
 import { PostModalContext } from "../../context/PostModalContext";
 
@@ -12,23 +13,26 @@ const TopNav = () => {
   return (
     <div
       onClick={() => setPostModal(false)}
-      className="bg-black z-50 fixed top-0 left-0 w-full border-b-2 border-[#BF0000]"
+      className="z-50 fixed top-0 left-0 w-full bg-primary border-b border-primary"
     >
-      <div className="max-w-[1140px] m-auto bg-black px-8 h-20 flex justify-between items-center">
+      <div className="max-w-[1140px] m-auto px-8 h-20 bg-primary flex justify-between items-center">
         <Link
           to="/"
           title="Home"
-          className="uppercase font-bold text-4xl text-[#BF0000] hover:opacity-80 cursor-pointer duration-300 ease-in-out"
+          className="text-secondary text-4xl font-bold hover:opacity-80 transition-all"
         >
-          rev
+          REV
         </Link>
-        <Link to="/profile">
+        {/* <Link to="/profile">
           <img
             title="Profile"
             src={user.avatar}
-            alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
-            className="w-11 h-11 bg-black border-[#BF0000] hover:border-white border-2 rounded-full cursor-pointer object-cover duration-300 ease-in-out"
+            alt=""
+            className="w-11 h-11 bg-primary border-primary hover:border-secondary border-2 rounded-full object-cover transition-all"
           />
+        </Link> */}
+        <Link to="/">
+          <PiChatsFill size={26} className="text-secondary hover:opacity-80" />
         </Link>
       </div>
     </div>
