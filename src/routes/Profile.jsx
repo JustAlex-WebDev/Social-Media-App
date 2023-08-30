@@ -80,14 +80,24 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <div className="relative mt-12 -mb-20 p-8 text-lg font-semibold z-10">
-            Posts
-          </div>
-          {posts?.length === 0 && <div>There are no posts yet!</div>}
-          {postsLoading ? (
-            <div>Posts are loading!</div>
+          {posts?.length === 0 ? (
+            <>
+              <div className="relative mt-12 -mb-8 p-8 text-lg font-semibold z-10">
+                Posts
+              </div>
+              <div>There are no posts yet</div>
+            </>
           ) : (
-            <Posts posts={posts} />
+            <>
+              <div className="relative mt-12 -mb-28 p-8 text-lg font-semibold z-10">
+                Posts
+              </div>
+              {postsLoading ? (
+                <div>Posts are loading!</div>
+              ) : (
+                <Posts posts={posts} />
+              )}
+            </>
           )}
         </m.div>
       </>

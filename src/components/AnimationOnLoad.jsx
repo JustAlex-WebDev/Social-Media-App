@@ -8,7 +8,7 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
       onTouchEnd={() => setTouched(false)}
       onMouseDown={() => setTouched(true)}
       onMouseUp={() => setTouched(false)}
-      className="bg-black h-[100svh] w-full cursor-pointer"
+      className="h-[100svh] w-full cursor-pointer"
     >
       <div className="h-[100svh] w-full max-w-[1140px] m-auto flex flex-col justify-between items-center font-semibold overflow-hidden">
         <div
@@ -40,7 +40,7 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
             rev
           </div>
         </div>
-        <div className="w-full flex flex-col text-xl gap-20 h-1/2">
+        <div className="fixed bottom-12 w-full flex flex-col text-xl gap-20 h-1/2">
           <div className="flex justify-end">
             <div
               className={`${

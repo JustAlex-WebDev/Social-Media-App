@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   MdOutlineHome,
@@ -6,34 +6,28 @@ import {
   MdOutlineSearch,
   MdSearch,
   MdOutlineAdd,
-  MdAdd,
   MdOutlineNotificationsNone,
   MdNotifications,
   MdOutlinePersonOutline,
   MdPerson,
 } from "react-icons/md";
-import { PostModalContext } from "../../context/PostModalContext";
 import { useAuth } from "../../hooks/auth";
 
 const BottomNav = () => {
-  const { postModal, setPostModal } = useContext(PostModalContext);
   const location = useLocation();
   const { user } = useAuth();
 
   return (
-    <div className="z-50 fixed bottom-0 left-0 w-full bg-primary border-t border-primary text-primary">
-      <div className="max-w-[1140px] m-auto px-8 h-20 bg-primary flex justify-between items-center gap-4">
+    <div className="z-50 fixed bottom-0 left-0 w-full bg-gradient-to-t from-black to-100% text-primary">
+      <div className="max-w-[1140px] m-auto px-8 h-20 bg-gradient-to-t from-black to-100% flex justify-between items-center gap-4">
         <Link
           to="/"
           title="Home"
-          onClick={() => setPostModal(false)}
           className={`${
-            location.pathname === "/" && !postModal
-              ? "text-secondary"
-              : "text-primary"
+            location.pathname === "/" ? "text-secondary" : "text-primary"
           } hover:text-secondary transition-all`}
         >
-          {location.pathname === "/" && !postModal ? (
+          {location.pathname === "/" ? (
             <MdHome size={28} />
           ) : (
             <MdOutlineHome size={28} />
@@ -42,37 +36,34 @@ const BottomNav = () => {
         <Link
           to="/search"
           title="Search"
-          onClick={() => setPostModal(false)}
           className={`${
-            location.pathname === "/search" && !postModal
-              ? "text-secondary"
-              : "text-primary"
+            location.pathname === "/search" ? "text-secondary" : "text-primary"
           } hover:text-secondary transition-all`}
         >
-          {location.pathname === "/search" && !postModal ? (
+          {location.pathname === "/search" ? (
             <MdSearch size={26} />
           ) : (
             <MdOutlineSearch size={26} />
           )}
         </Link>
         {user ? (
-          <div
+          <Link
+            to="/post"
             title="Post"
-            onClick={() => setPostModal(!postModal)}
             className={`${
-              postModal
+              location.pathname === "/post"
                 ? "text-secondary border-primary"
                 : "text-primary border-secondary"
             } border-2 hover:border-primary p-1 rounded-full cursor-pointer hover:text-secondary transition-all`}
           >
             <MdOutlineAdd size={30} />
-          </div>
+          </Link>
         ) : (
           <Link to="/signin">
             <div
               title="Post"
               className={`${
-                postModal
+                location.pathname === "/post"
                   ? "text-secondary border-primary"
                   : "text-primary border-secondary"
               } border-2 hover:border-primary p-1 rounded-full cursor-pointer hover:text-secondary transition-all`}
@@ -85,14 +76,13 @@ const BottomNav = () => {
         <Link
           to="/notifications"
           title="Notifications"
-          onClick={() => setPostModal(false)}
           className={`${
-            location.pathname === "/notifications" && !postModal
+            location.pathname === "/notifications"
               ? "text-secondary"
               : "text-primary"
           } hover:text-secondary transition-all`}
         >
-          {location.pathname === "/notifications" && !postModal ? (
+          {location.pathname === "/notifications" ? (
             <MdNotifications size={26} />
           ) : (
             <MdOutlineNotificationsNone size={26} />
@@ -102,14 +92,13 @@ const BottomNav = () => {
           <Link
             to="/profile"
             title="Profile"
-            onClick={() => setPostModal(false)}
             className={`${
-              location.pathname === "/profile" && !postModal
+              location.pathname === "/profile"
                 ? "text-secondary"
                 : "text-primary"
             } hover:text-secondary transition-all`}
           >
-            {location.pathname === "/profile" && !postModal ? (
+            {location.pathname === "/profile" ? (
               <MdPerson size={30} />
             ) : (
               <MdOutlinePersonOutline size={30} />
@@ -120,12 +109,12 @@ const BottomNav = () => {
             to="/signin"
             title="Profile"
             className={`${
-              location.pathname === "/profile" && !postModal
+              location.pathname === "/profile"
                 ? "text-secondary"
                 : "text-primary"
             } hover:text-secondary transition-all`}
           >
-            {location.pathname === "/profile" && !postModal ? (
+            {location.pathname === "/profile" ? (
               <MdPerson size={30} />
             ) : (
               <MdOutlinePersonOutline size={30} />
