@@ -25,8 +25,8 @@ const IndividualPost = ({ post }) => {
   if (isLoading || authLoading) return null;
 
   return (
-    <div className="w-full flex flex-col justify-center items-center pb-4 border-b border-neutral-700">
-      <div className="bg-black w-full flex flex-col gap-2 z-10">
+    <div className="w-full flex flex-col justify-center items-center pb-8 border-neutral-700">
+      <div className="bg-black w-full flex flex-col gap-4 z-10">
         <div className="flex justify-start items-center gap-2 group">
           <Link to={`/profile/${user.id}`}>
             <img
@@ -49,14 +49,24 @@ const IndividualPost = ({ post }) => {
             </div>
           </div>
         </div>
-        <div className="overflow-hidden text-justify h-auto">{post.text}</div>
-        {post.picture === "" ? null : (
-          <img
-            src={post.picture}
-            alt=""
-            className="w-full h-auto rounded-2xl mb-2"
-          />
-        )}
+        <div className="flex flex-col gap-2">
+          <div className="overflow-hidden text-justify h-auto">{post.text}</div>
+          {post.picture === "" ? null : (
+            <img
+              src={post.picture}
+              alt=""
+              onDoubleClick={toggleLike}
+              className="w-full h-auto rounded-2xl"
+            />
+          )}
+          <div className="flex justify-start items-center gap-2">
+            <div className="font-semibold">{user.username}</div>
+            <span>-</span>
+            <div className="overflow-hidden text-justify h-auto">
+              {post.caption}
+            </div>
+          </div>
+        </div>
         <div className="flex justify-between items-center">
           <div className="flex justify-start items-center gap-6">
             <div className="flex justify-center items-center gap-2">

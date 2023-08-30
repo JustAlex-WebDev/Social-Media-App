@@ -9,15 +9,11 @@ const Posts = ({ posts }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="relative my-20 h-full w-full max-w-[1140px] m-auto bg-primary p-8 flex flex-col justify-center items-center gap-8 text-primary"
+        className="relative mt-12 mb-8 h-full w-full max-w-[1140px] m-auto bg-primary p-8 flex flex-col justify-center items-center gap-8 text-primary"
       >
-        {posts?.length === 0 ? (
-          <span className="font-semibold text-xl text-center">
-            There are no posts yet!
-          </span>
-        ) : (
-          posts?.map((post) => <IndividualPost key={post?.id} post={post} />)
-        )}
+        {posts?.map((post) => (
+          <IndividualPost key={post?.id} post={post} />
+        ))}
       </m.div>
     </div>
   );

@@ -83,7 +83,12 @@ export function useAddPost() {
     setLoading(false);
   }
 
-  return { addPost, isLoading, setFile };
+  return {
+    addPost,
+    isLoading,
+    fileURL: file && URL.createObjectURL(file),
+    setFile,
+  };
 }
 
 export function useDeletePost(id) {

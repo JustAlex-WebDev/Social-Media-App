@@ -30,3 +30,24 @@ export const passwordValidate = {
     message: "Password must be at least 6 characters long",
   },
 };
+
+export const captionValidate = {
+  required: {
+    value: true,
+    message: "Please enter caption",
+  },
+  maxLength: {
+    value: 30,
+    message: "Caption must be at most 30 characters long",
+  },
+};
+
+export const textValidate = {
+  required: {
+    value: false,
+  },
+  maxLength: {
+    value: 100,
+    message: "Caption must be at most 150 characters long",
+  },
+};

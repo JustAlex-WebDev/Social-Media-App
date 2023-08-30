@@ -8,10 +8,10 @@ const CommentList = ({ post }) => {
   if (isLoading) return null;
 
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-20 mt-12">
+    <div className="w-full flex flex-col justify-center items-center gap-12 mt-12">
       <div className="text-lg font-semibold">Comments</div>
       {comments?.length === 0 ? (
-        <div className="-mt-16 font-semibold">There are no comments yet!</div>
+        <div className="-mt-8">There are no comments yet!</div>
       ) : (
         <div className="w-full flex flex-col justify-center items-center gap-12">
           {comments?.map((comment) => (

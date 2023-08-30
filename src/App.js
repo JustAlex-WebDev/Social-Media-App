@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { PostModalContextProvider } from "./context/PostModalContext";
 import AnimationOnLoad from "./components/AnimationOnLoad";
-import PostModal from "./components/PostModal";
 import Navigation from "./components/navigation/Navigation";
 import Home from "./routes/Home";
 import Profile from "./routes/Profile";
 import Search from "./routes/Search";
+import Post from "./routes/Post";
 import Notifications from "./routes/Notifications";
 import Signin from "./routes/Signin";
 import Signup from "./routes/Signup";
@@ -48,23 +47,21 @@ function App() {
         <AnimationOnLoad touched={touched} setTouched={setTouched} />
       ) : (
         <>
-          <PostModalContextProvider>
-            <Navigation />
-            <PostModal />
+          <Navigation />
 
-            <AnimatePresence initial={true}>
-              <Routes location={location} key={location.pathName}>
-                <Route path="/" element={<Home />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/profile/:id" element={<UserProfile />} />
-                <Route path="/comments/:id" element={<Comments />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/notifications" element={<Notifications />} />
-                <Route path="/signin" element={<Signin />} />
-                <Route path="/signup" element={<Signup />} />
-              </Routes>
-            </AnimatePresence>
-          </PostModalContextProvider>
+          <AnimatePresence initial={true}>
+            <Routes location={location} key={location.pathName}>
+              <Route path="/" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/:id" element={<UserProfile />} />
+              <Route path="/comments/:id" element={<Comments />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/post" element={<Post />} />
+              <Route path="/notifications" element={<Notifications />} />
+              <Route path="/signin" element={<Signin />} />
+              <Route path="/signup" element={<Signup />} />
+            </Routes>
+          </AnimatePresence>
         </>
       )}
     </>
