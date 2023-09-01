@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { AiOutlinePicture } from "react-icons/ai";
-import { MdOutlineAddLocationAlt } from "react-icons/md";
+import { IoMdHeartEmpty } from "react-icons/io";
+import { MdOutlineModeComment } from "react-icons/md";
 import { useAddPost } from "../hooks/posts";
 import { useAuth } from "../hooks/auth";
 import PageTransition from "../components/PageTransition";
@@ -24,7 +25,10 @@ const Post = () => {
   } = useAddPost();
   const { user, isLoading: authLoading } = useAuth();
   const [captionLenght, setCaptionLenght] = useState(0);
+  const [captionValue, setCaptionValue] = useState("");
   const [textLenght, setTextLenght] = useState(0);
+  const [textValue, setTextValue] = useState("");
+  const [preview, setPreview] = useState(false);
   const navigate = useNavigate();
 
   function handleChange(e) {
@@ -51,14 +55,19 @@ const Post = () => {
           transition={{ delay: 2, duration: 1 }}
           onSubmit={handleSubmit(handleAddPost)}
           onClick={(e) => e.stopPropagation()}
-          className="my-20 bg-primary h-full w-full max-w-[1140px] m-auto p-8 flex flex-col justify-center gap-8 text-primary"
+          className="my-12 bg-primary h-full w-full max-w-[1140px] m-auto p-8 flex flex-col justify-center gap-8 text-primary"
         >
           <div className="flex justify-between items-center gap-4">
             <div className="text-xl font-semibold tracking-wider">New post</div>
             <div className="flex justify-center items-center gap-4 font-semibold">
               <div
                 title="Preview your post"
-                className="text-secondary opacity-100 hover:opacity-80 tracking-wider cursor-pointer duration-300 ease-in-out"
+                onClick={() => setPreview(!preview)}
+                className={`${
+                  captionLenght === 0 || textLenght === 0
+                    ? "cursor-not-allowed hover:text-secondary"
+                    : "hover:opacity-80 cursor-pointer"
+                } text-secondary tracking-wider duration-300 ease-in-out`}
               >
                 Preview
               </div>
@@ -66,7 +75,11 @@ const Post = () => {
               <button
                 type="submit"
                 title="Post"
-                className="text-primary hover:text-secondary tracking-wider duration-300 ease-in-out"
+                className={`${
+                  captionLenght === 0 || textLenght === 0
+                    ? "opacity-50 cursor-not-allowed hover:text-primary"
+                    : null
+                } text-primary hover:text-secondary tracking-wider duration-300 ease-in-out`}
               >
                 {authLoading || addingPostLoading ? <>Loading...</> : <>Post</>}
               </button>
@@ -75,90 +88,141 @@ const Post = () => {
           <div>
             <textarea
               {...register("caption", captionValidate)}
-              onChange={(e) => setCaptionLenght(e.target.value.length)}
+              onChange={(e) =>
+                setCaptionLenght(e.target.value.length) &
+                setCaptionValue(e.target.value)
+              }
               placeholder="Caption"
               maxLength="30"
               cols="1"
               rows="1"
-              className="bg-primary w-full pb-2 border-b-2 border-neutral-500 hover:border-white font-medium placeholder:font-medium text-primary hover:placeholder:text-primary cursor-pointer outline-none resize-none tracking-wider duration-300 ease-in-out placeholder:duration-300 placeholder:ease-in-out"
+              className={`${
+                captionLenght === 0 ? null : "border-white"
+              } bg-primary w-full pb-2 border-b-2 border-neutral-500 hover:border-white font-medium placeholder:font-medium text-primary hover:placeholder:text-primary cursor-pointer outline-none resize-none tracking-wider duration-300 ease-in-out placeholder:duration-300 placeholder:ease-in-out`}
             ></textarea>
             <p className="text-neutral-500">
               {captionLenght === 0 ? (
-                <div>Max Characters: 30</div>
+                <>Max Characters: 30</>
               ) : (
-                <div>
+                <>
                   Max Characters:{" "}
                   {captionValidate.maxLength.value - captionLenght}
-                </div>
+                </>
               )}
             </p>
             {errors.caption ? (
-              <p className="text-[#BF0000]">{errors.caption.message}</p>
+              <p className="text-[#BF0000]">
+                {captionLenght === 0 ? <>{errors.caption.message}</> : null}
+              </p>
             ) : null}
           </div>
           <div>
             <textarea
               {...register("text", textValidate)}
-              onChange={(e) => setTextLenght(e.target.value.length)}
+              onChange={(e) =>
+                setTextLenght(e.target.value.length) &
+                setTextValue(e.target.value)
+              }
               placeholder="Message"
               maxLength="100"
               cols="1"
               rows="3"
-              className="bg-primary w-full pb-2 border-b-2 border-neutral-500 hover:border-white font-medium placeholder:font-medium text-primary hover:placeholder:text-primary cursor-pointer outline-none resize-none tracking-wider duration-300 ease-in-out placeholder:duration-300 placeholder:ease-in-out"
+              className={`${
+                textLenght === 0 ? null : "border-white"
+              } bg-primary w-full pb-2 border-b-2 border-neutral-500 hover:border-white font-medium placeholder:font-medium text-primary hover:placeholder:text-primary cursor-pointer outline-none resize-none tracking-wider duration-300 ease-in-out placeholder:duration-300 placeholder:ease-in-out`}
             ></textarea>
             <p className="text-neutral-500">
               {textLenght === 0 ? (
-                <div>Max Characters: 100</div>
+                <>Max Characters: 100</>
               ) : (
-                <div>
-                  Max Characters: {textValidate.maxLength.value - textLenght}
-                </div>
+                <>Max Characters: {textValidate.maxLength.value - textLenght}</>
               )}
             </p>
+            {errors.text ? (
+              <p className="text-[#BF0000]">
+                {textLenght === 0 ? <>{errors.text.message}</> : null}
+              </p>
+            ) : null}
           </div>
-          <div className="w-full flex justify-between items-center gap-4">
-            <label
-              htmlFor="pic"
-              title="Add an image"
+          <label
+            htmlFor="pic"
+            title="Add an image"
+            className={`${
+              fileURL ? "border-white" : null
+            } w-full h-60 flex flex-col justify-center items-center border-2 border-neutral-500 rounded-2xl py-8 hover:border-white cursor-pointer duration-500 ease-in-out group`}
+          >
+            <AiOutlinePicture
               className={`${
-                fileURL ? "border-white" : null
-              } w-1/2 h-40 flex justify-center items-center border-2 border-neutral-500 rounded-2xl py-8 hover:border-white cursor-pointer duration-500 ease-in-out group`}
-            >
-              <AiOutlinePicture
-                className={`${
-                  fileURL ? "h-24 text-primary" : null
-                } w-full h-20 group-hover:h-24 text-neutral-500 group-hover:text-primary duration-500 ease-in-out`}
-              />
-              <input
-                id="pic"
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleChange}
-              />
-            </label>
-            <label
-              htmlFor="location"
-              title="Add a location"
-              className="w-1/2 h-40 flex justify-center items-center border-2 border-neutral-500 rounded-2xl py-8 hover:border-white cursor-pointer duration-500 ease-in-out group"
-            >
-              <MdOutlineAddLocationAlt className="w-full h-16 group-hover:h-20 text-neutral-500 group-hover:text-primary duration-500 ease-in-out" />
-              <input
-                id="location"
-                type="file"
-                accept="image/*"
-                className="hidden"
-                // onChange={handleChange}
-              />
-            </label>
-          </div>
-          {/* {fileURL ? (
-            <img
-              src={fileURL}
-              alt="postPic"
-              className="w-full h-auto rounded-2xl"
+                fileURL ? "h-28 text-primary" : null
+              } w-full h-28 group-hover:h-32 text-neutral-500 group-hover:text-primary duration-500 ease-in-out`}
             />
-          ) : null} */}
+            <input
+              id="pic"
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleChange}
+            />
+          </label>
+          {preview ? (
+            <div className="flex flex-col gap-4">
+              <div className="flex justify-start items-center gap-2 group">
+                <Link to={`/profile/${user.id}`}>
+                  <img
+                    title="See Profile"
+                    src={user.avatar}
+                    alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
+                    className="w-11 h-11 bg-black border-white hover:border-[#BF0000] border-2 rounded-full object-cover duration-300 ease-in-out"
+                  />
+                </Link>
+                <div className="flex flex-col justify-center items-left">
+                  <Link
+                    to={`/profile/${user.id}`}
+                    title="See Profile"
+                    className="text-lg font-semibold capitalize"
+                  >
+                    {user.username}
+                  </Link>
+                  <div className="opacity-80 text-sm">
+                    less than a minute ago
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <div className="overflow-hidden h-auto">{textValue}</div>
+                {fileURL ? (
+                  <img
+                    src={fileURL}
+                    alt="postPic"
+                    className="w-full h-auto rounded-2xl"
+                  />
+                ) : null}
+                <div className={`${fileURL ? null : "-mt-2"} flex gap-2`}>
+                  <div className="font-semibold">{user.username}</div>
+                  <span>-</span>
+                  <div className="overflow-hidden h-auto">{captionValue}</div>
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <div className="flex gap-2">
+                  <IoMdHeartEmpty
+                    title="Like"
+                    size={24}
+                    className="cursor-pointer hover:opacity-80"
+                  />
+                  <span>0</span>
+                </div>
+                <div className="flex gap-2">
+                  <MdOutlineModeComment
+                    title="Comments"
+                    size={21}
+                    className="cursor-pointer hover:opacity-80"
+                  />
+                  <span>0</span>
+                </div>
+              </div>
+            </div>
+          ) : null}
         </m.form>
       </>
     );
