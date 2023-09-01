@@ -19,27 +19,24 @@ const Search = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="relative my-20 bg-black h-full w-full max-w-[1140px] m-auto black p-8 flex flex-col justify-center items-start gap-4 text-white"
+        className="relative mt-12 mb-8 bg-primary h-full w-full max-w-[1140px] m-auto black p-8 flex flex-col justify-center items-start gap-4 text-primary"
       >
-        <div className="text-xl font-semibold">Search a user</div>
-        <form className="w-full relative">
+        <div className="text-xl font-semibold -mb-4">Search a user</div>
+        <form className="w-full relative group">
           <input
             type="text"
             id="search"
             onChange={(e) => setSearchText(e.target.value)}
             placeholder="Search a user"
-            className="bg-black border-2 border-[#aaaaaa] rounded-full p-2 pl-4 w-full outline-none text-white ease-in-out duration-300 delay-700"
+            className="bg-black border-b-2 border-b-neutral-300 group-hover:border-b-white py-4 w-full outline-none text-primary placeholder:text-neutral-30 group-hover:placeholder:text-primary duration-300 ease-in-out"
           />
-          <label
-            htmlFor="search"
-            className="hover:cursor-pointer hover:opacity-80"
-          >
-            <div className="bg-[#BF0000] flex justify-center items-center rounded-full p-2 absolute top-[0.1rem] right-[0.1rem] text-white">
+          <label htmlFor="search" className="cursor-pointer">
+            <div className="flex justify-center items-center p-2 absolute top-2 right-0 text-neutral-300 group-hover:text-primary duration-300 ease-in-out">
               <IoMdSearch size={24} />
             </div>
           </label>
         </form>
-        <div className="w-full flex flex-col justify-center items-center gap-8 black">
+        <div className="w-full flex flex-col justify-center items-center gap-4">
           {users
             .filter((value) => {
               if (searchText === "") {
@@ -51,23 +48,22 @@ const Search = () => {
               }
             })
             .map((user) => (
-              <div
+              <Link
+                to={`/profile/${user.id}`}
                 key={user.id}
-                className="w-full py-4 flex justify-start items-center gap-4 border-b border-neutral-700"
+                className="w-full py-4 flex justify-start items-center gap-4 border-b border-neutral-700 hover:opacity-50 duration-300 ease-in-out"
               >
-                <Link to={`/profile/${user.id}`}>
-                  <img
-                    title="See Profile"
-                    src={user.avatar}
-                    alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
-                    className="w-20 h-20 bg-black border-white hover:border-[#BF0000] border-2 rounded-full object-cover duration-300 ease-in-out"
-                  />
-                </Link>
+                <img
+                  title="See Profile"
+                  src={user.avatar}
+                  alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
+                  className="w-16 h-16 bg-black border-white border-2 rounded-full object-cover"
+                />
                 <div>
                   <div className="font-semibold">{user.username}</div>
                   <div>Joined: {format(user.date, "MMMM YYY")}</div>
                 </div>
-              </div>
+              </Link>
             ))}
         </div>
       </m.div>

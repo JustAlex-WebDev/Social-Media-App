@@ -44,10 +44,11 @@ export const captionValidate = {
 
 export const textValidate = {
   required: {
-    value: false,
+    value: true,
+    message: "Please enter message",
   },
   maxLength: {
     value: 100,
-    message: "Caption must be at most 150 characters long",
+    message: "Message must be at most 100 characters long",
   },
 };
