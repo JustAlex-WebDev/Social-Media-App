@@ -55,7 +55,7 @@ const Post = () => {
           transition={{ delay: 2, duration: 1 }}
           onSubmit={handleSubmit(handleAddPost)}
           onClick={(e) => e.stopPropagation()}
-          className="my-12 bg-primary h-full w-full max-w-[1140px] m-auto p-8 flex flex-col justify-center gap-8 text-primary"
+          className="mt-20 mb-12 bg-primary h-full w-full max-w-[1140px] m-auto px-8 flex flex-col justify-center gap-8 text-primary"
         >
           <div className="flex justify-between items-center gap-4">
             <div className="text-xl font-semibold tracking-wider">New post</div>
@@ -110,11 +110,6 @@ const Post = () => {
                 </>
               )}
             </p>
-            {errors.caption ? (
-              <p className="text-[#BF0000]">
-                {captionLenght === 0 ? <>{errors.caption.message}</> : null}
-              </p>
-            ) : null}
           </div>
           <div>
             <textarea

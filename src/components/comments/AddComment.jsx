@@ -37,7 +37,7 @@ const AddComment = ({ post }) => {
         </div>
         <button
           type="submit"
-          className="bg-black w-full text-sm text-center font-semibold border-y-2 border-y-[#BF0000] hover:text-[#BF0000] hover:opacity-80 rounded-2xl p-2 px-4 duration-300 ease-in-out"
+          className="bg-black w-full text-sm text-center font-semibold rounded-3xl border-2 border-[#BF0000] hover:text-[#BF0000] hover:opacity-80 p-2 px-4 duration-300 ease-in-out"
         >
           Add Comment
         </button>
