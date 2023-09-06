@@ -19,9 +19,8 @@ const Search = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="relative mt-20 mb-12 bg-primary h-full w-full max-w-[1140px] m-auto black px-8 flex flex-col justify-center items-start gap-4 text-primary"
+        className="relative mt-20 mb-12 bg-primary h-full w-full max-w-[390px] m-auto black px-8 flex flex-col justify-center items-start gap-4 text-primary"
       >
-        <div className="text-xl font-semibold -mb-4">Search a user</div>
         <form className="w-full relative group">
           <input
             type="text"

@@ -8,15 +8,15 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
       onTouchEnd={() => setTouched(false)}
       onMouseDown={() => setTouched(true)}
       onMouseUp={() => setTouched(false)}
-      className="h-[100svh] w-full cursor-pointer"
+      className="h-[100svh] w-full cursor-pointer select-none"
     >
-      <div className="h-[100svh] w-full max-w-[1140px] m-auto flex flex-col justify-between items-center font-semibold overflow-hidden">
+      <div className="h-[100svh] w-full max-w-[390px] m-auto flex flex-col justify-between items-center font-semibold overflow-hidden">
         <div
           className={`${
             touched
               ? "opacity-100 delay-[2500ms] duration-1000"
               : "opacity-0 delay-0 duration-300"
-          } fixed w-full max-w-[1140px] m-auto flex justify-end text-[#BF0000] p-8`}
+          } fixed w-full max-w-[390px] m-auto flex justify-end text-[#BF0000] p-8`}
         >
           <PiEngineFill size={24} />
         </div>
@@ -40,7 +40,7 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
             rev
           </div>
         </div>
-        <div className="fixed bottom-12 w-full flex flex-col text-xl gap-20 h-1/2">
+        <div className="fixed bottom-12 w-full max-w-[390px] flex flex-col text-xl gap-20 h-1/2 overflow-hidden">
           <div className="flex justify-end">
             <div
               className={`${
