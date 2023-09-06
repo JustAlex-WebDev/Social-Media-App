@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { MdOutlineModeComment, MdModeComment } from "react-icons/md";
@@ -19,15 +19,23 @@ const IndividualPost = ({ post }) => {
     uid: authUser?.id,
   });
   const { deletePost } = useDeletePost(post.id);
+  const [openPic, setOpenPic] = useState(false);
   const { comments } = useComments(post.id);
   const location = useLocation();
 
   if (isLoading || authLoading) return null;
 
   return (
-    <div className="w-full flex flex-col justify-center items-center">
+    <div
+      onClick={() => setOpenPic(false)}
+      className="w-full flex flex-col justify-center items-center"
+    >
       <div className="bg-black w-full flex flex-col gap-4 z-10">
-        <div className="flex justify-start items-center gap-2 group">
+        <div
+          className={`${
+            openPic ? "opacity-20" : null
+          } flex justify-start items-center gap-2 duration-300 ease-in-out group`}
+        >
           <Link to={`/profile/${user.id}`}>
             <img
               title="See Profile"
@@ -50,24 +58,40 @@ const IndividualPost = ({ post }) => {
           </div>
         </div>
         <div className="flex flex-col gap-2">
-          <div className="overflow-hidden h-auto">{post.text}</div>
+          <div
+            className={`${
+              openPic ? "opacity-20" : null
+            } overflow-hidden h-auto duration-300 ease-in-out`}
+          >
+            {post.text}
+          </div>
           {post.picture === "" ? null : (
             <img
               src={post.picture}
               alt=""
-              onDoubleClick={toggleLike}
-              className="w-full h-auto rounded-2xl cursor-pointer"
+              onClick={(e) => e.stopPropagation() & setOpenPic(!openPic)}
+              className={`${
+                openPic ? "rounded-none" : "rounded-2xl"
+              } w-full h-auto cursor-pointer duration-300 ease-in-out select-none`}
             />
           )}
           {post.caption === "" ? null : (
-            <div className="flex gap-2">
+            <div
+              className={`${
+                openPic ? "opacity-20" : null
+              } flex gap-2 duration-300 ease-in-out`}
+            >
               <div className="font-semibold">{user.username}</div>
               <span>-</span>
               <div className="overflow-hidden h-auto">{post.caption}</div>
             </div>
           )}
         </div>
-        <div className="flex justify-between items-center">
+        <div
+          className={`${
+            openPic ? "opacity-20" : null
+          } flex justify-between items-center duration-300 ease-in-out`}
+        >
           <div className="flex justify-start items-center gap-6">
             <div className="flex justify-center items-center gap-2">
               {isLiked ? (

@@ -22,9 +22,9 @@ const UserProfile = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="bg-black w-full max-w-[1140px] m-auto mt-32 flex flex-col justify-center items-center gap-4 text-white"
+        className="bg-black w-full max-w-[1140px] m-auto mt-24 flex flex-col justify-center items-center gap-4 text-white"
       >
-        <div className="relative w-full flex flex-col xs:flex-row justify-center items-center gap-8 px-8">
+        <div className="relative w-full flex flex-col xs:flex-row justify-center items-center gap-8 mb-4 px-8">
           <div className="flex flex-col justify-center items-center gap-2">
             <img
               src={user.avatar}
@@ -50,14 +50,14 @@ const UserProfile = () => {
         </div>
         {posts?.length === 0 ? (
           <>
-            <div className="relative mt-12 -mb-8 p-8 text-lg font-semibold z-10">
+            <div className="relative -mb-8 p-8 text-lg font-semibold z-10">
               Posts
             </div>
             <div>There are no posts yet</div>
           </>
         ) : (
           <>
-            <div className="relative mt-12 -mb-28 p-8 text-lg font-semibold z-10">
+            <div className="relative -mb-24 p-8 text-lg font-semibold z-10">
               Posts
             </div>
             {postsLoading ? (

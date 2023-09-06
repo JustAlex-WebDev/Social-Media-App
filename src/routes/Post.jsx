@@ -55,12 +55,12 @@ const Post = () => {
           transition={{ delay: 2, duration: 1 }}
           onSubmit={handleSubmit(handleAddPost)}
           onClick={(e) => e.stopPropagation()}
-          className="mt-20 mb-12 bg-primary h-full w-full max-w-[1140px] m-auto px-8 flex flex-col justify-center gap-8 text-primary"
+          className="mt-20 mb-12 bg-primary h-full w-full max-w-[390px] m-auto px-8 flex flex-col justify-center gap-8 text-primary"
         >
           <div className="flex justify-between items-center gap-4">
             <div className="text-xl font-semibold tracking-wider">New post</div>
             <div className="flex justify-center items-center gap-4 font-semibold">
-              <div
+              {/* <div
                 title="Preview your post"
                 onClick={() => setPreview(!preview)}
                 className={`${
@@ -70,14 +70,30 @@ const Post = () => {
                 } text-secondary tracking-wider duration-300 ease-in-out`}
               >
                 Preview
-              </div>
+              </div> */}
+              {captionLenght === 0 || textLenght === 0 ? (
+                <div
+                  title="Preview your post"
+                  className="text-secondary tracking-wider cursor-not-allowed duration-300 ease-in-out"
+                >
+                  Preview
+                </div>
+              ) : (
+                <div
+                  title="Preview your post"
+                  onClick={() => setPreview(!preview)}
+                  className="text-secondary tracking-wider hover:opacity-80 cursor-pointer duration-300 ease-in-out"
+                >
+                  Preview
+                </div>
+              )}
               <span className="text-neutral-500 cursor-default">/</span>
               <button
                 type="submit"
                 title="Post"
                 className={`${
                   captionLenght === 0 || textLenght === 0
-                    ? "opacity-50 cursor-not-allowed hover:text-primary"
+                    ? "opacity-50 hover:text-primary"
                     : null
                 } text-primary hover:text-secondary tracking-wider duration-300 ease-in-out`}
               >
@@ -110,6 +126,11 @@ const Post = () => {
                 </>
               )}
             </p>
+            {errors.caption ? (
+              <p className="text-[#BF0000]">
+                {captionLenght === 0 ? <>{errors.caption.message}</> : null}
+              </p>
+            ) : null}
           </div>
           <div>
             <textarea

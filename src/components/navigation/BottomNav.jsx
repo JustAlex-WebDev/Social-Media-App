@@ -19,7 +19,7 @@ const BottomNav = () => {
 
   return (
     <div className="z-50 fixed bottom-0 left-0 w-full bg-gradient-to-t from-black to-100% text-primary">
-      <div className="max-w-[1140px] m-auto px-8 h-20 bg-gradient-to-t from-black to-100% flex justify-between items-center gap-4">
+      <div className="max-w-[390px] m-auto px-8 h-20 bg-gradient-to-t from-black to-100% flex justify-between items-center gap-4">
         <Link
           to="/"
           title="Home"
@@ -73,7 +73,7 @@ const BottomNav = () => {
           </Link>
         )}
 
-        <Link
+        {/* <Link
           to="/notifications"
           title="Notifications"
           className={`${
@@ -87,7 +87,10 @@ const BottomNav = () => {
           ) : (
             <MdOutlineNotificationsNone size={26} />
           )}
-        </Link>
+        </Link> */}
+        <div className="text-primary hover:text-secondary cursor-not-allowed transition-all">
+          <MdOutlineNotificationsNone size={26} />
+        </div>
         {user ? (
           <Link
             to="/profile"

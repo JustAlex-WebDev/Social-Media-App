@@ -23,7 +23,7 @@ const Comments = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="my-12 h-full w-full max-w-[1140px] m-auto bg-black p-8 flex flex-col justify-center items-center text-white"
+          className="my-12 gap-4 h-full w-full max-w-[1140px] m-auto bg-black p-8 flex flex-col justify-center items-center text-white"
         >
           <IndividualPost post={post} />
           <AddComment post={post} />

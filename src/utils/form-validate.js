@@ -33,7 +33,8 @@ export const passwordValidate = {
 
 export const captionValidate = {
   required: {
-    value: false,
+    value: true,
+    message: "Please enter caption",
   },
   maxLength: {
     value: 30,
