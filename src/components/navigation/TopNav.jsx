@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth, useLogout } from "../../hooks/auth";
+import { motion as m } from "framer-motion";
 import { MdOutlineExitToApp } from "react-icons/md";
+import { useAuth, useLogout } from "../../hooks/auth";
 
 const TopNav = () => {
   const { logout } = useLogout();
@@ -10,7 +11,12 @@ const TopNav = () => {
   if (isLoading) return null;
 
   return (
-    <div className="z-50 fixed top-0 left-0 w-full bg-gradient-to-b from-black to-100%">
+    <m.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0, duration: 1 }}
+      className="z-50 fixed top-0 left-0 w-full bg-gradient-to-b from-black to-100%"
+    >
       <div className="max-w-[390px] m-auto px-8 h-20 bg-gradient-to-b from-black to-100% flex justify-between items-center">
         <Link
           to="/"
@@ -43,7 +49,7 @@ const TopNav = () => {
           </div>
         )}
       </div>
-    </div>
+    </m.div>
   );
 };
 

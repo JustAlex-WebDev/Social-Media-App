@@ -13,10 +13,8 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
       <div className="h-[100svh] w-full max-w-[390px] m-auto flex flex-col justify-between items-center font-semibold overflow-hidden">
         <div
           className={`${
-            touched
-              ? "opacity-100 delay-[2500ms] duration-1000"
-              : "opacity-0 delay-0 duration-300"
-          } fixed w-full max-w-[390px] m-auto flex justify-end text-[#BF0000] p-8`}
+            touched ? "opacity-100 delay-[1700ms]" : "opacity-0 delay-0"
+          } fixed w-full max-w-[390px] m-auto flex justify-end text-[#BF0000] p-8 duration-500 ease-in-out`}
         >
           <PiEngineFill size={24} />
         </div>
@@ -27,15 +25,15 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
         >
           <div
             className={`${
-              touched ? "text-[#BF0000] delay-[2200ms]" : "text-white delay-0"
-            } animate-pulse text-lg duration-1000 ease-in-out`}
+              touched ? "text-[#BF0000] delay-[1500ms]" : "text-white delay-0"
+            } animate-pulse text-lg duration-500 ease-in-out`}
           >
             hold to
           </div>
           <div
             className={`${
-              touched ? "text-[#BF0000] delay-[1900ms]" : "text-white delay-0"
-            } text-8xl duration-1000 ease-in-out`}
+              touched ? "text-[#BF0000] delay-[1400ms]" : "text-white delay-0"
+            } text-8xl duration-500 ease-in-out`}
           >
             rev
           </div>
@@ -45,7 +43,7 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
             <div
               className={`${
                 touched
-                  ? "text-[#BF0000] border-b-[#BF0000] delay-[1600ms] translate-x-0"
+                  ? "text-[#BF0000] border-b-[#BF0000] delay-[1100ms] translate-x-0"
                   : "text-white border-b-[#f2f2f2] delay-0 translate-x-48"
               } border-b-2 px-10 duration-1000 ease-in-out`}
             >
@@ -56,7 +54,7 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
             <div
               className={`${
                 touched
-                  ? "text-[#BF0000] border-b-[#BF0000] delay-[1300ms] -translate-x-0"
+                  ? "text-[#BF0000] border-b-[#BF0000] delay-[800ms] -translate-x-0"
                   : "text-white border-b-[#f2f2f2] delay-0 -translate-x-48"
               } border-b-2 px-10 duration-1000 ease-in-out`}
             >
@@ -67,7 +65,7 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
             <div
               className={`${
                 touched
-                  ? "text-[#BF0000] border-b-[#BF0000] delay-1000 translate-x-0"
+                  ? "text-[#BF0000] border-b-[#BF0000] delay-500 translate-x-0"
                   : "text-white border-b-[#f2f2f2] delay-0 translate-x-48"
               } border-b-2 px-10 duration-1000 ease-in-out`}
             >
@@ -78,7 +76,7 @@ const AnimationOnLoad = ({ touched, setTouched }) => {
             <div
               className={`${
                 touched
-                  ? "text-[#BF0000] border-b-[#BF0000] delay-700 -translate-x-0"
+                  ? "text-[#BF0000] border-b-[#BF0000] delay-200 -translate-x-0"
                   : "text-white border-b-[#f2f2f2] delay-0 -translate-x-48"
               } border-b-2 px-10 duration-1000 ease-in-out`}
             >

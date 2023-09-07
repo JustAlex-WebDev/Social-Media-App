@@ -10,7 +10,7 @@ import { useToggleLike, useDeletePost } from "../../hooks/posts";
 import { useUser } from "../../hooks/users";
 
 const IndividualPost = ({ post }) => {
-  const { user, isLoading } = useUser(post?.uid);
+  const { user, isLoading: userLoading } = useUser(post?.uid);
   const { user: authUser, isLoading: authLoading } = useAuth();
   const isLiked = post.likes.includes(authUser?.id);
   const { toggleLike } = useToggleLike({
@@ -23,14 +23,14 @@ const IndividualPost = ({ post }) => {
   const { comments } = useComments(post.id);
   const location = useLocation();
 
-  if (isLoading || authLoading) return null;
+  if (userLoading || authLoading) return null;
 
   return (
     <div
       onClick={() => setOpenPic(false)}
       className="w-full flex flex-col justify-center items-center"
     >
-      <div className="bg-black w-full flex flex-col gap-4 z-10">
+      <div className="w-full flex flex-col gap-4 z-10">
         <div
           className={`${
             openPic ? "opacity-20" : null
@@ -75,17 +75,15 @@ const IndividualPost = ({ post }) => {
               } w-full h-auto cursor-pointer duration-300 ease-in-out select-none`}
             />
           )}
-          {post.caption === "" ? null : (
-            <div
-              className={`${
-                openPic ? "opacity-20" : null
-              } flex gap-2 duration-300 ease-in-out`}
-            >
-              <div className="font-semibold">{user.username}</div>
-              <span>-</span>
-              <div className="overflow-hidden h-auto">{post.caption}</div>
-            </div>
-          )}
+          <div
+            className={`${
+              openPic ? "opacity-20" : null
+            } flex gap-2 duration-300 ease-in-out`}
+          >
+            <div className="font-semibold">{user.username}</div>
+            <span>-</span>
+            <div className="overflow-hidden h-auto">{post.caption}</div>
+          </div>
         </div>
         <div
           className={`${
