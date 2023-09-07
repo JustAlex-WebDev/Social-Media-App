@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { motion as m } from "framer-motion";
 import {
   MdOutlineHome,
   MdHome,
@@ -18,7 +19,12 @@ const BottomNav = () => {
   const { user } = useAuth();
 
   return (
-    <div className="z-50 fixed bottom-0 left-0 w-full bg-gradient-to-t from-black to-100% text-primary">
+    <m.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 2, duration: 1 }}
+      className="z-50 fixed bottom-0 left-0 w-full bg-gradient-to-t from-black to-100% text-primary"
+    >
       <div className="max-w-[390px] m-auto px-8 h-20 bg-gradient-to-t from-black to-100% flex justify-between items-center gap-4">
         <Link
           to="/"
@@ -54,7 +60,7 @@ const BottomNav = () => {
               location.pathname === "/post"
                 ? "text-secondary border-primary"
                 : "text-primary border-secondary"
-            } border-2 hover:border-primary p-1 rounded-full cursor-pointer hover:text-secondary transition-all`}
+            } border-2 hover:border-primary p-1 rounded-full cursor-pointer hover:text-secondary transition-all text-primary`}
           >
             <MdOutlineAdd size={30} />
           </Link>
@@ -125,7 +131,7 @@ const BottomNav = () => {
           </Link>
         )}
       </div>
-    </div>
+    </m.div>
   );
 };
 

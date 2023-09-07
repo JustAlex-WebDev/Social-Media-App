@@ -57,20 +57,9 @@ const Post = () => {
           onClick={(e) => e.stopPropagation()}
           className="mt-20 mb-12 bg-primary h-full w-full max-w-[390px] m-auto px-8 flex flex-col justify-center gap-8 text-primary"
         >
-          <div className="flex justify-between items-center gap-4">
+          <div className="flex flex-col justify-start items-left gap-4">
             <div className="text-xl font-semibold tracking-wider">New post</div>
-            <div className="flex justify-center items-center gap-4 font-semibold">
-              {/* <div
-                title="Preview your post"
-                onClick={() => setPreview(!preview)}
-                className={`${
-                  captionLenght === 0 || textLenght === 0
-                    ? "cursor-not-allowed hover:text-secondary"
-                    : "hover:opacity-80 cursor-pointer"
-                } text-secondary tracking-wider duration-300 ease-in-out`}
-              >
-                Preview
-              </div> */}
+            <div className="flex justify-start items-center gap-4 font-semibold">
               {captionLenght === 0 || textLenght === 0 ? (
                 <div
                   title="Preview your post"
@@ -93,7 +82,7 @@ const Post = () => {
                 title="Post"
                 className={`${
                   captionLenght === 0 || textLenght === 0
-                    ? "opacity-50 hover:text-primary"
+                    ? "hover:text-primary"
                     : null
                 } text-primary hover:text-secondary tracking-wider duration-300 ease-in-out`}
               >

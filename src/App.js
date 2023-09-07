@@ -28,7 +28,7 @@ function App() {
     if (touched) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime + 100);
-        if (time >= 3000) {
+        if (time >= 2000) {
           setLoading(false);
         }
       }, 100);
@@ -47,7 +47,7 @@ function App() {
         <AnimationOnLoad touched={touched} setTouched={setTouched} />
       ) : (
         <>
-          <Navigation />
+          {/* <Navigation /> */}
 
           <AnimatePresence initial={true}>
             <Routes location={location} key={location.pathName}>
