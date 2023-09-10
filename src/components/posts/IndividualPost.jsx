@@ -4,12 +4,13 @@ import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { MdOutlineModeComment, MdModeComment } from "react-icons/md";
 import { GoTrash } from "react-icons/go";
 import { formatDistanceToNow } from "date-fns";
+import { useInView } from "react-intersection-observer";
 import { useAuth } from "../../hooks/auth";
 import { useComments } from "../../hooks/comments";
 import { useToggleLike, useDeletePost } from "../../hooks/posts";
 import { useUser } from "../../hooks/users";
 
-const IndividualPost = ({ post }) => {
+const IndividualPost = React.forwardRef(({ post }, ref) => {
   const { user, isLoading: userLoading } = useUser(post?.uid);
   const { user: authUser, isLoading: authLoading } = useAuth();
   const isLiked = post.likes.includes(authUser?.id);
@@ -19,6 +20,7 @@ const IndividualPost = ({ post }) => {
     uid: authUser?.id,
   });
   const { deletePost } = useDeletePost(post.id);
+  const { ref: myRef, inView: myElementIsVisible } = useInView();
   const [openPic, setOpenPic] = useState(false);
   const { comments } = useComments(post.id);
   const location = useLocation();
@@ -28,7 +30,10 @@ const IndividualPost = ({ post }) => {
   return (
     <div
       onClick={() => setOpenPic(false)}
-      className="w-full flex flex-col justify-center items-center"
+      ref={myRef}
+      className={`${
+        myElementIsVisible ? "animate-animateOpacity" : null
+      } w-full flex flex-col justify-center items-center`}
     >
       <div className="w-full flex flex-col gap-4 z-10">
         <div
@@ -181,6 +186,6 @@ const IndividualPost = ({ post }) => {
       </div>
     </div>
   );
-};
+});
 
 export default IndividualPost;

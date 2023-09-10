@@ -8,7 +8,7 @@ const Posts = ({ posts }) => {
       <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
         className="relative my-12 h-full w-full max-w-[390px] m-auto bg-primary p-8 flex flex-col justify-center items-center gap-12 text-primary"
       >
         {posts?.map((post) => (

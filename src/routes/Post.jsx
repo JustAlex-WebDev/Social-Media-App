@@ -9,6 +9,7 @@ import { useAddPost } from "../hooks/posts";
 import { useAuth } from "../hooks/auth";
 import PageTransition from "../components/PageTransition";
 import { captionValidate, textValidate } from "../utils/form-validate";
+import Navigation from "../components/navigation/Navigation";
 
 const Post = () => {
   const {
@@ -48,18 +49,19 @@ const Post = () => {
   if (user) {
     return (
       <>
-        <PageTransition />
+        {/* <PageTransition /> */}
+        <Navigation />
         <m.form
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
           onSubmit={handleSubmit(handleAddPost)}
           onClick={(e) => e.stopPropagation()}
           className="mt-20 mb-12 bg-primary h-full w-full max-w-[390px] m-auto px-8 flex flex-col justify-center gap-8 text-primary"
         >
-          <div className="flex flex-col justify-start items-left gap-4">
+          <div className="flex justify-between items-center gap-4">
             <div className="text-xl font-semibold tracking-wider">New post</div>
-            <div className="flex justify-start items-center gap-4 font-semibold">
+            <div className="flex justify-center items-center gap-4 font-semibold">
               {captionLenght === 0 || textLenght === 0 ? (
                 <div
                   title="Preview your post"

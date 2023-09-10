@@ -5,6 +5,7 @@ import { IoMdSearch } from "react-icons/io";
 import { format } from "date-fns";
 import { useUsers } from "../hooks/users";
 import PageTransition from "../components/PageTransition";
+import Navigation from "../components/navigation/Navigation";
 
 const Search = () => {
   const { users, isLoading } = useUsers();
@@ -14,11 +15,12 @@ const Search = () => {
 
   return (
     <>
-      <PageTransition />
+      {/* <PageTransition /> */}
+      <Navigation />
       <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
         className="relative mt-20 mb-12 bg-primary h-full w-full max-w-[390px] m-auto black px-8 flex flex-col justify-center items-start gap-4 text-primary"
       >
         <form className="w-full relative group">

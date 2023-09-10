@@ -7,6 +7,7 @@ import PageTransition from "../components/PageTransition";
 import CommentList from "../components/comments/CommentList";
 import IndividualPost from "../components/posts/IndividualPost";
 import { useAuth } from "../hooks/auth";
+import Navigation from "../components/navigation/Navigation";
 
 const Comments = () => {
   const { id } = useParams();
@@ -18,7 +19,8 @@ const Comments = () => {
   if (user) {
     return (
       <>
-        <PageTransition />
+        {/* <PageTransition /> */}
+        <Navigation />
         <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

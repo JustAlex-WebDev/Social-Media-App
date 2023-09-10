@@ -8,6 +8,7 @@ import PageTransition from "../components/PageTransition";
 import { useAuth } from "../hooks/auth";
 import { usePosts } from "../hooks/posts";
 import { useUpdateAvatar } from "../hooks/users";
+import Navigation from "../components/navigation/Navigation";
 
 const Profile = () => {
   const { user, isLoading } = useAuth();
@@ -28,11 +29,12 @@ const Profile = () => {
   if (user?.id) {
     return (
       <>
-        <PageTransition />
+        {/* <PageTransition /> */}
+        <Navigation />
         <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
           className="bg-black w-full max-w-[390px] m-auto mt-24 flex flex-col justify-center items-center gap-4 text-white"
         >
           <div className="w-full flex flex-col justify-center items-center gap-8 px-8 mb-4">

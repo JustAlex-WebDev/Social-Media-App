@@ -29,11 +29,11 @@ const Signin = () => {
 
   return (
     <>
-      <PageTransition />
+      {/* <PageTransition /> */}
       <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
         className="max-w-[390px] h-screen m-auto px-8 flex flex-col justify-center text-white"
       >
         <Link
