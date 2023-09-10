@@ -6,6 +6,7 @@ import PageTransition from "../components/PageTransition";
 import Posts from "../components/posts/Posts";
 import { usePosts } from "../hooks/posts";
 import { useUser } from "../hooks/users";
+import Navigation from "../components/navigation/Navigation";
 
 const UserProfile = () => {
   const { id } = useParams();
@@ -17,11 +18,12 @@ const UserProfile = () => {
 
   return (
     <>
-      <PageTransition />
+      {/* <PageTransition /> */}
+      <Navigation />
       <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
         className="bg-black w-full max-w-[1140px] m-auto mt-24 flex flex-col justify-center items-center gap-4 text-white"
       >
         <div className="relative w-full flex flex-col xs:flex-row justify-center items-center gap-8 mb-4 px-8">

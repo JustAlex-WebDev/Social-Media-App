@@ -22,7 +22,7 @@ const BottomNav = () => {
     <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ delay: 2, duration: 1 }}
+      transition={{ delay: 0.5, duration: 1 }}
       className="z-50 fixed bottom-0 left-0 w-full bg-gradient-to-t from-black to-100% text-primary"
     >
       <div className="max-w-[390px] m-auto px-8 h-20 bg-gradient-to-t from-black to-100% flex justify-between items-center gap-4">
@@ -31,7 +31,7 @@ const BottomNav = () => {
           title="Home"
           className={`${
             location.pathname === "/" ? "text-secondary" : "text-primary"
-          } hover:text-secondary transition-all`}
+          } hover:text-secondary`}
         >
           {location.pathname === "/" ? (
             <MdHome size={28} />
@@ -44,7 +44,7 @@ const BottomNav = () => {
           title="Search"
           className={`${
             location.pathname === "/search" ? "text-secondary" : "text-primary"
-          } hover:text-secondary transition-all`}
+          } hover:text-secondary`}
         >
           {location.pathname === "/search" ? (
             <MdSearch size={26} />
@@ -60,7 +60,7 @@ const BottomNav = () => {
               location.pathname === "/post"
                 ? "text-secondary border-primary"
                 : "text-primary border-secondary"
-            } border-2 hover:border-primary p-1 rounded-full cursor-pointer hover:text-secondary transition-all text-primary`}
+            } border-2 hover:border-primary p-1 rounded-full cursor-pointer hover:text-secondary text-primary`}
           >
             <MdOutlineAdd size={30} />
           </Link>
@@ -72,7 +72,7 @@ const BottomNav = () => {
                 location.pathname === "/post"
                   ? "text-secondary border-primary"
                   : "text-primary border-secondary"
-              } border-2 hover:border-primary p-1 rounded-full cursor-pointer hover:text-secondary transition-all`}
+              } border-2 hover:border-primary p-1 rounded-full cursor-pointer hover:text-secondary`}
             >
               <MdOutlineAdd size={30} />
             </div>
@@ -86,7 +86,7 @@ const BottomNav = () => {
             location.pathname === "/notifications"
               ? "text-secondary"
               : "text-primary"
-          } hover:text-secondary transition-all`}
+          } hover:text-secondary`}
         >
           {location.pathname === "/notifications" ? (
             <MdNotifications size={26} />
@@ -94,7 +94,7 @@ const BottomNav = () => {
             <MdOutlineNotificationsNone size={26} />
           )}
         </Link> */}
-        <div className="text-primary hover:text-secondary cursor-not-allowed transition-all">
+        <div className="text-primary hover:text-secondary cursor-not-allowed">
           <MdOutlineNotificationsNone size={26} />
         </div>
         {user ? (
@@ -105,7 +105,7 @@ const BottomNav = () => {
               location.pathname === "/profile"
                 ? "text-secondary"
                 : "text-primary"
-            } hover:text-secondary transition-all`}
+            } hover:text-secondary`}
           >
             {location.pathname === "/profile" ? (
               <MdPerson size={30} />
@@ -121,7 +121,7 @@ const BottomNav = () => {
               location.pathname === "/profile"
                 ? "text-secondary"
                 : "text-primary"
-            } hover:text-secondary transition-all`}
+            } hover:text-secondary`}
           >
             {location.pathname === "/profile" ? (
               <MdPerson size={30} />
