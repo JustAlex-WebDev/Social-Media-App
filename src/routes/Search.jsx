@@ -15,7 +15,7 @@ const Search = () => {
 
   return (
     <>
-      {/* <PageTransition /> */}
+      <PageTransition />
       <Navigation />
       <m.div
         initial={{ opacity: 0 }}

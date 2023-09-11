@@ -29,7 +29,7 @@ const Signin = () => {
 
   return (
     <>
-      {/* <PageTransition /> */}
+      <PageTransition />
       <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

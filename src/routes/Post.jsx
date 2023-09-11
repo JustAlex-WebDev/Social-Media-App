@@ -49,7 +49,7 @@ const Post = () => {
   if (user) {
     return (
       <>
-        {/* <PageTransition /> */}
+        <PageTransition />
         <Navigation />
         <m.form
           initial={{ opacity: 0 }}

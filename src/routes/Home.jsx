@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <>
-      {/* <PageTransition /> */}
+      <PageTransition />
       <Navigation />
       <Posts posts={posts} />
     </>
