@@ -29,7 +29,7 @@ const Profile = () => {
   if (user?.id) {
     return (
       <>
-        {/* <PageTransition /> */}
+        <PageTransition />
         <Navigation />
         <m.div
           initial={{ opacity: 0 }}

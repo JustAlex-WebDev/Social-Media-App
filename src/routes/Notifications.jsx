@@ -9,7 +9,7 @@ import Navigation from "../components/navigation/Navigation";
 const Notifications = () => {
   return (
     <>
-      {/* <PageTransition /> */}
+      <PageTransition />
       <Navigation />
       <m.div
         initial={{ opacity: 0 }}

@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import AnimationOnLoad from "./components/AnimationOnLoad";
-import Navigation from "./components/navigation/Navigation";
-import Home from "./routes/Home";
-import Profile from "./routes/Profile";
-import Search from "./routes/Search";
-import Post from "./routes/Post";
-import Notifications from "./routes/Notifications";
-import Signin from "./routes/Signin";
-import Signup from "./routes/Signup";
-import UserProfile from "./routes/UserProfile";
-import Comments from "./routes/Comments";
+import PageTransition from "./components/PageTransition";
+const Home = lazy(() => import("./routes/Home"));
+const Profile = lazy(() => import("./routes/Profile"));
+const Search = lazy(() => import("./routes/Search"));
+const Post = lazy(() => import("./routes/Post"));
+const Notifications = lazy(() => import("./routes/Notifications"));
+const Signin = lazy(() => import("./routes/Signin"));
+const Signup = lazy(() => import("./routes/Signup"));
+const UserProfile = lazy(() => import("./routes/UserProfile"));
+const Comments = lazy(() => import("./routes/Comments"));
 
 function App() {
   const location = useLocation();
@@ -47,19 +47,134 @@ function App() {
         <AnimationOnLoad touched={touched} setTouched={setTouched} />
       ) : (
         <>
-          {/* <Navigation /> */}
-
           <AnimatePresence initial={true}>
             <Routes location={location} key={location.pathName}>
-              <Route path="/" element={<Home />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/profile/:id" element={<UserProfile />} />
-              <Route path="/comments/:id" element={<Comments />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/post" element={<Post />} />
-              <Route path="/notifications" element={<Notifications />} />
-              <Route path="/signin" element={<Signin />} />
-              <Route path="/signup" element={<Signup />} />
+              <Route
+                path="/"
+                element={
+                  <Suspense
+                    fallback={
+                      <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
+                        REV
+                      </div>
+                    }
+                  >
+                    <Home />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <Suspense
+                    fallback={
+                      <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
+                        REV
+                      </div>
+                    }
+                  >
+                    <Profile />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/profile/:id"
+                element={
+                  <Suspense
+                    fallback={
+                      <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
+                        REV
+                      </div>
+                    }
+                  >
+                    <UserProfile />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/comments/:id"
+                element={
+                  <Suspense
+                    fallback={
+                      <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
+                        REV
+                      </div>
+                    }
+                  >
+                    <Comments />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/search"
+                element={
+                  <Suspense
+                    fallback={
+                      <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
+                        REV
+                      </div>
+                    }
+                  >
+                    <Search />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/post"
+                element={
+                  <Suspense
+                    fallback={
+                      <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
+                        REV
+                      </div>
+                    }
+                  >
+                    <Post />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/notifications"
+                element={
+                  <Suspense
+                    fallback={
+                      <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
+                        REV
+                      </div>
+                    }
+                  >
+                    <Notifications />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/signin"
+                element={
+                  <Suspense
+                    fallback={
+                      <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
+                        REV
+                      </div>
+                    }
+                  >
+                    <Signin />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/signup"
+                element={
+                  <Suspense
+                    fallback={
+                      <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
+                        REV
+                      </div>
+                    }
+                  >
+                    <Signup />
+                  </Suspense>
+                }
+              />
             </Routes>
           </AnimatePresence>
         </>

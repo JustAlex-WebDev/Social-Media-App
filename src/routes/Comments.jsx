@@ -19,7 +19,7 @@ const Comments = () => {
   if (user) {
     return (
       <>
-        {/* <PageTransition /> */}
+        <PageTransition />
         <Navigation />
         <m.div
           initial={{ opacity: 0 }}
