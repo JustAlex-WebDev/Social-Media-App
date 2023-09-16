@@ -9,9 +9,9 @@ const Home = () => {
 
   return (
     <>
-      <PageTransition />
-      <Navigation />
-      <Posts posts={posts} />
+      {/* <PageTransition /> */}
+      {/* <Navigation /> */}
+      {/* <Posts posts={posts} /> */}
     </>
   );
 };

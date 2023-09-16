@@ -6,24 +6,25 @@ import { format } from "date-fns";
 import { useUsers } from "../hooks/users";
 import PageTransition from "../components/PageTransition";
 import Navigation from "../components/navigation/Navigation";
+import { useSearchContext } from "../context/SearchContext";
 
 const Search = () => {
   const { users, isLoading } = useUsers();
-  const [searchText, setSearchText] = useState("");
+  const { searchText } = useSearchContext();
 
   if (isLoading) return null;
 
   return (
     <>
-      <PageTransition />
-      <Navigation />
+      {/* <PageTransition /> */}
+      {/* <Navigation /> */}
       <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
         className="relative mt-20 mb-12 bg-primary h-full w-full max-w-[390px] m-auto black px-8 flex flex-col justify-center items-start gap-4 text-primary"
       >
-        <form className="w-full relative group">
+        {/* <form className="w-full relative group">
           <input
             type="text"
             id="search"
@@ -36,7 +37,7 @@ const Search = () => {
               <IoMdSearch size={24} />
             </div>
           </label>
-        </form>
+        </form> */}
         <div className="w-full flex flex-col justify-center items-center gap-4">
           {users
             .filter((value) => {
