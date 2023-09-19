@@ -8,7 +8,7 @@ The theologies used in the website are React, Firebase and Tailwind. The Authent
 
 ## Demo Link
 
-If you do not want to use your own information just use these demo email and password to sign in:
+If you do not want to use your own information just use these demo email and password in order to sign in into the demo account:
 
 Email: `demo@demo.com`
 Password: `password`
