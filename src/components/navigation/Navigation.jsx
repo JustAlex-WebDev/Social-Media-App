@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { RiMenuFill, RiSearchLine, RiArrowLeftSLine } from "react-icons/ri";
-import NavigationMenu from "./NavigationMenu";
+import { RiMenuFill, RiArrowLeftSLine } from "react-icons/ri";
 import { useSearchContext } from "../../context/SearchContext";
+import NavigationMenu from "./NavigationMenu";
+import SearchBar from "./SearchBar";
 import TopNav from "./TopNav";
 import BottomNav from "./BottomNav";
-import SearchBar from "./SearchBar";
 
 const Navigation = () => {
   const location = useLocation();
@@ -24,7 +24,7 @@ const Navigation = () => {
     <>
       {location.pathname === "/signin" ||
       location.pathname === "/signup" ? null : (
-        <div className="w-full p-4 bg-white flex justify-between items-center text-black">
+        <div className="w-full max-w-[500px] m-auto p-4 bg-white flex justify-between items-center text-black">
           {searchTab ? (
             <RiArrowLeftSLine
               onClick={() => setSearchTab(false) & navigate("/")}

@@ -43,7 +43,7 @@ const Post = () => {
       text: data.text,
     });
     reset();
-    navigate("/");
+    // navigate("/");
   }
 
   if (user) {

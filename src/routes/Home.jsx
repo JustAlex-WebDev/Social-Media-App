@@ -1,7 +1,7 @@
 import React from "react";
 import { usePosts } from "../hooks/posts";
-import PageTransition from "../components/PageTransition";
 import Posts from "../components/posts/Posts";
+import PageTransition from "../components/PageTransition";
 import Navigation from "../components/navigation/Navigation";
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
     <>
       {/* <PageTransition /> */}
       {/* <Navigation /> */}
-      {/* <Posts posts={posts} /> */}
+      <Posts posts={posts} />
     </>
   );
 };

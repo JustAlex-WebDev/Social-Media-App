@@ -4,12 +4,12 @@ import IndividualPost from "./IndividualPost";
 
 const Posts = ({ posts }) => {
   return (
-    <div className="bg-primary w-full">
+    <div className="bg-white w-full">
       <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="relative my-12 h-full w-full max-w-[390px] m-auto bg-primary p-8 flex flex-col justify-center items-center gap-12 text-primary"
+        className="h-full w-full max-w-[500px] m-auto bg-white p-4 grid grid-cols-2 gap-8 text-black"
       >
         {posts?.map((post) => (
           <IndividualPost key={post?.id} post={post} />
