@@ -30,7 +30,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
         />
       </div>
 
-      {/* Links */}
+      {/* Navigation Bar Menu Links */}
       <div className="flex flex-col justify-center items-start gap-12 text-2xl font-semibold tracking-widest">
         <Link
           to={"/"}
