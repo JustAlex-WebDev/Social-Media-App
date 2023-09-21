@@ -6,11 +6,18 @@ import {
   RiHome2Line,
   RiAddFill,
   RiUser3Line,
-  RiNotification4Line,
-  RiInformationLine,
+  // RiNotification4Line,
+  // RiInformationLine,
 } from "react-icons/ri";
+import { MdOutlineExitToApp, MdOutlineLogin } from "react-icons/md";
+import { useAuth, useLogout } from "../../hooks/auth";
 
 const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
+  const { logout } = useLogout();
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) return null;
+
   return (
     <div
       className={`${
@@ -32,6 +39,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
 
       {/* Navigation Bar Menu Links */}
       <div className="flex flex-col justify-center items-start gap-12 text-2xl font-semibold tracking-widest">
+        {/* Home */}
         <Link
           to={"/"}
           onClick={() => setNavMenu(false)}
@@ -81,6 +89,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
             </span>
           </div>
         </Link>
+        {/* Search */}
         <Link
           to={"/search"}
           onClick={() => setNavMenu(false)}
@@ -144,6 +153,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
             </span>
           </div>
         </Link>
+        {/* Post */}
         <Link
           to={"/post"}
           onClick={() => setNavMenu(false)}
@@ -193,6 +203,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
             </span>
           </div>
         </Link>
+        {/* Profile */}
         <Link
           to={"/profile"}
           onClick={() => setNavMenu(false)}
@@ -263,7 +274,173 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
             </span>
           </div>
         </Link>
-        <Link
+        {/* Sing Out / Sign In / Sign Up */}
+        {user?.id ? (
+          <div
+            title="Sign Out"
+            onClick={() => setNavMenu(false) & logout}
+            className="group text-black flex justify-center items-center gap-4 duration-300 ease-in-out relative"
+          >
+            <div
+              className={`${
+                navMenu ? "-right-[300%] delay-[1000ms]" : "right-0 delay-0"
+              } bg-white w-full h-full absolute top-0 duration-500 z-10`}
+            ></div>
+            <MdOutlineExitToApp
+              size={24}
+              className="opacity-50 group-hover:opacity-100 duration-150 delay-[100ms] ease-in"
+            />
+            <div className="flex justify-center items-center gap-2">
+              <div>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[200ms] ease-in`}
+                >
+                  S
+                </span>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[300ms] ease-in`}
+                >
+                  I
+                </span>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[400ms] ease-in`}
+                >
+                  G
+                </span>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[500ms] ease-in`}
+                >
+                  N
+                </span>
+              </div>
+              <div>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[600ms] ease-in`}
+                >
+                  O
+                </span>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[700ms] ease-in`}
+                >
+                  U
+                </span>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[800ms] ease-in`}
+                >
+                  T
+                </span>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <Link
+            to={"/signin"}
+            title="Sign In"
+            onClick={() => setNavMenu(false)}
+            className="group text-black flex justify-center items-center gap-4 duration-300 ease-in-out relative"
+          >
+            <div
+              className={`${
+                navMenu ? "-right-[300%] delay-[1000ms]" : "right-0 delay-0"
+              } bg-white w-full h-full absolute top-0 duration-500 z-10`}
+            ></div>
+            <MdOutlineLogin
+              size={24}
+              className="opacity-50 group-hover:opacity-100 duration-150 delay-[100ms] ease-in"
+            />
+            <div className="flex justify-center items-center gap-2">
+              <div>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[200ms] ease-in`}
+                >
+                  S
+                </span>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[300ms] ease-in`}
+                >
+                  I
+                </span>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[400ms] ease-in`}
+                >
+                  G
+                </span>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[500ms] ease-in`}
+                >
+                  N
+                </span>
+              </div>
+              <div>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[600ms] ease-in`}
+                >
+                  I
+                </span>
+                <span
+                  className={`${
+                    location.pathname === "/search"
+                      ? "opacity-100"
+                      : "opacity-50"
+                  } group-hover:opacity-100 duration-150 delay-[700ms] ease-in`}
+                >
+                  N
+                </span>
+              </div>
+            </div>
+          </Link>
+        )}
+
+        {/* Activity */}
+        {/* <Link
           to={"/activity"}
           onClick={() => setNavMenu(false)}
           className={`${
@@ -339,8 +516,9 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
               Y
             </span>
           </div>
-        </Link>
-        <Link
+        </Link> */}
+        {/* About */}
+        {/* <Link
           to={"/about"}
           onClick={() => setNavMenu(false)}
           className={`${
@@ -395,7 +573,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
               T
             </span>
           </div>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
