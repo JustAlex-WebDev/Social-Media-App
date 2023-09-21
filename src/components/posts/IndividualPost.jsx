@@ -3,13 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { MdOutlineModeComment, MdModeComment } from "react-icons/md";
 import { HiOutlineDotsVertical } from "react-icons/hi";
-import { GoTrash } from "react-icons/go";
 import { formatDistanceToNow } from "date-fns";
 import { useInView } from "react-intersection-observer";
 import { useAuth } from "../../hooks/auth";
 import { useComments } from "../../hooks/comments";
 import { useToggleLike, useDeletePost } from "../../hooks/posts";
 import { useUser } from "../../hooks/users";
+import PostMenu from "./PostMenu";
 
 const IndividualPost = React.forwardRef(({ post }, ref) => {
   const { user, isLoading: userLoading } = useUser(post?.uid);
@@ -22,7 +22,8 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
   });
   const { deletePost } = useDeletePost(post.id);
   const { ref: myRef, inView: myElementIsVisible } = useInView();
-  const [openPic, setOpenPic] = useState(false);
+  // const [openPic, setOpenPic] = useState(false);
+  const [postMenu, setPostMenu] = useState(false);
   const { comments } = useComments(post.id);
   const location = useLocation();
   const [captionOpen, setCaptionOpen] = useState(false);
@@ -59,6 +60,7 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
         </Link>
         <HiOutlineDotsVertical
           size={22}
+          onClick={() => setPostMenu(!postMenu)}
           className="cursor-pointer hover:opacity-50 duration-300 ease-in-out"
         />
       </div>
@@ -78,7 +80,7 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
           onClick={() => setCaptionOpen(!captionOpen)}
           className="text-sm font-medium h-auto hover:opacity-50 cursor-pointer duration-300 ease-in-out"
         >
-          {post.text}
+          {post.text.slice(0, 50)}
         </div>
       ) : (
         <div
@@ -86,10 +88,11 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
           onClick={() => setCaptionOpen(!captionOpen)}
           className="text-sm font-medium h-auto hover:opacity-50 cursor-pointer duration-300 ease-in-out"
         >
-          {post.text.slice(0, 50)}
-          {post.text.length > 50 ? " ..." : null}
+          {post.text.slice(0, 35)}
+          {post.text.length > 30 ? " ..." : null}
         </div>
       )}
+
       {/* Likes & Comments */}
       <div className="flex justify-start items-center gap-4">
         {/* Likes */}
@@ -148,176 +151,19 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
           </div>
         </div>
       </div>
-      {!authLoading && authUser?.id === post?.uid && (
-        <>
-          {location.pathname !== "/" ? null : (
-            <GoTrash
-              size={20}
-              onClick={deletePost}
-              title="Delete Post"
-              className="cursor-pointer hover:text-[#BF0000] duration-300 ease-in-out"
-            />
-          )}
-        </>
-      )}
+      {/* Post Menu */}
+      <PostMenu
+        post={post}
+        postMenu={postMenu}
+        setPostMenu={setPostMenu}
+        isLiked={isLiked}
+        toggleLike={toggleLike}
+        user={user}
+        authUser={authUser}
+        authLoading={authLoading}
+        deletePost={deletePost}
+      />
     </div>
-    // <div
-    //   onClick={() => setOpenPic(false)}
-    //   ref={myRef}
-    //   className={`${
-    //     myElementIsVisible ? "animate-animateOpacity" : null
-    //   } w-full flex flex-col justify-center items-center`}
-    // >
-    //   <div className="w-full flex flex-col gap-4 z-10">
-    //     <div
-    //       className={`${
-    //         openPic ? "opacity-20" : null
-    //       } flex justify-start items-center gap-2 duration-300 ease-in-out group`}
-    //     >
-    // <Link to={`/profile/${user.id}`}>
-    //   <img
-    //     title="See Profile"
-    //     src={user.avatar}
-    //     alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
-    //     className="w-11 h-11 bg-black border-white hover:border-[#BF0000] border-2 rounded-full object-cover duration-300 ease-in-out"
-    //   />
-    // </Link>
-    // <div className="flex flex-col justify-center items-left">
-    //   <Link
-    //     to={`/profile/${user.id}`}
-    //     title="See Profile"
-    //     className="text-lg font-semibold capitalize"
-    //   >
-    //     {user.username}
-    //   </Link>
-    //   <div className="opacity-80 text-sm">
-    //     {formatDistanceToNow(post.date)} ago
-    //   </div>
-    // </div>
-    //     </div>
-    //     <div className="flex flex-col gap-2">
-    // <div
-    //   className={`${
-    //     openPic ? "opacity-20" : null
-    //   } overflow-hidden h-auto duration-300 ease-in-out`}
-    // >
-    //   {post.text}
-    // </div>
-    // {post.picture === "" ? null : (
-    //   <img
-    //     src={post.picture}
-    //     alt=""
-    //     onClick={(e) => e.stopPropagation() & setOpenPic(!openPic)}
-    //     className={`${
-    //       openPic ? "rounded-none" : "rounded-2xl"
-    //     } w-full h-auto cursor-pointer duration-300 ease-in-out select-none`}
-    //   />
-    // )}
-    //       <div
-    //         className={`${
-    //           openPic ? "opacity-20" : null
-    //         } flex gap-2 duration-300 ease-in-out`}
-    //       >
-    //         <div className="font-semibold">{user.username}</div>
-    //         <span>-</span>
-    //         <div className="overflow-hidden h-auto">{post.caption}</div>
-    //       </div>
-    //     </div>
-    //     <div
-    //       className={`${
-    //         openPic ? "opacity-20" : null
-    //       } flex justify-between items-center duration-300 ease-in-out`}
-    //     >
-    //       <div className="flex justify-start items-center gap-6">
-    //         <div className="flex justify-center items-center gap-2">
-    //           {isLiked ? (
-    //             <IoMdHeart
-    //               title="Unlike"
-    //               onClick={toggleLike}
-    //               size={24}
-    //               className="cursor-pointer hover:opacity-80 text-[#BF0000]"
-    //             />
-    //           ) : (
-    //             <>
-    //               {authUser ? (
-    //                 <IoMdHeartEmpty
-    //                   title="Like"
-    //                   onClick={toggleLike}
-    //                   size={24}
-    //                   className="cursor-pointer hover:opacity-80"
-    //                 />
-    //               ) : (
-    //                 <IoMdHeartEmpty
-    //                   title="Like"
-    //                   onClick={() => alert("Please sign in to be able to like")}
-    //                   size={24}
-    //                   className="cursor-pointer hover:opacity-80"
-    //                 />
-    //               )}
-    //             </>
-    //           )}
-    //           <div>{post.likes.length}</div>
-    //         </div>
-    //         <div className="flex justify-center items-center gap-2">
-    //           {comments?.length === 0 ? (
-    //             <>
-    //               {authUser ? (
-    //                 <Link to={`/comments/${post.id}`}>
-    //                   <MdOutlineModeComment
-    //                     title="Comments"
-    //                     size={21}
-    //                     className="cursor-pointer hover:opacity-80"
-    //                   />
-    //                 </Link>
-    //               ) : (
-    //                 <Link to="/signin">
-    //                   <MdOutlineModeComment
-    //                     title="Comments"
-    //                     size={21}
-    //                     className="cursor-pointer hover:opacity-80"
-    //                   />
-    //                 </Link>
-    //               )}
-    //             </>
-    //           ) : (
-    //             <>
-    //               {authUser ? (
-    //                 <Link to={`/comments/${post.id}`}>
-    //                   <MdModeComment
-    //                     title="Comments"
-    //                     size={21}
-    //                     className="cursor-pointer hover:opacity-80 text-[#BF0000]"
-    //                   />
-    //                 </Link>
-    //               ) : (
-    //                 <Link to="/signin">
-    //                   <MdModeComment
-    //                     title="Comments"
-    //                     size={21}
-    //                     className="cursor-pointer hover:opacity-80 text-[#BF0000]"
-    //                   />
-    //                 </Link>
-    //               )}
-    //             </>
-    //           )}
-    //           <div>{comments?.length}</div>
-    //         </div>
-    //       </div>
-    //       {!authLoading && authUser?.id === post?.uid && (
-    //         <>
-    //           {location.pathname !== "/" ? null : (
-    //             <GoTrash
-    //               size={21}
-    //               onClick={deletePost}
-    //               title="Delete Post"
-    //               className="cursor-pointer hover:text-[#BF0000] duration-300 ease-in-out"
-    //             />
-    //           )}
-    //         </>
-    //       )}
-    //     </div>
-    //   </div>
-    // </div>
   );
 });
 
