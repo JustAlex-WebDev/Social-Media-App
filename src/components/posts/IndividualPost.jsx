@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { lazy, useState } from "react";
+import { Link } from "react-router-dom";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
-import { MdOutlineModeComment, MdModeComment } from "react-icons/md";
+import { MdOutlineModeComment } from "react-icons/md";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { formatDistanceToNow } from "date-fns";
 import { useInView } from "react-intersection-observer";
@@ -9,7 +9,8 @@ import { useAuth } from "../../hooks/auth";
 import { useComments } from "../../hooks/comments";
 import { useToggleLike, useDeletePost } from "../../hooks/posts";
 import { useUser } from "../../hooks/users";
-import PostMenu from "./PostMenu";
+const PostMenu = lazy(() => import("./PostMenu"));
+const CommentsMenu = lazy(() => import("../comments/CommentsMenu"));
 
 const IndividualPost = React.forwardRef(({ post }, ref) => {
   const { user, isLoading: userLoading } = useUser(post?.uid);
@@ -24,8 +25,8 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
   const { ref: myRef, inView: myElementIsVisible } = useInView();
   // const [openPic, setOpenPic] = useState(false);
   const [postMenu, setPostMenu] = useState(false);
+  const [commentsMenu, setCommentsMenu] = useState(false);
   const { comments } = useComments(post.id);
-  const location = useLocation();
   const [captionOpen, setCaptionOpen] = useState(false);
 
   if (userLoading || authLoading) return null;
@@ -35,7 +36,7 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
       ref={myRef}
       className={`${
         myElementIsVisible ? "animate-animateOpacity" : null
-      } post w-full h-[25rem] flex flex-col gap-2`}
+      } post w-full h-[20rem] flex flex-col justify-center gap-2`}
     >
       {/* User */}
       <div className="w-full flex justify-between items-center gap-2">
@@ -60,19 +61,21 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
         </Link>
         <HiOutlineDotsVertical
           size={22}
-          onClick={() => setPostMenu(!postMenu)}
+          onClick={() => setPostMenu(true)}
           className="cursor-pointer hover:opacity-50 duration-300 ease-in-out"
         />
       </div>
+
       {/* Picture */}
       {post.picture === "" ? null : (
         <img
           src={post.picture}
           title="View Image"
           alt=""
-          className="post-picture w-full h-1/2 object-cover cursor-pointer rounded-xl hover:opacity-80 duration-300 ease-in-out"
+          className="post-picture w-full h-[60%] object-cover cursor-pointer rounded-xl hover:opacity-80 duration-300 ease-in-out"
         />
       )}
+
       {/* Caption */}
       {captionOpen ? (
         <div
@@ -83,14 +86,20 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
           {post.text.slice(0, 50)}
         </div>
       ) : (
-        <div
-          title="View"
-          onClick={() => setCaptionOpen(!captionOpen)}
-          className="text-sm font-medium h-auto hover:opacity-50 cursor-pointer duration-300 ease-in-out"
-        >
-          {post.text.slice(0, 35)}
-          {post.text.length > 30 ? " ..." : null}
-        </div>
+        <>
+          {post.text.length <= 35 ? (
+            <div className="text-sm font-medium h-auto">{post.text}</div>
+          ) : (
+            <div
+              title="View"
+              onClick={() => setCaptionOpen(!captionOpen)}
+              className="text-sm font-medium h-auto hover:opacity-50 cursor-pointer duration-300 ease-in-out"
+            >
+              {post.text.slice(0, 35)}
+              {post.text.length > 35 ? " ..." : null}
+            </div>
+          )}
+        </>
       )}
 
       {/* Likes & Comments */}
@@ -127,30 +136,30 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
             {post.likes.length}
           </div>
         </div>
+
         {/* Comments */}
         <div className="flex justify-center items-center gap-2 group">
           {authUser ? (
-            <Link to={`/comments/${post.id}`}>
-              <MdOutlineModeComment
-                title="Comments"
-                size={20}
-                className="cursor-pointer group-hover:text-orange-600 duration-300 ease-in-out"
-              />
-            </Link>
+            <MdOutlineModeComment
+              title="Comments"
+              onClick={() => setCommentsMenu(true)}
+              size={20}
+              className="cursor-pointer group-hover:text-orange-600 duration-300 ease-in-out"
+            />
           ) : (
-            <Link to="/signin">
-              <MdOutlineModeComment
-                title="Comments"
-                size={20}
-                className="cursor-pointer group-hover:text-orange-600 duration-300 ease-in-out"
-              />
-            </Link>
+            <MdOutlineModeComment
+              title="Comments"
+              onClick={() => alert("Please sign in to be able to comment")}
+              size={20}
+              className="cursor-pointer group-hover:text-orange-600 duration-300 ease-in-out"
+            />
           )}
           <div className="cursor-pointer text-sm font-medium group-hover:text-orange-600 duration-300 ease-in-out">
             {comments?.length}
           </div>
         </div>
       </div>
+
       {/* Post Menu */}
       <PostMenu
         post={post}
@@ -162,6 +171,13 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
         authUser={authUser}
         authLoading={authLoading}
         deletePost={deletePost}
+      />
+
+      {/* Comments Menu */}
+      <CommentsMenu
+        post={post}
+        commentsMenu={commentsMenu}
+        setCommentsMenu={setCommentsMenu}
       />
     </div>
   );

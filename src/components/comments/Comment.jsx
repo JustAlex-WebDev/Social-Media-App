@@ -9,44 +9,44 @@ import { useUser } from "../../hooks/users";
 const Comment = ({ comment }) => {
   const { user, isLoading: userLoading } = useUser(comment.uid);
   const { user: authUser, isLoading: authLoading } = useAuth();
-  const { deleteComment, isLoading: deleteLoading } = useDeleteComment(
-    comment.id
-  );
+  const { deleteComment } = useDeleteComment(comment.id);
 
   if (userLoading) return null;
 
   return (
-    <div className="w-full flex flex-col justify-start items-left gap-4 pb-4 border-b border-neutral-700">
-      <div className="flex justify-start items-center gap-2">
-        <Link to={`/profile/${user.id}`}>
+    <div className="w-full flex flex-col gap-4">
+      {/* User */}
+      <div className="flex">
+        <Link
+          to={`/profile/${user.id}`}
+          title="See Profile"
+          className="flex gap-2 cursor-pointer hover:opacity-50 duration-300 ease-in-out"
+        >
           <img
-            title="See Profile"
             src={user.avatar}
-            alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
-            className="w-9 h-9 bg-black border-white hover:border-[#BF0000] border-2 rounded-full object-cover"
+            alt=""
+            className="w-10 h-10 bg-black rounded-full object-cover"
           />
-        </Link>
-        <div className="flex flex-col justify-center items-left">
-          <Link
-            to={`"/profile/"${user.id}`}
-            title="See Profile"
-            className="text-base font-semibold capitalize hover:opacity-80"
-          >
-            {user.username}
-          </Link>
-          <div className="opacity-80 text-xs">
-            {formatDistanceToNow(comment.date)} ago
+          <div className="flex flex-col">
+            <div className="tracking-wider font-semibold capitalize text-orange-600">
+              {user.username}
+            </div>
+            <div className="opacity-50 text-xs">
+              {formatDistanceToNow(comment.date)} ago
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
-      <div className="flex justify-center items-center gap-8">
-        <div className="w-full">{comment.text}</div>
+
+      {/* Comment Text */}
+      <div className="flex justify-between items-center">
+        <div className="text-base font-medium h-auto">{comment.text}</div>
         {!authLoading && authUser.id === comment.uid && (
           <GoTrash
-            size={21}
+            size={18}
             onClick={deleteComment}
             title="Delete Comment"
-            className="cursor-pointer hover:text-[#BF0000] duration-300 ease-in-out"
+            className="cursor-pointer hover:text-orange-600 duration-300 ease-in-out"
           />
         )}
       </div>

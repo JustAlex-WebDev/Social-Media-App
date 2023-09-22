@@ -1,24 +1,52 @@
 import React from "react";
 import { useComments } from "../../hooks/comments";
+import AddComment from "./AddComment";
 import Comment from "./Comment";
 
-const CommentList = ({ post }) => {
+const CommentList = ({ post, commentsMenu }) => {
   const { comments, isLoading } = useComments(post?.id);
 
   if (isLoading) return null;
 
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-12 mt-12">
-      <div className="text-lg font-semibold">Comments</div>
-      {comments?.length === 0 ? (
-        <div className="-mt-8">There are no comments yet!</div>
-      ) : (
-        <div className="w-full flex flex-col justify-center items-center gap-12">
-          {comments?.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
-          ))}
+    <div className="h-full flex flex-col justify-between gap-2">
+      <div className="flex flex-col gap-8">
+        <div
+          className={`${
+            commentsMenu ? "opacity-100" : "opacity-0"
+          } text-xl text-center tracking-wider font-semibold text-orange-600 delay-[200ms] duration-300 ease-in-out`}
+        >
+          Comments
         </div>
-      )}
+        {comments.length === 0 ? (
+          <div
+            className={`${
+              commentsMenu ? "opacity-100" : "opacity-0"
+            } text-center text-sm font-semibold -mt-4 delay-[250ms] duration-300 ease-in-out`}
+          >
+            There are no comments yet!
+          </div>
+        ) : (
+          <div
+            className={`${
+              commentsMenu ? "opacity-100" : "opacity-0"
+            } h-80 flex flex-col justify-start items-center gap-8 overflow-x-auto delay-[250ms] duration-300 ease-in-out`}
+          >
+            {comments?.map((comment) => (
+              <div
+                className="w-full flex flex-col justify-center"
+                key={comment.id}
+                comment={comment}
+              >
+                {/* Comment */}
+                <Comment comment={comment} />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      {/* Add Comment */}
+      <AddComment post={post} commentsMenu={commentsMenu} />
     </div>
   );
 };
