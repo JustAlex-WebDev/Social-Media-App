@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../../hooks/auth";
 import { useAddComment } from "../../hooks/comments";
 
-const AddComment = ({ post }) => {
+const AddComment = ({ post, commentsMenu }) => {
   const { user: authUser, isLoading: authLoading } = useAuth();
   const { addComment } = useAddComment({ postID: post?.id, uid: authUser?.id });
   const { register, handleSubmit, reset } = useForm();
@@ -16,33 +16,35 @@ const AddComment = ({ post }) => {
   if (authLoading) return null;
 
   return (
-    <div className="bg-black w-full flex flex-col justify-center items-center rounded-2xl">
-      <form
-        onSubmit={handleSubmit((data) => handleAddComment(data))}
-        className="w-full flex flex-col justify-center items-center gap-4 pb-4"
+    <form onSubmit={handleSubmit((data) => handleAddComment(data))}>
+      <div
+        className={`${
+          commentsMenu ? "opacity-100" : "opacity-0"
+        } w-full flex justify-between items-center delay-300 duration-300 ease-in-out`}
       >
-        <div className="w-full flex justify-center">
+        <div className="w-3/4 flex justify-start items-center gap-4">
           <img
             src={authUser.avatar}
-            alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
-            className="w-10 h-10 mr-6 bg-black border-[#BF0000] border-2 rounded-full object-cover"
+            alt=""
+            className="bg-black w-10 h-10 rounded-full object-cover"
           />
           <input
             type="text"
             {...register("text", { required: true })}
             autoComplete="off"
             placeholder="Write a comment"
-            className="w-full bg-black border-b border-neutral-700 outline-none"
+            className="w-3/4 bg-black border-b border-neutral-700 outline-none py-1"
           />
         </div>
         <button
           type="submit"
-          className="bg-black w-full text-sm text-center font-semibold rounded-3xl border-2 border-[#BF0000] hover:text-[#BF0000] hover:opacity-80 p-2 px-4 duration-300 ease-in-out"
+          title="Post"
+          className="bg-black w-1/4 p-2 text-sm text-center font-semibold rounded-xl border-2 border-orange-600 text-orange-600 hover:opacity-50 duration-300 ease-in-out"
         >
-          Add Comment
+          Add
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 

@@ -23,7 +23,7 @@ const PostMenu = ({
       onClick={() => setPostMenu(false)}
       className={`${
         postMenu ? "h-full" : "h-0 delay-150"
-      } bg-modal fixed top-0 left-0 w-full`}
+      } bg-modal fixed top-0 left-0 w-full z-50`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -37,10 +37,8 @@ const PostMenu = ({
           } w-full flex justify-center items-center delay-150 duration-300 ease-in-out`}
         >
           <div
-            // onTouchStart={() => setPostMenu(false)}
-            // onMouseDown={() => setPostMenu(false)}
-            onTouchMove={() => setPostMenu(false)}
-            onMouseMove={() => setPostMenu(false)}
+            onTouchStart={() => setPostMenu(false)}
+            onMouseDown={() => setPostMenu(false)}
             className="w-1/4 h-2 bg-white rounded-full cursor-pointer hover:opacity-50 duration-300 ease-in-out"
           ></div>
         </div>
