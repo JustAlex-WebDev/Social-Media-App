@@ -2,7 +2,7 @@ import React from "react";
 import { RiSearchLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
-const SearchBar = ({ searchTab, setSearchText, setSearchTab }) => {
+const SearchBar = ({ searchTab, setSearchTab, searchText, setSearchText }) => {
   const navigate = useNavigate();
 
   return (
@@ -18,6 +18,7 @@ const SearchBar = ({ searchTab, setSearchText, setSearchTab }) => {
         id="search"
         onChange={(e) => setSearchText(e.target.value)}
         placeholder="Wonder around..."
+        value={searchText}
         className={`${
           searchTab
             ? "py-2 opacity-100 cursor-auto delay-300"
