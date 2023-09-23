@@ -41,7 +41,7 @@ const Profile = () => {
             <div className="flex flex-col justify-center items-center gap-2 relative">
               <img
                 src={user.avatar}
-                alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
+                alt=""
                 className="w-48 h-48 bg-black border-[#BF0000] border-2 rounded-full object-cover"
               />
               <label

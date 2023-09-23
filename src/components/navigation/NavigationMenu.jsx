@@ -24,6 +24,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
         navMenu ? "left-0" : "-left-[100%]"
       } bg-white absolute top-0 p-4 w-full h-screen flex justify-center items-center overflow-hidden duration-1000 ease-in-out z-50`}
     >
+      {/* Navigation Bar Menu Handle */}
       <div
         onClick={() => setNavMenu(false)}
         title="Close Menu"
@@ -42,6 +43,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
         {/* Home */}
         <Link
           to={"/"}
+          title="Home"
           onClick={() => setNavMenu(false)}
           className={`${
             location.pathname === "/" ? "text-orange-600" : "text-black"
@@ -92,6 +94,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
         {/* Search */}
         <Link
           to={"/search"}
+          title="Search"
           onClick={() => setNavMenu(false)}
           className={`${
             location.pathname === "/search" ? "text-orange-600" : "text-black"
@@ -156,6 +159,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
         {/* Post */}
         <Link
           to={"/post"}
+          title="Post"
           onClick={() => setNavMenu(false)}
           className={`${
             location.pathname === "/post" ? "text-orange-600" : "text-black"
@@ -175,28 +179,28 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
           <div>
             <span
               className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
+                location.pathname === "/post" ? "opacity-100" : "opacity-50"
               } group-hover:opacity-100 duration-150 delay-[200ms] ease-in`}
             >
               P
             </span>
             <span
               className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
+                location.pathname === "/post" ? "opacity-100" : "opacity-50"
               } group-hover:opacity-100 duration-150 delay-[300ms] ease-in`}
             >
               O
             </span>
             <span
               className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
+                location.pathname === "/post" ? "opacity-100" : "opacity-50"
               } group-hover:opacity-100 duration-150 delay-[400ms] ease-in`}
             >
               S
             </span>
             <span
               className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
+                location.pathname === "/post" ? "opacity-100" : "opacity-50"
               } group-hover:opacity-100 duration-150 delay-[500ms] ease-in`}
             >
               T
@@ -206,6 +210,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
         {/* Profile */}
         <Link
           to={"/profile"}
+          title="Profile"
           onClick={() => setNavMenu(false)}
           className={`${
             location.pathname === "/profile" ? "text-orange-600" : "text-black"
@@ -225,61 +230,61 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
           <div>
             <span
               className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
+                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
               } group-hover:opacity-100 duration-150 delay-[200ms] ease-in`}
             >
               P
             </span>
             <span
               className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
+                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
               } group-hover:opacity-100 duration-150 delay-[300ms] ease-in`}
             >
               R
             </span>
             <span
               className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
+                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
               } group-hover:opacity-100 duration-150 delay-[400ms] ease-in`}
             >
               O
             </span>
             <span
               className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
+                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
               } group-hover:opacity-100 duration-150 delay-[500ms] ease-in`}
             >
               F
             </span>
             <span
               className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
+                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
               } group-hover:opacity-100 duration-150 delay-[600ms] ease-in`}
             >
               I
             </span>
             <span
               className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
+                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
               } group-hover:opacity-100 duration-150 delay-[700ms] ease-in`}
             >
               L
             </span>
             <span
               className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
+                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
               } group-hover:opacity-100 duration-150 delay-[800ms] ease-in`}
             >
               E
             </span>
           </div>
         </Link>
-        {/* Sing Out / Sign In / Sign Up */}
+        {/* Sing Out / Sign In */}
         {user?.id ? (
           <div
             title="Sign Out"
-            onClick={() => setNavMenu(false) & logout}
-            className="group text-black flex justify-center items-center gap-4 duration-300 ease-in-out relative"
+            onClick={() => setNavMenu(false) & logout()}
+            className="group text-black flex justify-center items-center gap-4 cursor-pointer duration-300 ease-in-out relative"
           >
             <div
               className={`${
@@ -365,7 +370,9 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
             to={"/signin"}
             title="Sign In"
             onClick={() => setNavMenu(false)}
-            className="group text-black flex justify-center items-center gap-4 duration-300 ease-in-out relative"
+            className={`${
+              location.pathname === "/signin" ? "text-orange-600" : "text-black"
+            } group flex justify-center items-center gap-4 duration-300 ease-in-out relative`}
           >
             <div
               className={`${

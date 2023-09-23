@@ -11,6 +11,7 @@ const PostMenu = ({
   setPostMenu,
   isLiked,
   toggleLike,
+  setCommentsMenu,
   user,
   authUser,
   authLoading,
@@ -22,7 +23,7 @@ const PostMenu = ({
     <div
       onClick={() => setPostMenu(false)}
       className={`${
-        postMenu ? "h-full" : "h-0 delay-150"
+        postMenu ? "h-full" : "h-0"
       } bg-modal fixed top-0 left-0 w-full z-50`}
     >
       <div
@@ -31,6 +32,7 @@ const PostMenu = ({
           postMenu ? "h-1/3 opacity-100" : "h-0 opacity-0"
         } bg-black text-white absolute bottom-0 left-0 px-4 py-8 w-full rounded-tl-3xl rounded-tr-3xl flex flex-col justify-between overflow-hidden duration-300 ease-in-out z-50`}
       >
+        {/* Post Menu Handle */}
         <div
           className={`${
             postMenu ? "opacity-100" : "opacity-0"
@@ -42,95 +44,95 @@ const PostMenu = ({
             className="w-1/4 h-2 bg-white rounded-full cursor-pointer hover:opacity-50 duration-300 ease-in-out"
           ></div>
         </div>
+
+        {/* Post Menu Functionalities */}
         <div className="w-full flex flex-col justify-center gap-8 text-lg font-semibold">
-          <div
-            className={`${
-              postMenu ? "opacity-100" : "opacity-0"
-            } flex items-center gap-2 delay-[200ms] duration-300 ease-in-out`}
-          >
-            {isLiked ? (
-              <div
-                title="Unlike"
-                onClick={toggleLike}
-                className="group flex items-center gap-2 cursor-pointer"
-              >
-                <IoMdHeart
-                  size={22}
-                  className="cursor-pointer group-hover:text-orange-600 duration-300 ease-in-out"
-                />
-                <div className="group-hover:text-orange-600 duration-300 ease-in-out">
-                  Unlike
+          {/* Like */}
+          {authUser ? (
+            <>
+              {isLiked ? (
+                <div
+                  className={`${
+                    postMenu ? "opacity-100" : "opacity-0"
+                  } flex items-center gap-2 delay-200 duration-300 ease-in-out`}
+                >
+                  <div
+                    title="Unlike"
+                    onClick={toggleLike}
+                    className="flex items-center gap-2 cursor-pointer hover:text-orange-600 duration-300 ease-in-out"
+                  >
+                    <IoMdHeart size={22} />
+                    <span>Unlike</span>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <>
-                {authUser ? (
+              ) : (
+                <div
+                  className={`${
+                    postMenu ? "opacity-100" : "opacity-0"
+                  } flex items-center gap-2 delay-200 duration-300 ease-in-out`}
+                >
                   <div
                     title="Like"
                     onClick={toggleLike}
-                    className="group flex items-center gap-2 cursor-pointer"
+                    className="flex items-center gap-2 cursor-pointer hover:text-orange-600 duration-300 ease-in-out"
                   >
-                    <IoMdHeartEmpty
-                      size={22}
-                      className="cursor-pointer group-hover:text-orange-600 duration-300 ease-in-out"
-                    />
-                    <div className="group-hover:text-orange-600 duration-300 ease-in-out">
-                      Like
-                    </div>
+                    <IoMdHeartEmpty size={22} />
+                    <span>Like</span>
                   </div>
-                ) : (
-                  <div
-                    title="Like"
-                    onClick={() => alert("Please sign in to be able to like")}
-                    className="group flex items-center gap-2 cursor-pointer"
-                  >
-                    <IoMdHeartEmpty
-                      size={22}
-                      className="cursor-pointer group-hover:text-orange-600 duration-300 ease-in-out"
-                    />
-                    <div className="group-hover:text-orange-600 duration-300 ease-in-out">
-                      Like
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-          <div
-            className={`${
-              postMenu ? "opacity-100" : "opacity-0"
-            } flex items-center gap-2 delay-[250ms] duration-300 ease-in-out`}
-          >
-            {authUser ? (
-              <Link
-                to={`/comments/${post.id}`}
-                className="group flex items-center gap-2 cursor-pointer"
-              >
-                <MdOutlineModeComment
-                  title="Comments"
-                  size={20}
-                  className="cursor-pointer group-hover:text-orange-600 duration-300 ease-in-out"
-                />
-                <div className="group-hover:text-orange-600 duration-300 ease-in-out">
-                  Comment
                 </div>
-              </Link>
-            ) : (
-              <Link
-                to={`/signin`}
-                className="group flex items-center gap-2 cursor-pointer"
+              )}
+            </>
+          ) : (
+            <div
+              className={`${
+                postMenu ? "opacity-100" : "opacity-0"
+              } flex items-center gap-2 delay-200 duration-300 ease-in-out`}
+            >
+              <div
+                title="Like"
+                onClick={() => alert("Please sign in to be able to like")}
+                className="flex items-center gap-2 cursor-pointer hover:text-orange-600 duration-300 ease-in-out"
               >
-                <MdOutlineModeComment
-                  title="Comments"
-                  size={20}
-                  className="cursor-pointer group-hover:text-orange-600 duration-300 ease-in-out"
-                />
-                <div className="group-hover:text-orange-600 duration-300 ease-in-out">
-                  Comment
-                </div>
-              </Link>
-            )}
-          </div>
+                <IoMdHeartEmpty size={22} />
+                <span>Like</span>
+              </div>
+            </div>
+          )}
+
+          {/* Comments */}
+          {authUser ? (
+            <div
+              className={`${
+                postMenu ? "opacity-100" : "opacity-0"
+              } flex items-center gap-2 delay-[250ms] duration-300 ease-in-out`}
+            >
+              <div
+                title="Comments"
+                onClick={() => setCommentsMenu(true) & setPostMenu(false)}
+                className="flex items-center gap-2 hover:text-orange-600 cursor-pointer duration-300 ease-in-out"
+              >
+                <MdOutlineModeComment title="Comments" size={20} />
+                <span>Comment</span>
+              </div>
+            </div>
+          ) : (
+            <div
+              className={`${
+                postMenu ? "opacity-100" : "opacity-0"
+              } flex items-center gap-2 delay-[250ms] duration-300 ease-in-out`}
+            >
+              <div
+                title="Comments"
+                onClick={() => alert("Please sign in to be able to comment")}
+                className="flex items-center gap-2 hover:text-orange-600 cursor-pointer duration-300 ease-in-out"
+              >
+                <MdOutlineModeComment title="Comments" size={20} />
+                <span>Comment</span>
+              </div>
+            </div>
+          )}
+
+          {/* Delete / See Profile */}
           {!authLoading && authUser?.id === post?.uid ? (
             <div
               className={`${
@@ -140,15 +142,10 @@ const PostMenu = ({
               <div
                 onClick={deletePost}
                 title="Delete Post"
-                className="group flex items-center gap-2 cursor-pointer"
+                className="flex items-center gap-2 cursor-pointer hover:text-orange-600 duration-300 ease-in-out"
               >
-                <GoTrash
-                  size={20}
-                  className="cursor-pointer group-hover:text-orange-600 duration-300 ease-in-out"
-                />
-                <div className="group-hover:text-orange-600 duration-300 ease-in-out">
-                  Delete Post
-                </div>
+                <GoTrash size={20} />
+                <span>Delete Post</span>
               </div>
             </div>
           ) : (
@@ -159,17 +156,12 @@ const PostMenu = ({
             >
               <Link
                 to={`/profile/${user.id}`}
-                className="group flex items-center gap-2 cursor-pointer"
+                title="See Profile"
+                onClick={toggleLike}
+                className="flex items-center gap-2 hover:text-orange-600 duration-300 ease-in-out"
               >
-                <RiUser3Line
-                  title="Like"
-                  onClick={toggleLike}
-                  size={22}
-                  className="cursor-pointer group-hover:text-orange-600 duration-300 ease-in-out"
-                />
-                <div className="group-hover:text-orange-600 duration-300 ease-in-out">
-                  See Profile
-                </div>
+                <RiUser3Line size={22} />
+                <span>See Profile</span>
               </Link>
             </div>
           )}

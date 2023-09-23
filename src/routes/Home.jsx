@@ -5,13 +5,13 @@ import PageTransition from "../components/PageTransition";
 import Navigation from "../components/navigation/Navigation";
 
 const Home = () => {
-  const { posts } = usePosts();
+  const { posts, isLoading } = usePosts();
 
   return (
     <>
       {/* <PageTransition /> */}
       {/* <Navigation /> */}
-      <Posts posts={posts} />
+      <Posts posts={posts} isLoading={isLoading} />
     </>
   );
 };

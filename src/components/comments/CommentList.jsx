@@ -38,7 +38,6 @@ const CommentList = ({ post, commentsMenu }) => {
                 key={comment.id}
                 comment={comment}
               >
-                {/* Comment */}
                 <Comment comment={comment} />
               </div>
             ))}

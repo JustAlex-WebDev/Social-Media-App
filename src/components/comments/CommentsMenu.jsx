@@ -6,7 +6,7 @@ const CommentsMenu = ({ post, commentsMenu, setCommentsMenu }) => {
     <div
       onClick={() => setCommentsMenu(false)}
       className={`${
-        commentsMenu ? "h-full" : "h-0 delay-150"
+        commentsMenu ? "h-full" : "h-0"
       } bg-modal fixed top-0 left-0 w-full z-50`}
     >
       <div
@@ -15,6 +15,7 @@ const CommentsMenu = ({ post, commentsMenu, setCommentsMenu }) => {
           commentsMenu ? "h-2/3 opacity-100" : "h-0 opacity-0"
         } bg-black text-white absolute bottom-0 left-0 px-4 py-8 w-full rounded-tl-3xl rounded-tr-3xl flex flex-col justify-start gap-8 overflow-hidden duration-300 ease-in-out z-50`}
       >
+        {/* Post Menu Handle */}
         <div
           className={`${
             commentsMenu ? "opacity-100" : "opacity-0"

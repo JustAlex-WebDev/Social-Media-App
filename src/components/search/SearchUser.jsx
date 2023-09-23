@@ -11,10 +11,10 @@ const SearchUser = ({ user }) => {
       <img
         title="See Profile"
         src={user.avatar}
-        alt="https://i.pinimg.com/originals/f8/fd/fd/f8fdfde70bd8bd51925808dd6a792024.jpg"
-        className="w-[3.5rem] h-[3.5rem] bg-black border border-black rounded-full object-cover"
+        alt=""
+        className="w-[3.5rem] h-[3.5rem] shadow-sm shadow-gray-400 rounded-full object-cover"
       />
-      <div>
+      <div className="flex flex-col">
         <div className="font-semibold text-lg tracking-wider text-orange-600">
           {user.username}
         </div>

@@ -12,7 +12,7 @@ const Navigation = () => {
   const navigate = useNavigate();
   const [navMenu, setNavMenu] = useState(false);
   const [searchTab, setSearchTab] = useState(false);
-  const { setSearchText } = useSearchContext();
+  const { searchText, setSearchText } = useSearchContext();
 
   useEffect(() => {
     if (location.pathname === "/search") {
@@ -27,7 +27,9 @@ const Navigation = () => {
         <div className="w-full max-w-[500px] m-auto p-4 bg-white flex justify-between items-center text-black">
           {searchTab ? (
             <RiArrowLeftSLine
-              onClick={() => setSearchTab(false) & navigate("/")}
+              onClick={() =>
+                setSearchTab(false) & setSearchText("") & navigate("/")
+              }
               size={26}
               title="Go Back"
               className="cursor-pointer hover:text-orange-600 duration-300 ease-in-out"
@@ -85,8 +87,9 @@ const Navigation = () => {
           {/* Navigation Bar Search Bar */}
           <SearchBar
             searchTab={searchTab}
-            setSearchText={setSearchText}
             setSearchTab={setSearchTab}
+            searchText={searchText}
+            setSearchText={setSearchText}
           />
 
           {/* Navigation Bar Menu */}
