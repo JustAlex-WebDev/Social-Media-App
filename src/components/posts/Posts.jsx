@@ -9,7 +9,7 @@ const Posts = ({ posts, isLoading }) => {
   useEffect(() => {
     const skeletonLoadingTimeout = setInterval(() => {
       setSkeletonLoading(false);
-    }, 2000);
+    }, 1500);
 
     return () => {
       clearInterval(skeletonLoadingTimeout);

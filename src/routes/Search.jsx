@@ -15,7 +15,7 @@ const Search = () => {
   useEffect(() => {
     const skeletonSearchLoadingTimeout = setInterval(() => {
       setSkeletonSearchLoading(false);
-    }, 3000);
+    }, 1500);
 
     return () => {
       clearInterval(skeletonSearchLoadingTimeout);
