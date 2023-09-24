@@ -24,7 +24,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
         navMenu ? "left-0" : "-left-[100%]"
       } bg-white absolute top-0 p-4 w-full h-screen flex justify-center items-center overflow-hidden duration-1000 ease-in-out z-50`}
     >
-      {/* Navigation Bar Menu Handle */}
+      {/* Menu Handle */}
       <div
         onClick={() => setNavMenu(false)}
         title="Close Menu"
@@ -38,7 +38,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
         />
       </div>
 
-      {/* Navigation Bar Menu Links */}
+      {/* Menu Links */}
       <div className="flex flex-col justify-center items-start gap-12 text-2xl font-semibold tracking-widest">
         {/* Home */}
         <Link

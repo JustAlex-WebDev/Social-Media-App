@@ -53,7 +53,7 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
       ref={myRef}
       className={`${
         myElementIsVisible ? "animate-animateOpacity" : null
-      } post w-full h-[20rem] flex flex-col justify-center gap-2`}
+      } post w-full h-[17rem] flex flex-col justify-between gap-2`}
     >
       {/* User */}
       <div className="w-full flex justify-between items-center gap-2">
@@ -65,7 +65,7 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
           <img
             src={user.avatar}
             alt=""
-            className="w-10 h-10 shadow-sm shadow-gray-400 rounded-full object-cover"
+            className="w-10 h-10 bg-black shadow-sm shadow-gray-400 rounded-full object-cover"
           />
           <div className="flex flex-col">
             <div className="tracking-wider font-semibold capitalize text-orange-600">

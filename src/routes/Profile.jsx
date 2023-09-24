@@ -1,37 +1,90 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import { format } from "date-fns";
 import { BiEdit } from "react-icons/bi";
 import Posts from "../components/posts/Posts";
-import PageTransition from "../components/PageTransition";
 import { useAuth } from "../hooks/auth";
 import { usePosts } from "../hooks/posts";
 import { useUpdateAvatar } from "../hooks/users";
+import PageTransition from "../components/PageTransition";
 import Navigation from "../components/navigation/Navigation";
 
 const Profile = () => {
   const { user, isLoading } = useAuth();
   const { posts, isLoading: postsLoading } = usePosts(user?.id);
-  const { file, setFile, updateAvatar } = useUpdateAvatar(user?.id);
   let sumLikes = 0;
 
-  function handleChange(e) {
-    setFile(e.target.files[0]);
-  }
-
-  useEffect(() => {
-    updateAvatar();
-  }, [file, updateAvatar]);
-
-  if (isLoading) return null;
+  if (isLoading || postsLoading) return null;
 
   if (user?.id) {
     return (
       <>
-        <PageTransition />
-        <Navigation />
+        {/* <PageTransition />
+        <Navigation /> */}
         <m.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="h-full w-full max-w-[500px] m-auto bg-white p-4 flex flex-col justify-center items-center gap-4 text-black"
+        >
+          <img
+            src={user.avatar}
+            alt=""
+            className="w-40 h-40 bg-black shadow-md shadow-gray-400 rounded-full object-cover"
+          />
+          <div className="flex flex-col justify-center items-center gap-1">
+            <div className="text-xl font-semibold tracking-wider text-orange-600">
+              {user.username}
+            </div>
+            <span className="opacity-50 text-sm text-center tracking-wider">
+              front-end web developer
+            </span>
+          </div>
+          <div className="flex justify-center items-center gap-8 my-4">
+            <div className="flex flex-col justify-center items-center gap-1 font-medium tracking-wider">
+              <div>{posts?.length}</div>
+              <div className="opacity-50">Posts</div>
+            </div>
+            <div className="flex flex-col justify-center items-center gap-1 font-medium tracking-wider">
+              <div className="hidden">
+                {posts?.map((post) => {
+                  return (sumLikes += post?.likes?.length);
+                })}
+              </div>
+              <div>{sumLikes}</div>
+              <div className="opacity-50">Likes</div>
+            </div>
+          </div>
+          <div className="w-full flex flex-col gap-4">
+            <div className="w-full flex justify-between items-center">
+              <div className="text-lg  tracking-wider font-semibold">Posts</div>
+              <div
+                title="View All"
+                className="text-sm  tracking-wider font-semibold text-orange-600 cursor-pointer hover:opacity-50 duration-300 ease-in-out"
+              >
+                View All
+              </div>
+            </div>
+            <div
+              className={`${
+                posts.length % 3 === 0 ? "justify-between" : "justify-start"
+              } w-full flex flex-wrap gap-2`}
+            >
+              {posts.slice(0, 6).map((post) => (
+                <div className="w-full xxxs:w-[48%] h-48 xxxs:h-40 xxs:h-44 xxs:w-[30%] rounded-xl">
+                  <img
+                    src={post.picture}
+                    title="View Post"
+                    alt=""
+                    className="w-full h-full object-cover cursor-pointer rounded-xl hover:opacity-80 duration-300 ease-in-out"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </m.div>
+        {/* <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
@@ -97,7 +150,7 @@ const Profile = () => {
               )}
             </>
           )}
-        </m.div>
+        </m.div> */}
       </>
     );
   } else {

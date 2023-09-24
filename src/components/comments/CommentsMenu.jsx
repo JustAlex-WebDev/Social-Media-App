@@ -6,7 +6,7 @@ const CommentsMenu = ({ post, commentsMenu, setCommentsMenu }) => {
     <div
       onClick={() => setCommentsMenu(false)}
       className={`${
-        commentsMenu ? "h-full" : "h-0"
+        commentsMenu ? "h-full" : "h-0 delay-[250ms]"
       } bg-modal fixed top-0 left-0 w-full z-50`}
     >
       <div
@@ -22,6 +22,7 @@ const CommentsMenu = ({ post, commentsMenu, setCommentsMenu }) => {
           } w-full flex justify-center items-center delay-150 duration-300 ease-in-out`}
         >
           <div
+            title="CLose Menu"
             onTouchStart={() => setCommentsMenu(false)}
             onMouseDown={() => setCommentsMenu(false)}
             className="w-1/4 h-2 bg-white rounded-full cursor-pointer hover:opacity-50 duration-300 ease-in-out"

@@ -23,7 +23,7 @@ const PostMenu = ({
     <div
       onClick={() => setPostMenu(false)}
       className={`${
-        postMenu ? "h-full" : "h-0"
+        postMenu ? "h-full" : "h-0 delay-[250ms]"
       } bg-modal fixed top-0 left-0 w-full z-50`}
     >
       <div
@@ -39,6 +39,7 @@ const PostMenu = ({
           } w-full flex justify-center items-center delay-150 duration-300 ease-in-out`}
         >
           <div
+            title="CLose Menu"
             onTouchStart={() => setPostMenu(false)}
             onMouseDown={() => setPostMenu(false)}
             className="w-1/4 h-2 bg-white rounded-full cursor-pointer hover:opacity-50 duration-300 ease-in-out"

@@ -12,7 +12,7 @@ const SearchUser = ({ user }) => {
         title="See Profile"
         src={user.avatar}
         alt=""
-        className="w-[3.5rem] h-[3.5rem] shadow-sm shadow-gray-400 rounded-full object-cover"
+        className="w-[3.5rem] h-[3.5rem] bg-black shadow-sm shadow-gray-400 rounded-full object-cover"
       />
       <div className="flex flex-col">
         <div className="font-semibold text-lg tracking-wider text-orange-600">
