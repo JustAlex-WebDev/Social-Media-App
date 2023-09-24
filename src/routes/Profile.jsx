@@ -1,18 +1,16 @@
-import React from "react";
+import React, { lazy, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
-import { format } from "date-fns";
-import { BiEdit } from "react-icons/bi";
-import Posts from "../components/posts/Posts";
 import { useAuth } from "../hooks/auth";
 import { usePosts } from "../hooks/posts";
-import { useUpdateAvatar } from "../hooks/users";
 import PageTransition from "../components/PageTransition";
 import Navigation from "../components/navigation/Navigation";
+const ProfilePost = lazy(() => import("../components/profile/ProfilePost"));
 
 const Profile = () => {
   const { user, isLoading } = useAuth();
   const { posts, isLoading: postsLoading } = usePosts(user?.id);
+  const [viewAllButton, setViewAllButton] = useState(false);
   let sumLikes = 0;
 
   if (isLoading || postsLoading) return null;
@@ -28,6 +26,7 @@ const Profile = () => {
           transition={{ delay: 1, duration: 1 }}
           className="h-full w-full max-w-[500px] m-auto bg-white p-4 flex flex-col justify-center items-center gap-4 text-black"
         >
+          {/* User */}
           <img
             src={user.avatar}
             alt=""
@@ -41,6 +40,8 @@ const Profile = () => {
               front-end web developer
             </span>
           </div>
+
+          {/* Posts & Likes */}
           <div className="flex justify-center items-center gap-8 my-4">
             <div className="flex flex-col justify-center items-center gap-1 font-medium tracking-wider">
               <div>{posts?.length}</div>
@@ -56,101 +57,57 @@ const Profile = () => {
               <div className="opacity-50">Likes</div>
             </div>
           </div>
+
+          {/* Posts */}
           <div className="w-full flex flex-col gap-4">
             <div className="w-full flex justify-between items-center">
               <div className="text-lg  tracking-wider font-semibold">Posts</div>
-              <div
-                title="View All"
-                className="text-sm  tracking-wider font-semibold text-orange-600 cursor-pointer hover:opacity-50 duration-300 ease-in-out"
-              >
-                View All
-              </div>
-            </div>
-            <div
-              className={`${
-                posts.length % 3 === 0 ? "justify-between" : "justify-start"
-              } w-full flex flex-wrap gap-2`}
-            >
-              {posts.slice(0, 6).map((post) => (
-                <div className="w-full xxxs:w-[48%] h-48 xxxs:h-40 xxs:h-44 xxs:w-[30%] rounded-xl">
-                  <img
-                    src={post.picture}
-                    title="View Post"
-                    alt=""
-                    className="w-full h-full object-cover cursor-pointer rounded-xl hover:opacity-80 duration-300 ease-in-out"
-                  />
+              {viewAllButton ? (
+                <div
+                  title="Hide"
+                  onClick={() => setViewAllButton(false)}
+                  className="text-sm  tracking-wider font-semibold text-orange-600 cursor-pointer hover:opacity-50 duration-300 ease-in-out"
+                >
+                  Hide
                 </div>
-              ))}
+              ) : (
+                <div
+                  title="View All"
+                  onClick={() => setViewAllButton(true)}
+                  className="text-sm  tracking-wider font-semibold text-orange-600 cursor-pointer hover:opacity-50 duration-300 ease-in-out"
+                >
+                  View All
+                </div>
+              )}
             </div>
+            {posts.length === 0 ? (
+              <div className="text-center font-medium tracking-wider">
+                There are no posts yet!
+              </div>
+            ) : (
+              <div
+                className={`${
+                  posts.length % 3 === 0 ? "justify-between" : "justify-start"
+                } w-full flex flex-wrap gap-2`}
+              >
+                {/* Post */}
+                {viewAllButton ? (
+                  <>
+                    {posts.map((post) => (
+                      <ProfilePost key={post?.id} post={post} user={user} />
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    {posts.slice(0, 6).map((post) => (
+                      <ProfilePost key={post?.id} post={post} user={user} />
+                    ))}
+                  </>
+                )}
+              </div>
+            )}
           </div>
         </m.div>
-        {/* <m.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="bg-black w-full max-w-[390px] m-auto mt-24 flex flex-col justify-center items-center gap-4 text-white"
-        >
-          <div className="w-full flex flex-col justify-center items-center gap-8 px-8 mb-4">
-            <div className="flex flex-col justify-center items-center gap-2 relative">
-              <img
-                src={user.avatar}
-                alt=""
-                className="w-48 h-48 bg-black border-[#BF0000] border-2 rounded-full object-cover"
-              />
-              <label
-                htmlFor="avatar"
-                title="Change Avatar"
-                className="cursor-pointer flex justify-center items-center absolute bottom-0 right-4"
-              >
-                <BiEdit
-                  size={33}
-                  className="cursor-pointer text-secondary opacity-80 hover:opacity-100 hover:scale-110"
-                />
-                <input
-                  id="avatar"
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-            <div className="flex flex-col justify-center items-center gap-4 font-semibold">
-              <div className="text-xl font-semibold capitalize">
-                {user.username}
-              </div>
-              <div className="w-full flex justify-center items-center gap-4">
-                <div>Posts: {posts?.length}</div>
-                <div className="hidden">
-                  {posts?.map((post) => {
-                    return (sumLikes += post?.likes?.length);
-                  })}
-                </div>
-                <div>Likes: {sumLikes}</div>
-              </div>
-              <div>Joined: {format(user.date, "MMMM YYY")}</div>
-            </div>
-          </div>
-          {posts?.length === 0 ? (
-            <>
-              <div className="relative -mb-8 p-8 text-lg font-semibold z-10">
-                Posts
-              </div>
-              <div>There are no posts yet</div>
-            </>
-          ) : (
-            <>
-              <div className="relative -mb-24 p-8 text-lg font-semibold z-10">
-                Posts
-              </div>
-              {postsLoading ? (
-                <div>Posts are loading!</div>
-              ) : (
-                <Posts posts={posts} />
-              )}
-            </>
-          )}
-        </m.div> */}
       </>
     );
   } else {
