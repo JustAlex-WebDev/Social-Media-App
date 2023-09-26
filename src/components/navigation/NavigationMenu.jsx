@@ -46,50 +46,18 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
           title="Home"
           onClick={() => setNavMenu(false)}
           className={`${
-            location.pathname === "/" ? "text-orange-600" : "text-black"
-          } group flex justify-center items-center gap-4 duration-300 ease-in-out relative`}
+            location.pathname === "/"
+              ? "text-orange-600 opacity-100"
+              : "text-black opacity-50"
+          } flex justify-center items-center gap-4 hover:opacity-100 duration-500 ease-in-out relative`}
         >
           <div
             className={`${
               navMenu ? "-right-[300%] delay-[600ms]" : "right-0 delay-0"
             } bg-white w-full h-full absolute top-0 duration-500 z-10`}
           ></div>
-          <RiHome2Line
-            size={24}
-            className={`${
-              location.pathname === "/" ? "opacity-100" : "opacity-50"
-            } group-hover:opacity-100 duration-150 delay-[100ms] ease-in`}
-          />
-          <div>
-            <span
-              className={`${
-                location.pathname === "/" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[200ms] ease-in`}
-            >
-              H
-            </span>
-            <span
-              className={`${
-                location.pathname === "/" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[300ms] ease-in`}
-            >
-              O
-            </span>
-            <span
-              className={`${
-                location.pathname === "/" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[400ms] ease-in`}
-            >
-              M
-            </span>
-            <span
-              className={`${
-                location.pathname === "/" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[500ms] ease-in`}
-            >
-              E
-            </span>
-          </div>
+          <RiHome2Line size={24} />
+          <div>HOME</div>
         </Link>
         {/* Search */}
         <Link
@@ -97,64 +65,18 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
           title="Search"
           onClick={() => setNavMenu(false)}
           className={`${
-            location.pathname === "/search" ? "text-orange-600" : "text-black"
-          } group flex justify-center items-center gap-4 duration-300 ease-in-out relative`}
+            location.pathname === "/search"
+              ? "text-orange-600 opacity-100"
+              : "text-black opacity-50"
+          } flex justify-center items-center gap-4 hover:opacity-100 duration-500 ease-in-out relative`}
         >
           <div
             className={`${
               navMenu ? "-right-[300%] delay-[700ms]" : "right-0 delay-0"
             }  bg-white w-full h-full absolute top-0 duration-500 z-10`}
           ></div>
-          <RiSearchLine
-            size={22}
-            className={`${
-              location.pathname === "/search" ? "opacity-100" : "opacity-50"
-            } group-hover:opacity-100 duration-150 delay-[100ms] ease-in`}
-          />
-          <div>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[200ms] ease-in`}
-            >
-              S
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[300ms] ease-in`}
-            >
-              E
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[400ms] ease-in`}
-            >
-              A
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[500ms] ease-in`}
-            >
-              R
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[600ms] ease-in`}
-            >
-              C
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[700ms] ease-in`}
-            >
-              H
-            </span>
-          </div>
+          <RiSearchLine size={22} />
+          <div>SEARCH</div>
         </Link>
         {/* Post */}
         <Link
@@ -162,50 +84,18 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
           title="Post"
           onClick={() => setNavMenu(false)}
           className={`${
-            location.pathname === "/post" ? "text-orange-600" : "text-black"
-          } group flex justify-center items-center gap-4 duration-300 ease-in-out relative`}
+            location.pathname === "/post"
+              ? "text-orange-600 opacity-100"
+              : "text-black opacity-50"
+          } flex justify-center items-center gap-4 hover:opacity-100 duration-500 ease-in-out relative`}
         >
           <div
             className={`${
               navMenu ? "-right-[300%] delay-[800ms]" : "right-0 delay-0"
             } bg-white w-full h-full absolute top-0 duration-500 z-10`}
           ></div>
-          <RiAddFill
-            size={26}
-            className={`${
-              location.pathname === "/post" ? "opacity-100" : "opacity-50"
-            } group-hover:opacity-100 duration-150 delay-[100ms] ease-in`}
-          />
-          <div>
-            <span
-              className={`${
-                location.pathname === "/post" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[200ms] ease-in`}
-            >
-              P
-            </span>
-            <span
-              className={`${
-                location.pathname === "/post" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[300ms] ease-in`}
-            >
-              O
-            </span>
-            <span
-              className={`${
-                location.pathname === "/post" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[400ms] ease-in`}
-            >
-              S
-            </span>
-            <span
-              className={`${
-                location.pathname === "/post" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[500ms] ease-in`}
-            >
-              T
-            </span>
-          </div>
+          <RiAddFill size={26} />
+          <div>POST</div>
         </Link>
         {/* Profile */}
         <Link
@@ -213,157 +103,33 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
           title="Profile"
           onClick={() => setNavMenu(false)}
           className={`${
-            location.pathname === "/profile" ? "text-orange-600" : "text-black"
-          } group flex justify-center items-center gap-4 duration-300 ease-in-out relative`}
+            location.pathname === "/profile"
+              ? "text-orange-600 opacity-100"
+              : "text-black opacity-50"
+          } flex justify-center items-center gap-4 hover:opacity-100 duration-500 ease-in-out relative`}
         >
           <div
             className={`${
               navMenu ? "-right-[300%] delay-[900ms]" : "right-0 delay-0"
             } bg-white w-full h-full absolute top-0 duration-500 z-10`}
           ></div>
-          <RiUser3Line
-            size={24}
-            className={`${
-              location.pathname === "/profile" ? "opacity-100" : "opacity-50"
-            } group-hover:opacity-100 duration-150 delay-[100ms] ease-in`}
-          />
-          <div>
-            <span
-              className={`${
-                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[200ms] ease-in`}
-            >
-              P
-            </span>
-            <span
-              className={`${
-                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[300ms] ease-in`}
-            >
-              R
-            </span>
-            <span
-              className={`${
-                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[400ms] ease-in`}
-            >
-              O
-            </span>
-            <span
-              className={`${
-                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[500ms] ease-in`}
-            >
-              F
-            </span>
-            <span
-              className={`${
-                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[600ms] ease-in`}
-            >
-              I
-            </span>
-            <span
-              className={`${
-                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[700ms] ease-in`}
-            >
-              L
-            </span>
-            <span
-              className={`${
-                location.pathname === "/profile" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[800ms] ease-in`}
-            >
-              E
-            </span>
-          </div>
+          <RiUser3Line size={24} />
+          <div>PROFILE</div>
         </Link>
         {/* Sing Out / Sign In */}
         {user?.id ? (
           <div
             title="Sign Out"
             onClick={() => setNavMenu(false) & logout()}
-            className="group text-black flex justify-center items-center gap-4 cursor-pointer duration-300 ease-in-out relative"
+            className="flex justify-center items-center gap-4 text-black cursor-pointer opacity-50 hover:opacity-100 duration-500 ease-in-out relative"
           >
             <div
               className={`${
                 navMenu ? "-right-[300%] delay-[1000ms]" : "right-0 delay-0"
               } bg-white w-full h-full absolute top-0 duration-500 z-10`}
             ></div>
-            <MdOutlineExitToApp
-              size={24}
-              className="opacity-50 group-hover:opacity-100 duration-150 delay-[100ms] ease-in"
-            />
-            <div className="flex justify-center items-center gap-2">
-              <div>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[200ms] ease-in`}
-                >
-                  S
-                </span>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[300ms] ease-in`}
-                >
-                  I
-                </span>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[400ms] ease-in`}
-                >
-                  G
-                </span>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[500ms] ease-in`}
-                >
-                  N
-                </span>
-              </div>
-              <div>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[600ms] ease-in`}
-                >
-                  O
-                </span>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[700ms] ease-in`}
-                >
-                  U
-                </span>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[800ms] ease-in`}
-                >
-                  T
-                </span>
-              </div>
-            </div>
+            <MdOutlineExitToApp size={24} />
+            <div>SIGN OUT</div>
           </div>
         ) : (
           <Link
@@ -371,216 +137,20 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
             title="Sign In"
             onClick={() => setNavMenu(false)}
             className={`${
-              location.pathname === "/signin" ? "text-orange-600" : "text-black"
-            } group flex justify-center items-center gap-4 duration-300 ease-in-out relative`}
+              location.pathname === "/signin"
+                ? "text-orange-600 opacity-100"
+                : "text-black opacity-50"
+            } flex justify-center items-center gap-4 hover:opacity-100 duration-500 ease-in-out relative`}
           >
             <div
               className={`${
                 navMenu ? "-right-[300%] delay-[1000ms]" : "right-0 delay-0"
               } bg-white w-full h-full absolute top-0 duration-500 z-10`}
             ></div>
-            <MdOutlineLogin
-              size={24}
-              className="opacity-50 group-hover:opacity-100 duration-150 delay-[100ms] ease-in"
-            />
-            <div className="flex justify-center items-center gap-2">
-              <div>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[200ms] ease-in`}
-                >
-                  S
-                </span>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[300ms] ease-in`}
-                >
-                  I
-                </span>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[400ms] ease-in`}
-                >
-                  G
-                </span>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[500ms] ease-in`}
-                >
-                  N
-                </span>
-              </div>
-              <div>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[600ms] ease-in`}
-                >
-                  I
-                </span>
-                <span
-                  className={`${
-                    location.pathname === "/search"
-                      ? "opacity-100"
-                      : "opacity-50"
-                  } group-hover:opacity-100 duration-150 delay-[700ms] ease-in`}
-                >
-                  N
-                </span>
-              </div>
-            </div>
+            <MdOutlineLogin size={24} />
+            <div>SIGN IN</div>
           </Link>
         )}
-
-        {/* Activity */}
-        {/* <Link
-          to={"/activity"}
-          onClick={() => setNavMenu(false)}
-          className={`${
-            location.pathname === "/activity" ? "text-orange-600" : "text-black"
-          } group flex justify-center items-center gap-4 duration-300 ease-in-out relative`}
-        >
-          <div
-            className={`${
-              navMenu ? "-right-[300%] delay-[1000ms]" : "right-0 delay-0"
-            } bg-white w-full h-full absolute top-0 duration-500 z-10`}
-          ></div>
-          <RiNotification4Line
-            size={22}
-            className={`${
-              location.pathname === "/activity" ? "opacity-100" : "opacity-50"
-            } group-hover:opacity-100 duration-150 delay-[100ms] ease-in`}
-          />
-          <div>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[200ms] ease-in`}
-            >
-              A
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[300ms] ease-in`}
-            >
-              C
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[400ms] ease-in`}
-            >
-              T
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[500ms] ease-in`}
-            >
-              I
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[600ms] ease-in`}
-            >
-              V
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[700ms] ease-in`}
-            >
-              I
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[800ms] ease-in`}
-            >
-              T
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[900ms] ease-in`}
-            >
-              Y
-            </span>
-          </div>
-        </Link> */}
-        {/* About */}
-        {/* <Link
-          to={"/about"}
-          onClick={() => setNavMenu(false)}
-          className={`${
-            location.pathname === "/about" ? "text-orange-600" : "text-black"
-          } group flex justify-center items-center gap-4 duration-300 ease-in-out relative`}
-        >
-          <div
-            className={`${
-              navMenu ? "-right-[300%] delay-[1100ms]" : "right-0 delay-0"
-            } bg-white w-full h-full absolute top-0 duration-500 z-10`}
-          ></div>
-          <RiInformationLine
-            size={24}
-            className={`${
-              location.pathname === "/about" ? "opacity-100" : "opacity-50"
-            } group-hover:opacity-100 duration-150 delay-[100ms] ease-in`}
-          />
-          <div>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[200ms] ease-in`}
-            >
-              A
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[300ms] ease-in`}
-            >
-              B
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[400ms] ease-in`}
-            >
-              O
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[500ms] ease-in`}
-            >
-              U
-            </span>
-            <span
-              className={`${
-                location.pathname === "/search" ? "opacity-100" : "opacity-50"
-              } group-hover:opacity-100 duration-150 delay-[600ms] ease-in`}
-            >
-              T
-            </span>
-          </div>
-        </Link> */}
       </div>
     </div>
   );

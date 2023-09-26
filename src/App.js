@@ -4,16 +4,16 @@ import { AnimatePresence } from "framer-motion";
 import AnimationOnLoad from "./components/AnimationOnLoad";
 import Navigation from "./components/navigation/Navigation";
 import SearchContextProvider from "./context/SearchContext";
-import PageTransition from "./components/PageTransition";
+// import PageTransition from "./components/PageTransition";
 const Home = lazy(() => import("./routes/Home"));
 const Profile = lazy(() => import("./routes/Profile"));
 const Search = lazy(() => import("./routes/Search"));
 const Post = lazy(() => import("./routes/Post"));
-const Notifications = lazy(() => import("./routes/Notifications"));
 const Signin = lazy(() => import("./routes/Signin"));
 const Signup = lazy(() => import("./routes/Signup"));
 const UserProfile = lazy(() => import("./routes/UserProfile"));
-const Comments = lazy(() => import("./routes/Comments"));
+// const Notifications = lazy(() => import("./routes/Notifications"));
+// const Comments = lazy(() => import("./routes/Comments"));
 
 function App() {
   const location = useLocation();
@@ -58,13 +58,7 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    <Suspense
-                      fallback={
-                        <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
-                          REV
-                        </div>
-                      }
-                    >
+                    <Suspense>
                       <Home />
                     </Suspense>
                   }
@@ -72,13 +66,7 @@ function App() {
                 <Route
                   path="/profile"
                   element={
-                    <Suspense
-                      fallback={
-                        <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
-                          REV
-                        </div>
-                      }
-                    >
+                    <Suspense>
                       <Profile />
                     </Suspense>
                   }
@@ -86,41 +74,15 @@ function App() {
                 <Route
                   path="/profile/:id"
                   element={
-                    <Suspense
-                      fallback={
-                        <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
-                          REV
-                        </div>
-                      }
-                    >
+                    <Suspense>
                       <UserProfile />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/comments/:id"
-                  element={
-                    <Suspense
-                      fallback={
-                        <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
-                          REV
-                        </div>
-                      }
-                    >
-                      <Comments />
                     </Suspense>
                   }
                 />
                 <Route
                   path="/search"
                   element={
-                    <Suspense
-                      fallback={
-                        <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
-                          REV
-                        </div>
-                      }
-                    >
+                    <Suspense>
                       <Search />
                     </Suspense>
                   }
@@ -128,41 +90,15 @@ function App() {
                 <Route
                   path="/post"
                   element={
-                    <Suspense
-                      fallback={
-                        <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
-                          REV
-                        </div>
-                      }
-                    >
+                    <Suspense>
                       <Post />
-                    </Suspense>
-                  }
-                />
-                <Route
-                  path="/notifications"
-                  element={
-                    <Suspense
-                      fallback={
-                        <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
-                          REV
-                        </div>
-                      }
-                    >
-                      <Notifications />
                     </Suspense>
                   }
                 />
                 <Route
                   path="/signin"
                   element={
-                    <Suspense
-                      fallback={
-                        <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
-                          REV
-                        </div>
-                      }
-                    >
+                    <Suspense>
                       <Signin />
                     </Suspense>
                   }
@@ -170,17 +106,27 @@ function App() {
                 <Route
                   path="/signup"
                   element={
-                    <Suspense
-                      fallback={
-                        <div className="w-full h-screen flex justify-center items-center animate-pulse text-7xl text-primary font-bold tracking-wider">
-                          REV
-                        </div>
-                      }
-                    >
+                    <Suspense>
                       <Signup />
                     </Suspense>
                   }
                 />
+                {/* <Route
+                  path="/comments/:id"
+                  element={
+                    <Suspense>
+                      <Comments />
+                    </Suspense>
+                  }
+                /> */}
+                {/* <Route
+                  path="/notifications"
+                  element={
+                    <Suspense>
+                      <Notifications />
+                    </Suspense>
+                  }
+                /> */}
               </Routes>
             </AnimatePresence>
           </SearchContextProvider>

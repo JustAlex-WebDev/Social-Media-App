@@ -10,7 +10,7 @@ const SkeletonPost = ({ post }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
-      className="post w-full h-[25rem] flex flex-col gap-2 animate-pulse"
+      className="post w-full h-[17rem] flex flex-col gap-2 animate-pulse"
     >
       {/* User */}
       <div className="w-full flex justify-between items-center gap-2">

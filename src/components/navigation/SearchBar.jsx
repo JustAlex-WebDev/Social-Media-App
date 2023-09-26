@@ -23,7 +23,7 @@ const SearchBar = ({ searchTab, setSearchTab, searchText, setSearchText }) => {
           searchTab
             ? "py-2 opacity-100 cursor-auto delay-300"
             : "py-0 opacity-0 cursor-default delay-0"
-        } w-full bg-white text-black border-2 border-black pl-12 outline-none placeholder:text-neutral-600 placeholder:tracking-wider rounded-2xl duration-500 ease-in-out`}
+        } w-full bg-white text-black border-2 border-black pl-12 outline-orange-600 placeholder:text-neutral-600 placeholder:tracking-wider rounded-2xl duration-500 ease-in-out`}
       />
       <label
         htmlFor="search"

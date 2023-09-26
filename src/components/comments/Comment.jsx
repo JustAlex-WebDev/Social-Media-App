@@ -7,9 +7,9 @@ import { useDeleteComment } from "../../hooks/comments";
 import { useUser } from "../../hooks/users";
 
 const Comment = ({ comment }) => {
-  const { user, isLoading: userLoading } = useUser(comment.uid);
+  const { user, isLoading: userLoading } = useUser(comment?.uid);
   const { user: authUser, isLoading: authLoading } = useAuth();
-  const { deleteComment } = useDeleteComment(comment.id);
+  const { deleteComment } = useDeleteComment(comment?.id);
 
   if (userLoading) return null;
 
@@ -41,7 +41,7 @@ const Comment = ({ comment }) => {
       {/* Comment Text */}
       <div className="flex justify-between items-center">
         <div className="text-base font-medium h-auto">{comment.text}</div>
-        {!authLoading && authUser.id === comment.uid && (
+        {!authLoading && authUser?.id === comment.uid && (
           <GoTrash
             size={18}
             onClick={deleteComment}

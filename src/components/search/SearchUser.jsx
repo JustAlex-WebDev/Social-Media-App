@@ -1,12 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
+import { useInView } from "react-intersection-observer";
 
 const SearchUser = ({ user }) => {
+  // Intesection Observer
+  const { ref: myRef, inView: myElementIsVisible } = useInView();
+
   return (
     <Link
       to={`/profile/${user.id}`}
-      className="w-full pb-4 flex justify-start items-center gap-4 hover:opacity-50 duration-300 ease-in-out"
+      ref={myRef}
+      className={`${
+        myElementIsVisible ? "animate-animateOpacity" : null
+      } w-full pb-4 flex justify-start items-center gap-4 hover:opacity-50 duration-300 ease-in-out`}
     >
       <img
         title="See Profile"
