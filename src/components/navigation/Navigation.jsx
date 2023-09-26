@@ -3,11 +3,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RiMenuFill, RiArrowLeftSLine } from "react-icons/ri";
 import { BsPersonGear } from "react-icons/bs";
 import { useSearchContext } from "../../context/SearchContext";
-import NavigationMenu from "./NavigationMenu";
-import SearchBar from "./SearchBar";
 import ProfileMenu from "../ProfileMenu";
-import TopNav from "./TopNav";
-import BottomNav from "./BottomNav";
+const NavigationMenu = lazy(() => import("./NavigationMenu"));
+const SearchBar = lazy(() => import("./SearchBar"));
+// import TopNav from "./TopNav";
+// import BottomNav from "./BottomNav";
 
 const Navigation = () => {
   const location = useLocation();
@@ -21,7 +21,10 @@ const Navigation = () => {
   useEffect(() => {
     if (location.pathname === "/search") {
       setSearchTab(true);
+    } else {
+      setSearchTab(false);
     }
+
     if (location.pathname === "/profile") {
       setProfileTab(true);
     }

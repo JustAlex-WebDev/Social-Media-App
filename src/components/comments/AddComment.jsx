@@ -24,7 +24,7 @@ const AddComment = ({ post, commentsMenu }) => {
       >
         <div className="w-3/4 flex justify-start items-center gap-4">
           <img
-            src={authUser.avatar}
+            src={authUser?.avatar}
             alt=""
             className="bg-black w-10 h-10 rounded-full object-cover"
           />
