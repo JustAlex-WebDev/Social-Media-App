@@ -52,3 +52,10 @@ export const textValidate = {
     message: "Message must be at most 100 characters long",
   },
 };
+
+export const picValidate = {
+  required: {
+    value: true,
+    message: "Please choose picture",
+  },
+};

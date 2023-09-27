@@ -1,5 +1,5 @@
 import React, { lazy, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import { useAuth } from "../hooks/auth";
 import { usePosts } from "../hooks/posts";
@@ -9,6 +9,7 @@ const ProfilePost = lazy(() => import("../components/profile/ProfilePost"));
 
 const Profile = () => {
   const { user, isLoading } = useAuth();
+  const navigate = useNavigate();
   const { posts, isLoading: postsLoading } = usePosts(user?.id);
   const [viewAllButton, setViewAllButton] = useState(false);
   let sumLikes = 0;
@@ -111,7 +112,7 @@ const Profile = () => {
       </>
     );
   } else {
-    <Navigate to="/signin" />;
+    navigate("/signin");
   }
 };
 

@@ -4,12 +4,12 @@ import { RiMenuFill, RiArrowLeftSLine } from "react-icons/ri";
 import { BsPersonGear } from "react-icons/bs";
 import { useSearchContext } from "../../context/SearchContext";
 import ProfileMenu from "../ProfileMenu";
+import { useAuth } from "../../hooks/auth";
 const NavigationMenu = lazy(() => import("./NavigationMenu"));
 const SearchBar = lazy(() => import("./SearchBar"));
-// import TopNav from "./TopNav";
-// import BottomNav from "./BottomNav";
 
 const Navigation = () => {
+  const { user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const [navMenu, setNavMenu] = useState(false);
@@ -25,16 +25,19 @@ const Navigation = () => {
       setSearchTab(false);
     }
 
-    if (location.pathname === "/profile") {
-      setProfileTab(true);
+    if (user?.id) {
+      if (location.pathname === "/profile") {
+        setProfileTab(true);
+      }
     }
-  }, [location.pathname]);
+  }, [location.pathname, user?.id]);
 
   return (
     <>
       {location.pathname === "/signin" ||
       location.pathname === "/signup" ? null : (
         <div className="w-full max-w-[500px] m-auto p-4 bg-white flex justify-between items-center text-black">
+          {/* Arrow Back & Menu Icon */}
           {searchTab || profileTab ? (
             <RiArrowLeftSLine
               onClick={() =>
@@ -83,7 +86,7 @@ const Navigation = () => {
             <span className="group-hover:text-orange-600 duration-150 delay-[500ms] ease-in">
               R
             </span>
-            <span className="text-xs text-orange-600 font-bold">
+            {/* <span className="text-xs text-orange-600 font-bold">
               <span className="group-hover:text-black duration-150 delay-[600ms] ease-in">
                 f
               </span>
@@ -96,10 +99,10 @@ const Navigation = () => {
               <span className="group-hover:text-black duration-150 delay-[900ms] ease-in">
                 l
               </span>
-            </span>
+            </span> */}
           </Link>
 
-          {/* Search Bar / Profile Menu */}
+          {/* Search Bar & Profile Menu */}
           {!profileTab ? (
             <SearchBar
               searchTab={searchTab}
@@ -130,9 +133,6 @@ const Navigation = () => {
             profileMenu={profileMenu}
             setProfileMenu={setProfileMenu}
           />
-
-          {/* <TopNav />
-          <BottomNav /> */}
         </div>
       )}
     </>
