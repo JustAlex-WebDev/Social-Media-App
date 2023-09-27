@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { AiOutlinePicture } from "react-icons/ai";
@@ -8,7 +8,11 @@ import { MdOutlineModeComment } from "react-icons/md";
 import { useAddPost } from "../hooks/posts";
 import { useAuth } from "../hooks/auth";
 import PageTransition from "../components/PageTransition";
-import { captionValidate, textValidate } from "../utils/form-validate";
+import {
+  captionValidate,
+  textValidate,
+  picValidate,
+} from "../utils/form-validate";
 import Navigation from "../components/navigation/Navigation";
 
 const Post = () => {
@@ -43,23 +47,25 @@ const Post = () => {
       text: data.text,
     });
     reset();
-    // navigate("/");
+    navigate("/");
   }
 
-  if (user) {
+  if (authLoading) return null;
+
+  if (user?.id) {
     return (
       <>
-        <PageTransition />
-        <Navigation />
-        <m.form
+        {/* <PageTransition />
+        <Navigation /> */}
+        {/* <m.form
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
+          transition={{ delay: 1, duration: 1 }}
           onSubmit={handleSubmit(handleAddPost)}
           onClick={(e) => e.stopPropagation()}
-          className="mt-20 mb-12 bg-primary h-full w-full max-w-[390px] m-auto px-8 flex flex-col justify-center gap-8 text-primary"
+          className="h-full w-full max-w-[500px] m-auto bg-white p-4 flex flex-col gap-4 text-black"
         >
-          <div className="flex justify-between items-center gap-4">
+          <div className="flex justify-between items-center mb-2">
             <div className="text-xl font-semibold tracking-wider">New post</div>
             <div className="flex justify-center items-center gap-4 font-semibold">
               {captionLenght === 0 || textLenght === 0 ? (
@@ -105,7 +111,7 @@ const Post = () => {
               rows="1"
               className={`${
                 captionLenght === 0 ? null : "border-white"
-              } bg-primary w-full pb-2 border-b-2 border-neutral-500 hover:border-white font-medium placeholder:font-medium text-primary hover:placeholder:text-primary cursor-pointer outline-none resize-none tracking-wider duration-300 ease-in-out placeholder:duration-300 placeholder:ease-in-out`}
+              } bg-white w-full pb-2 border-b-2 border-neutral-500 hover:border-white font-medium placeholder:font-medium text-primary hover:placeholder:text-primary cursor-pointer outline-none resize-none tracking-wider duration-300 ease-in-out placeholder:duration-300 placeholder:ease-in-out`}
             ></textarea>
             <p className="text-neutral-500">
               {captionLenght === 0 ? (
@@ -230,11 +236,126 @@ const Post = () => {
               </div>
             </div>
           ) : null}
-        </m.form>
+        </m.form> */}
+        <form
+          onSubmit={handleSubmit(handleAddPost)}
+          onClick={(e) => e.stopPropagation()}
+          className="h-full w-full max-w-[500px] m-auto bg-white p-4 flex flex-col justify-center items-center text-center gap-8 text-black"
+        >
+          {/* Heading */}
+          <div className="flex flex-col justify-center items-center gap-2">
+            {/* Title */}
+            <div className="text-3xl text-orange-600 font-semibold tracking-wider">
+              New Post
+            </div>
+
+            {/* Preview Button &  Post Button */}
+            <div className="flex justify-center items-center gap-4">
+              {/* Preview Button */}
+              {captionLenght === 0 || !fileURL ? (
+                <div
+                  title="Preview Post"
+                  className="text-neutral-400 hover:text-orange-600 font-semibold tracking-wider cursor-not-allowed duration-300 ease-in-out"
+                >
+                  Preview
+                </div>
+              ) : (
+                <div
+                  title="Preview Post"
+                  onClick={() => setPreview(!preview)}
+                  className="text-neutral-400 hover:text-orange-600 font-semibold tracking-wider cursor-pointer duration-300 ease-in-out"
+                >
+                  Preview
+                </div>
+              )}
+
+              <span className="text-neutral-400 font-semibold cursor-default">
+                /
+              </span>
+
+              {/* Post Button */}
+              <button
+                type="submit"
+                title="Post"
+                className="text-neutral-400 hover:text-orange-600 font-semibold tracking-wider cursor-pointer duration-300 ease-in-out"
+              >
+                {authLoading || addingPostLoading ? <>Loading...</> : <>Post</>}
+              </button>
+            </div>
+          </div>
+
+          {/* Post */}
+          <div className="w-full flex flex-col justify-center items-center gap-4">
+            {/* Caption */}
+            <div className="w-full relative">
+              <textarea
+                {...register("caption", captionValidate)}
+                onChange={(e) =>
+                  setCaptionLenght(e.target.value.length) &
+                  setCaptionValue(e.target.value)
+                }
+                placeholder="Caption"
+                title="Caption"
+                maxLength="30"
+                cols="1"
+                rows="1"
+                className={`${
+                  captionLenght !== 0
+                    ? "text-orange-600 placeholder:text-orange-600"
+                    : null
+                } ${
+                  errors.caption
+                    ? "placeholder:text-[#BF0000] border-[#bf000096]"
+                    : "border-neutral-300"
+                } w-full pb-2 bg-white text-black focus:text-orange-600 font-semibold tracking-wider border-b-2 placeholder:text-neutral-400 placeholder:font-semibold hover:placeholder:text-orange-600 focus:placeholder:text-orange-600 hover:border-orange-600 focus:border-orange-600 outline-none resize-none cursor-pointer duration-300 ease-in-out placeholder:duration-300 placeholder:ease-in-out`}
+              ></textarea>
+              <p className="absolute top-0 right-0 text-neutral-400 font-semibold">
+                {captionLenght === 0 ? (
+                  <span>30</span>
+                ) : (
+                  <span>{captionValidate.maxLength.value - captionLenght}</span>
+                )}
+              </p>
+              {errors.caption ? (
+                <p className="text-[#BF0000] font-medium text-left tracking-wider">
+                  {captionLenght === 0 ? <>{errors.caption.message}</> : null}
+                </p>
+              ) : null}
+            </div>
+
+            {/* Picture */}
+            <label
+              htmlFor="pic"
+              title="Add an image"
+              className={`${
+                errors.pic ? "border-[#BF0000]" : "border-neutral-300"
+              } w-full h-60 flex flex-col justify-center items-center border-2 hover:border-orange-600 rounded-2xl cursor-pointer duration-300 ease-in-out group`}
+            >
+              <AiOutlinePicture
+                className={`${
+                  fileURL ? "h-[7.5rem] text-orange-600" : null
+                } w-full h-28 group-hover:h-[7.5rem] text-neutral-300 group-hover:text-orange-600 duration-300 ease-in-out`}
+              />
+              <input
+                id="pic"
+                type="file"
+                accept="image/*"
+                {...register("pic", picValidate)}
+                className="hidden"
+                onChange={handleChange}
+              />
+            </label>
+            {errors.pic ? (
+              <p className="w-full text-[#BF0000] -mt-2 font-medium text-center tracking-wider">
+                {!fileURL ? <>{errors.pic.message}</> : null}
+              </p>
+            ) : null}
+          </div>
+        </form>
       </>
     );
   } else {
-    <Navigate to="/signin" />;
+    navigate("/signin");
   }
 };
 

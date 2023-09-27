@@ -55,6 +55,7 @@ function App() {
 
             <AnimatePresence initial={true}>
               <Routes location={location} key={location.pathName}>
+                {/* Home */}
                 <Route
                   path="/"
                   element={
@@ -63,6 +64,7 @@ function App() {
                     </Suspense>
                   }
                 />
+                {/* Profile */}
                 <Route
                   path="/profile"
                   element={
@@ -71,6 +73,7 @@ function App() {
                     </Suspense>
                   }
                 />
+                {/* User Profile */}
                 <Route
                   path="/profile/:id"
                   element={
@@ -79,6 +82,7 @@ function App() {
                     </Suspense>
                   }
                 />
+                {/* Search */}
                 <Route
                   path="/search"
                   element={
@@ -87,6 +91,7 @@ function App() {
                     </Suspense>
                   }
                 />
+                {/* Post */}
                 <Route
                   path="/post"
                   element={
@@ -95,6 +100,7 @@ function App() {
                     </Suspense>
                   }
                 />
+                {/* Sign In */}
                 <Route
                   path="/signin"
                   element={
@@ -103,6 +109,7 @@ function App() {
                     </Suspense>
                   }
                 />
+                {/* Sign Up */}
                 <Route
                   path="/signup"
                   element={
