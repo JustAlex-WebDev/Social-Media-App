@@ -11,6 +11,7 @@ const CommentList = ({ post, commentsMenu }) => {
   return (
     <div className="h-full flex flex-col justify-between gap-2">
       <div className="flex flex-col gap-8">
+        {/* Heading */}
         <div
           className={`${
             commentsMenu ? "opacity-100" : "opacity-0"
@@ -18,6 +19,8 @@ const CommentList = ({ post, commentsMenu }) => {
         >
           Comments
         </div>
+
+        {/* Comments */}
         {comments.length === 0 ? (
           <div
             className={`${
@@ -44,6 +47,7 @@ const CommentList = ({ post, commentsMenu }) => {
           </div>
         )}
       </div>
+
       {/* Add Comment */}
       <AddComment post={post} commentsMenu={commentsMenu} />
     </div>

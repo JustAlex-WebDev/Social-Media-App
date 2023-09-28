@@ -25,7 +25,6 @@ import {
   ref,
   uploadBytes,
 } from "firebase/storage";
-import { useAuth } from "./auth";
 
 export function usePost(id) {
   const q = doc(db, "posts", id);

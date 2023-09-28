@@ -1,55 +1,37 @@
-import React, { lazy, useEffect, useState } from "react";
+import React, { lazy, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RiMenuFill, RiArrowLeftSLine } from "react-icons/ri";
 import { BsPersonGear } from "react-icons/bs";
 import { useSearchContext } from "../../context/SearchContext";
-import ProfileMenu from "../ProfileMenu";
-import { useAuth } from "../../hooks/auth";
 const NavigationMenu = lazy(() => import("./NavigationMenu"));
 const SearchBar = lazy(() => import("./SearchBar"));
+const ProfileMenu = lazy(() => import("./ProfileMenu"));
 
 const Navigation = () => {
-  const { user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const [navMenu, setNavMenu] = useState(false);
-  const [searchTab, setSearchTab] = useState(false);
-  const [profileTab, setProfileTab] = useState(false);
-  const [profileMenu, setProfileMenu] = useState(false);
   const { searchText, setSearchText } = useSearchContext();
-
-  useEffect(() => {
-    if (location.pathname === "/search") {
-      setSearchTab(true);
-    } else {
-      setSearchTab(false);
-    }
-
-    if (user?.id) {
-      if (location.pathname === "/profile") {
-        setProfileTab(true);
-      }
-    }
-  }, [location.pathname, user?.id]);
+  const [profileMenu, setProfileMenu] = useState(false);
 
   return (
     <>
       {location.pathname === "/signin" ||
       location.pathname === "/signup" ? null : (
         <div className="w-full max-w-[500px] m-auto p-4 bg-white flex justify-between items-center text-black">
-          {/* Arrow Back & Menu Icon */}
-          {searchTab || profileTab ? (
+          {/* Arrow Back / Menu Icon */}
+          {location.pathname === "/search" ||
+          location.pathname === "/profile" ||
+          location.pathname === "/post" ? (
             <RiArrowLeftSLine
-              onClick={() =>
-                setSearchTab(false) &
-                setSearchText("") &
-                setProfileTab(false) &
-                navigate("/")
-              }
+              onClick={() => setSearchText("") & navigate("/")}
               size={26}
               title="Go to Home"
               className={`${
-                profileTab ? "mt-2" : null
+                location.pathname === "/profile" ||
+                location.pathname === "/post"
+                  ? "mt-2"
+                  : null
               } cursor-pointer hover:text-orange-600 duration-300 ease-in-out`}
             />
           ) : (
@@ -65,7 +47,11 @@ const Navigation = () => {
           <Link
             to={"/"}
             className={`${
-              searchTab || profileTab ? "hidden" : "block"
+              location.pathname === "/search" ||
+              location.pathname === "/profile" ||
+              location.pathname === "/post"
+                ? "hidden"
+                : "block"
             } group text-2xl font-semibold tracking-widest`}
           >
             <span className="group-hover:text-orange-600 duration-150 ease-in">
@@ -86,47 +72,41 @@ const Navigation = () => {
             <span className="group-hover:text-orange-600 duration-150 delay-[500ms] ease-in">
               R
             </span>
-            {/* <span className="text-xs text-orange-600 font-bold">
-              <span className="group-hover:text-black duration-150 delay-[600ms] ease-in">
-                f
-              </span>
-              <span className="group-hover:text-black duration-150 delay-[700ms] ease-in">
-                u
-              </span>
-              <span className="group-hover:text-black duration-150 delay-[800ms] ease-in">
-                l
-              </span>
-              <span className="group-hover:text-black duration-150 delay-[900ms] ease-in">
-                l
-              </span>
-            </span> */}
           </Link>
 
-          {/* Search Bar & Profile Menu */}
-          {!profileTab ? (
-            <SearchBar
-              searchTab={searchTab}
-              setSearchTab={setSearchTab}
-              searchText={searchText}
-              setSearchText={setSearchText}
-            />
-          ) : (
+          {/* Search Bar / Profile Menu / Post Tab */}
+          {location.pathname === "/profile" ? (
             <BsPersonGear
               size={24}
               title="Options"
               onClick={() => setProfileMenu(true)}
               className={`${
-                profileTab ? "opacity-100" : "opacity-0"
+                location.pathname === "/profile" ? "opacity-100" : "opacity-0"
               } cursor-pointer hover:text-orange-600 duration-300 ease-in-out`}
             />
+          ) : (
+            <>
+              {location.pathname === "/post" ? null : (
+                <SearchBar
+                  searchText={searchText}
+                  setSearchText={setSearchText}
+                />
+              )}
+            </>
           )}
 
           {/* Menu */}
-          <NavigationMenu
-            navMenu={navMenu}
-            setNavMenu={setNavMenu}
-            location={location}
-          />
+          <div
+            className={`${
+              navMenu ? "w-full p-4" : "w-0"
+            } bg-white fixed top-0 h-screen max-w-[500px] flex justify-center items-end duration-1000 ease-in-out overflow-hidden z-50`}
+          >
+            <NavigationMenu
+              navMenu={navMenu}
+              setNavMenu={setNavMenu}
+              location={location}
+            />
+          </div>
 
           {/* Profile Menu */}
           <ProfileMenu

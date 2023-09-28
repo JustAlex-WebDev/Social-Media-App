@@ -1,12 +1,8 @@
 import React, { lazy, useState } from "react";
-import { useParams } from "react-router-dom";
 import { motion as m } from "framer-motion";
-import { format } from "date-fns";
+import { useParams } from "react-router-dom";
 import { usePosts } from "../hooks/posts";
 import { useUser } from "../hooks/users";
-import Posts from "../components/posts/Posts";
-import PageTransition from "../components/PageTransition";
-import Navigation from "../components/navigation/Navigation";
 const ProfilePost = lazy(() => import("../components/profile/ProfilePost"));
 
 const UserProfile = () => {

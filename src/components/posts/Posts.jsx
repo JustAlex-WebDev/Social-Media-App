@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import { motion as m } from "framer-motion";
-import IndividualPost from "./IndividualPost";
-import SkeletonPost from "./SkeletonPost";
+const IndividualPost = lazy(() => import("./IndividualPost"));
+const SkeletonPost = lazy(() => import("./SkeletonPost"));
 
 const Posts = ({ posts, isLoading }) => {
   const [skeletonLoading, setSkeletonLoading] = useState(true);

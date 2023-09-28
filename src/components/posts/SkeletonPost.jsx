@@ -1,8 +1,8 @@
 import React from "react";
+import { motion as m } from "framer-motion";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { IoMdHeart } from "react-icons/io";
 import { MdModeComment } from "react-icons/md";
-import { motion as m } from "framer-motion";
 
 const SkeletonPost = ({ post }) => {
   return (
@@ -38,7 +38,7 @@ const SkeletonPost = ({ post }) => {
 
       {/* Caption */}
       <div className="text-sm font-medium h-auto text-gray-200 bg-gray-200">
-        {post.text.slice(0, 50)}
+        {post.caption}
       </div>
 
       {/* Likes & Comments */}

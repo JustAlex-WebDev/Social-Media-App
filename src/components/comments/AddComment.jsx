@@ -22,6 +22,7 @@ const AddComment = ({ post, commentsMenu }) => {
           commentsMenu ? "opacity-100" : "opacity-0"
         } w-full flex justify-between items-center delay-300 duration-300 ease-in-out`}
       >
+        {/* Add Comment User & Input */}
         <div className="w-3/4 flex justify-start items-center gap-4">
           <img
             src={authUser?.avatar}
@@ -36,6 +37,8 @@ const AddComment = ({ post, commentsMenu }) => {
             className="w-3/4 bg-black border-b border-neutral-700 outline-none py-1"
           />
         </div>
+
+        {/* Add Comment Button */}
         <button
           type="submit"
           title="Post"

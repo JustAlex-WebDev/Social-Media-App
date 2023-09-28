@@ -1,10 +1,10 @@
 import React, { lazy, useState } from "react";
 import { Link } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
+import { formatDistanceToNow } from "date-fns";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { MdOutlineModeComment } from "react-icons/md";
 import { HiOutlineDotsVertical } from "react-icons/hi";
-import { formatDistanceToNow } from "date-fns";
-import { useInView } from "react-intersection-observer";
 import { useAuth } from "../../hooks/auth";
 import { useComments } from "../../hooks/comments";
 import { useToggleLike, useDeletePost } from "../../hooks/posts";
@@ -101,20 +101,20 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
           onClick={() => setCaptionOpen(!captionOpen)}
           className="text-sm font-medium h-auto hover:opacity-50 cursor-pointer duration-300 ease-in-out"
         >
-          {post.text.slice(0, 50)}
+          {post.caption}
         </div>
       ) : (
         <>
-          {post.text.length <= 35 ? (
-            <div className="text-sm font-medium h-auto">{post.text}</div>
+          {post?.caption.length <= 20 ? (
+            <div className="text-sm font-medium h-auto">{post.caption}</div>
           ) : (
             <div
               title="View"
               onClick={() => setCaptionOpen(!captionOpen)}
               className="text-sm font-medium h-auto hover:opacity-50 cursor-pointer duration-300 ease-in-out"
             >
-              {post.text.slice(0, 35)}
-              {post.text.length > 35 ? " ..." : null}
+              {post?.caption.slice(0, 20)}
+              {post?.caption.length > 20 ? " ..." : null}
             </div>
           )}
         </>
