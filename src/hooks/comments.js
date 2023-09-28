@@ -12,17 +12,6 @@ import {
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { uuidv4 } from "@firebase/util";
 
-export function useComments(postID) {
-  const q = query(
-    collection(db, "comments"),
-    where("postID", "==", postID),
-    orderBy("date", "desc")
-  );
-  const [comments, isLoading, error] = useCollectionData(q);
-  if (error) throw error;
-  return { comments, isLoading };
-}
-
 export function useAddComment({ postID, uid }) {
   const [isLoading, setLoading] = useState(false);
 
@@ -36,6 +25,17 @@ export function useAddComment({ postID, uid }) {
   }
 
   return { addComment, isLoading };
+}
+
+export function useComments(postID) {
+  const q = query(
+    collection(db, "comments"),
+    where("postID", "==", postID),
+    orderBy("date", "desc")
+  );
+  const [comments, isLoading, error] = useCollectionData(q);
+  if (error) throw error;
+  return { comments, isLoading };
 }
 
 export function useDeleteComment(id) {

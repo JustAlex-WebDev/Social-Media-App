@@ -6,8 +6,6 @@ import {
   RiHome2Line,
   RiAddFill,
   RiUser3Line,
-  // RiNotification4Line,
-  // RiInformationLine,
 } from "react-icons/ri";
 import { MdOutlineExitToApp, MdOutlineLogin } from "react-icons/md";
 import { useAuth, useLogout } from "../../hooks/auth";
@@ -19,11 +17,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
   if (isLoading) return null;
 
   return (
-    <div
-      className={`${
-        navMenu ? "left-0" : "-left-[100%]"
-      } bg-white absolute top-0 p-4 w-full h-screen flex justify-center items-center overflow-hidden duration-1000 ease-in-out z-50`}
-    >
+    <div className="bg-white w-full h-screen flex justify-center items-center">
       {/* Menu Handle */}
       <div
         onClick={() => setNavMenu(false)}

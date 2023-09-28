@@ -42,17 +42,6 @@ export const captionValidate = {
   },
 };
 
-export const textValidate = {
-  required: {
-    value: true,
-    message: "Please enter message",
-  },
-  maxLength: {
-    value: 100,
-    message: "Message must be at most 100 characters long",
-  },
-};
-
 export const picValidate = {
   required: {
     value: true,

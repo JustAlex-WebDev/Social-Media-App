@@ -15,7 +15,7 @@ const Comment = ({ comment }) => {
 
   return (
     <div className="w-full flex flex-col gap-4">
-      {/* User */}
+      {/* Comment User */}
       <div className="flex">
         <Link
           to={`/profile/${user.id}`}

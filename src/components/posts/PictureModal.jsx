@@ -10,6 +10,7 @@ const PictureModal = ({ post, pictureModal, setPictureModal }) => {
           : "-top-[100%] h-full -z-10 delay-[250ms]"
       } bg-modal fixed left-0 w-full flex justify-center items-center`}
     >
+      {/* Post's Picture */}
       <img
         onClick={(e) => e.stopPropagation()}
         src={post.picture}

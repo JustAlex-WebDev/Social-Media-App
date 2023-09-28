@@ -1,9 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import { MdOutlineModeComment } from "react-icons/md";
 import { RiUser3Line } from "react-icons/ri";
 import { GoTrash } from "react-icons/go";
-import { Link } from "react-router-dom";
 
 const PostMenu = ({
   post,
@@ -24,13 +24,13 @@ const PostMenu = ({
       onClick={() => setPostMenu(false)}
       className={`${
         postMenu ? "h-full" : "h-0 delay-[250ms]"
-      } bg-modal fixed top-0 left-0 w-full z-50`}
+      } bg-modal fixed top-0 left-0 w-full flex justify-center items-end z-50`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         className={`${
           postMenu ? "h-1/3 opacity-100" : "h-0 opacity-0"
-        } bg-black text-white absolute bottom-0 left-0 px-4 py-8 w-full rounded-tl-3xl rounded-tr-3xl flex flex-col justify-between overflow-hidden duration-300 ease-in-out z-50`}
+        } bg-black w-full max-w-[500px] text-white px-4 py-8 rounded-tl-3xl rounded-tr-3xl flex flex-col justify-between overflow-hidden duration-300 ease-in-out z-50`}
       >
         {/* Post Menu Handle */}
         <div
