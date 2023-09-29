@@ -18,7 +18,7 @@ const Navigation = () => {
     <>
       {location.pathname === "/signin" ||
       location.pathname === "/signup" ? null : (
-        <div className="w-full max-w-[500px] m-auto p-4 bg-white flex justify-between items-center text-black">
+        <div className="w-full max-w-[500px] m-auto p-4 bg-white flex justify-between items-center text-black animate-animateOpacity">
           {/* Arrow Back / Menu Icon */}
           {location.pathname === "/search" ||
           location.pathname === "/profile" ||
@@ -82,7 +82,7 @@ const Navigation = () => {
               onClick={() => setProfileMenu(true)}
               className={`${
                 location.pathname === "/profile" ? "opacity-100" : "opacity-0"
-              } cursor-pointer hover:text-orange-600 duration-300 ease-in-out`}
+              } mr-2 cursor-pointer hover:text-orange-600 duration-300 ease-in-out`}
             />
           ) : (
             <>

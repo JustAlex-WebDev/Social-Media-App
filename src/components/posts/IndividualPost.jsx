@@ -57,25 +57,63 @@ const IndividualPost = React.forwardRef(({ post }, ref) => {
     >
       {/* User */}
       <div className="w-full flex justify-between items-center gap-2">
-        <Link
-          to={`/profile/${user.id}`}
-          title="See Profile"
-          className="flex justify-left gap-2 cursor-pointer hover:opacity-50 duration-300 ease-in-out"
-        >
-          <img
-            src={user.avatar}
-            alt=""
-            className="w-10 h-10 bg-black shadow-sm shadow-gray-400 rounded-full object-cover"
-          />
-          <div className="flex flex-col">
-            <div className="tracking-wider font-semibold capitalize text-orange-600">
-              {user.username}
+        {authUser?.id === post?.uid ? (
+          <Link
+            to={`/profile`}
+            title="Your Profile"
+            className="flex justify-left gap-2 cursor-pointer hover:opacity-50 duration-300 ease-in-out"
+          >
+            {user.avatar ? (
+              <img
+                src={user.avatar}
+                alt=""
+                className="w-10 h-10 shadow-sm shadow-gray-400 rounded-full object-cover"
+              />
+            ) : (
+              <img
+                src={user.avatar}
+                alt=""
+                className="w-10 h-10 bg-black shadow-sm shadow-gray-400 rounded-full object-cover"
+              />
+            )}
+            <div className="flex flex-col">
+              <div className="tracking-wider font-semibold capitalize text-orange-600">
+                {user.username}
+              </div>
+              <div className="opacity-50 text-xs">
+                {formatDistanceToNow(post.date)} ago
+              </div>
             </div>
-            <div className="opacity-50 text-xs">
-              {formatDistanceToNow(post.date)} ago
+          </Link>
+        ) : (
+          <Link
+            to={`/profile/${user.id}`}
+            title="See Profile"
+            className="flex justify-left gap-2 cursor-pointer hover:opacity-50 duration-300 ease-in-out"
+          >
+            {user.avatar ? (
+              <img
+                src={user.avatar}
+                alt=""
+                className="w-10 h-10 shadow-sm shadow-gray-400 rounded-full object-cover"
+              />
+            ) : (
+              <img
+                src={user.avatar}
+                alt=""
+                className="w-10 h-10 bg-black shadow-sm shadow-gray-400 rounded-full object-cover"
+              />
+            )}
+            <div className="flex flex-col">
+              <div className="tracking-wider font-semibold capitalize text-orange-600">
+                {user.username}
+              </div>
+              <div className="opacity-50 text-xs">
+                {formatDistanceToNow(post.date)} ago
+              </div>
             </div>
-          </div>
-        </Link>
+          </Link>
+        )}
         <HiOutlineDotsVertical
           size={22}
           onClick={() => setPostMenu(true)}
