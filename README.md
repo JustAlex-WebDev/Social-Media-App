@@ -13,4 +13,4 @@ If you do not want to use your own information just use these demo email and pas
 Email: `demo@demo.com`
 Password: `password`
 
-[Go to app]([https://social-media-app-2fe38.web.app)/ "See the demo")
+[Go to app](https://social-media-app-2fe38.web.app/ "See the demo")
