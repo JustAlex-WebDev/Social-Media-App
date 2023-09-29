@@ -24,7 +24,7 @@ const NavigationMenu = ({ navMenu, setNavMenu, location }) => {
         title="Close Menu"
         className={`${
           navMenu ? "opacity-100 delay-500" : "opacity-0 delay-0"
-        } absolute top-5 right-4 cursor-pointer duration-500`}
+        } absolute top-5 right-6 cursor-pointer duration-500`}
       >
         <RiCloseFill
           size={26}

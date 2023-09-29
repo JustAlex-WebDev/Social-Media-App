@@ -45,10 +45,10 @@ const Post = () => {
       <m.form
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
+        transition={{ delay: 0.5, duration: 1 }}
         onSubmit={handleSubmit(handleAddPost)}
         onClick={(e) => e.stopPropagation()}
-        className="h-full w-full max-w-[500px] m-auto bg-white p-4 flex flex-col justify-center items-center text-center gap-8 text-black"
+        className="h-full w-full max-w-[500px] m-auto p-4 flex flex-col justify-center items-center text-center gap-8 text-black relative"
       >
         {/* Heading */}
         <div className="w-full flex justify-center items-center">
@@ -132,7 +132,7 @@ const Post = () => {
         <button
           type="submit"
           title="Post"
-          className="absolute top-4 right-4 text-orange-600 hover:opacity-50 text-lg font-bold tracking-wider cursor-pointer duration-300 ease-in-out"
+          className="absolute -top-10 right-6 text-orange-600 hover:opacity-50 text-lg font-bold tracking-wider cursor-pointer duration-300 ease-in-out"
         >
           {authLoading || addingPostLoading ? <>Loading...</> : <>Post</>}
         </button>
