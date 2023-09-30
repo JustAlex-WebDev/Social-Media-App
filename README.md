@@ -1,10 +1,10 @@
 # WONDER
 
 ## About
-WONDER is a React full stack social media app. The app is build in order for people to see something out of their circle of interests. Furthermore, users are able to post a picture and a caption of their choice for all the other people to see. The design of the app is more on the minimalistic side which helps new users navigate around. Consequently, this leads more people stumbuling on a user's post. All there is left to say is that, the app is WONDERfull! 
+WONDER is a start-up social media app designed for all ages. My objective is to provide an inspirational focused social media experience which expands one's circle of interests. I designed and developed this product from beginning to end following a human-centered design philosophy over the steps of my design and development process. Consequently, the app is not only easy to navigate around, but beatifull to look at too! 
 
 ## Development 
-The theologies used in the website are React, Firebase and Tailwind. The Authentication is integrated with the help of Firebase. The dynamic routes and everything else regarding the routing is done with React-Router-Dom. There is also, useContext for keeping track of the state throughout the whole application and Framer Motion for the transition between the pages.
+Some of the technologies used throughout the development of this application are React, Firebase and Tailwind. There are custom hooks, dynamic and protected routes (React-Router-Dom) and integrated authentication (Firebase). Futhermore, there is a thechnology used for the transition betweeen the pages (Framer Motion) and a close to perfect state management (useContext).
 
 ## Demo Link
 
