@@ -28,12 +28,7 @@ const Posts = ({ posts, isLoading }) => {
           ))}
         </div>
       ) : (
-        <m.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="h-full w-full max-w-[500px] m-auto bg-white p-4 mb-8 grid grid-cols-2 gap-8 text-black"
-        >
+        <m.div className="animate-animateOpacity h-full w-full max-w-[500px] m-auto bg-white p-4 mb-8 grid grid-cols-2 gap-8 text-black">
           {posts.map((post) => (
             <IndividualPost key={post?.id} post={post} />
           ))}
